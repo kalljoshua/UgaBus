@@ -22,6 +22,12 @@ Route::get('/verify/{token}', 'User\VerifyController@verify')->name('verify');
 Route::post('/login', 'User\LoginController@login')->name('user.login.submit');
 Route::get('/logout', 'User\LoginController@logout')->name('user.logout');
 
+//Search routes
+Route::get('/search', 'User\SearchController@search')->name('search');
+
+//Booking routes
+Route::get('/bus-details', 'User\BusBookingController@busDetails')->name('bus.details');
+Route::get('/bus-booking', 'User\BusBookingController@busBooking')->name('bus.booking');
 
 
 //User routes
