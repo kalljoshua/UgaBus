@@ -20,7 +20,7 @@
 	<!-- END: PAGE TITLE -->
 	
 	<!-- START: CAR GALLERY -->
-	<div class="row hotel-detail" style="background-color: white;">
+	<div class="row hotel-detail">
 		<div class="container">
 			<div class="product-brief-info">
 				<div class="col-md-8 clear-padding">

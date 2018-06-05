@@ -137,112 +137,80 @@
 </section>
 <!--END: HOW IT WORK -->
 
-<!-- START: PRODUCT SECTION-->
-<section class="hotel-product home-product">
-	<!-- START: PRODUCT ROW 1 -->
-	<div class="row light-row">
-			<div class="col-md-6 clear-padding wow slideInLeft">
-				<div class="product-wrapper">
-					<div class="col-md-6 col-sm-6 home-product-padding tooltip-right">
-						<h4>Romantic Paris</h4>
-						<h5><i class="fa fa-map-marker"></i> France</h5>
-						<p>Lorem Ipsum is simply dummy text. Lorem Ipsum is simply dummy text of the printing.</p>
-						<div class="rating-box">
-							<div class="pull-left">
-								<img src="/client_inc/assets/images/tripadvisor.png" alt="cruise"><span>4.0/5</span>
-							</div>
-							<div class="pull-right">
-								<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i><span>4.5/5</span>
-							</div>
-						</div>
-						<div class="clearfix"></div>
-						<div class="pricing-info">
-							<div class="pull-left">
-								<span>$999/Person</span> 
-							</div>
-							<div class="pull-right">
-								<a href="#" class="wow fadeIn">BOOK NOW</a>
-							</div>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-					<div class="col-md-6 col-sm-6 clear-padding image-sm text-center">
-						<img src="/client_inc/assets/images/tour12.jpg" alt="cruise">
-						<div class="detail-link-wrapper">
-							<div class="detail-link">
-								<a href="#"><i class="fa fa-search"></i></a>
-							</div>
-						</div>
-					</div>
-				</div>
+<!-- START: HOT  DEALS -->
+<section>
+	<div class="row hot-deals">
+		<div class="container clear-padding">
+			<div class="section-title text-center">
+				<h2>Recommended Routes</h2>
+				<h4>SAVE MORE</h4>
+			</div>
+			<div role="tabpanel" class="text-center">
+				<!-- END: CATEGORY TAB -->
 				<div class="clearfix"></div>
-				<div class="product-wrapper">
-					<div class="col-md-6 col-sm-6 clear-padding image-sm text-center">
-						<img src="/client_inc/assets/images/tour11.jpg" alt="cruise">
-						<div class="detail-link-wrapper">
-							<div class="detail-link">
-								<a href="#"><i class="fa fa-search"></i></a>
+				<!-- BEGIN: TAB PANELS -->
+				<div class="tab-content">
+					<!-- BEGIN: FLIGHT SEARCH -->
+					<div role="tabpanel" class="tab-pane active fade in" id="tab1">
+						<div class="col-md-6 hot-deal-list wow slideInLeft">
+							@foreach($routes as $route)
+							<div class="item">
+								<div class="col-xs-3">
+									<img src="/client_inc/assets/images/offer1.jpg" alt="Cruise">
+								</div>
+								<div class="col-md-7 col-xs-6">
+									<h5>{{$route->bus['busname']}}</h5>
+									<p class="location">
+										<i class="fa fa-map-marker"></i> {{$route->travelfrom}} to {{$route->travelto}}</p>
+									<p class="text-sm">Lorem Ipsum is simply dummy text. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+								</div>
+								<div class="col-md-2 col-xs-3">
+									<h4>UGX {{number_format("$route->price_total")}}</h4>
+									<h6>Per seat</h6>
+									<a href="{{route('bus.booking')}}">BOOK</a>
+								</div>
+							</div>
+							<div class="clearfix"></div>
+							@endforeach
+						</div>
+						<div class="col-md-6 hot-deal-grid wow slideInRight">
+							<div class="col-sm-6 item">
+								<div class="wrapper">
+									<img src="/client_inc/assets/images/tour1.jpg" alt="Cruise">
+									<h5>Paris Starting From $49/Night</h5>
+									<a href="#">DETAILS</a>
+								</div>
+							</div>
+							<div class="col-sm-6 item">
+								<div class="wrapper">
+									<img src="/client_inc/assets/images/tour2.jpg" alt="Cruise">
+									<h5>Bangkok Starting From $69/Night</h5>
+									<a href="#">DETAILS</a>
+								</div>
+							</div>
+							<div class="col-sm-6 item">
+								<div class="wrapper">
+									<img src="/client_inc/assets/images/tour3.jpg" alt="Cruise">
+									<h5>Dubai Starting From $99/Night</h5>
+									<a href="#">DETAILS</a>
+								</div>
+							</div>
+							<div class="col-sm-6 item">
+								<div class="wrapper">
+									<img src="/client_inc/assets/images/tour4.jpg" alt="Cruise">
+									<h5>Italy Starting From $59/Night</h5>
+									<a href="#">DETAILS</a>
+								</div>
 							</div>
 						</div>
 					</div>
-					<div class="col-md-6 col-sm-6 home-product-padding tooltip-left">
-						<h4>Blue Beach</h4>
-						<h5><i class="fa fa-map-marker"></i> Dubai</h5>
-						<p>Lorem Ipsum is simply dummy text. Lorem Ipsum is simply dummy text of the printing.</p>
-						<div class="rating-box">
-							<div class="pull-left">
-								<img src="/client_inc/assets/images/tripadvisor.png" alt="cruise"><span>4.0/5</span>
-							</div>
-							<div class="pull-right">
-								<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i><span>4.5/5</span>
-							</div>
-						</div>
-						<div class="clearfix"></div>
-						<div class="pricing-info">
-							<div class="pull-left">
-								<span>$899/Person</span> 
-							</div>
-							<div class="pull-right">
-								<a href="#" class="wow fadeIn">BOOK NOW</a>
-							</div>
-						</div>
-						<div class="clearfix"></div>
-					</div>
+					
 				</div>
 			</div>
-			<div class="clearfix visible-sm-block"></div>
-			<div class="col-md-6 clear-padding image-lg wow slideInRight">
-				<img src="/client_inc/assets/images/home31.jpg" alt="cruise">
-				<div class="overlay">
-					<div class="product-detail text-center">
-						<h3>Africa Safari</h3>
-						<h5><i class="fa fa-map-marker"></i> KENYA</h5>
-						<p>Lorem Ipsum is simply dummy text. Lorem Ipsum is simply dummy text of the printing.</p>
-						<div class="rating-box">
-							<div class="pull-left">
-								<img src="/client_inc/assets/images/tripadvisor.png" alt="cruise"><span>4.0/5</span>
-							</div>
-							<div class="pull-right">
-								<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i><span>4.5/5</span>
-							</div>
-						</div>
-						<div class="clearfix"></div>
-						<div class="pricing-info">
-							<div class="pull-left">
-								<span>$499/Person</span> 
-							</div>
-							<div class="pull-right">
-								<a href="#" class="wow fadeIn">BOOK NOW</a>
-							</div>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-				</div>
-			</div>
+		</div>
 	</div>
-	<!-- END: PRODUCT ROW 1 -->
 </section>
-<!-- END: PRODUCT SECTION -->
+<!-- END: HOT DEALS -->
 
 
 
@@ -428,233 +396,6 @@
 	</div>
 </section>
 <!-- END: WHY CHOOSE US SECTION -->
-
-<!-- START: HOT  DEALS -->
-<section>
-	<div class="row hot-deals">
-		<div class="container clear-padding">
-			<div class="section-title text-center">
-				<h2>HOT DEALS</h2>
-				<h4>SAVE MORE</h4>
-			</div>
-			<div role="tabpanel" class="text-center">
-				<!-- BEGIN: CATEGORY TAB -->
-				<ul class="nav nav-tabs" role="tablist" id="hotDeal">
-					<li role="presentation" class="active text-center">
-						<a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">
-							<i class="fa fa-bed"></i> 
-							<span>HOTELS</SPAN>
-						</a>
-					</li>
-					<li role="presentation" class="text-center">
-						<a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">
-							<i class="fa fa-suitcase"></i> 
-							<span>HOLIDAYS</SPAN>
-						</a>
-					</li>
-					<li role="presentation" class="text-center">
-						<a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">
-							<i class="fa fa-plane"></i> 
-							<span>FLIGHTS</SPAN>
-						</a>
-					</li>
-					<li role="presentation" class="text-center">
-						<a href="#tab4" aria-controls="tab4" role="tab" data-toggle="tab">
-							<i class="fa fa-taxi"></i> 
-							<span>CARS</SPAN>
-						</a>
-					</li>
-					<li role="presentation" class="text-center">
-						<a href="#tab5" aria-controls="tab5" role="tab" data-toggle="tab">
-							<i class="fa fa-bed"></i> 
-							<span>HOTEL+FLIGHTS</SPAN>
-						</a>
-					</li>
-				</ul>
-				<!-- END: CATEGORY TAB -->
-				<div class="clearfix"></div>
-				<!-- BEGIN: TAB PANELS -->
-				<div class="tab-content">
-					<!-- BEGIN: FLIGHT SEARCH -->
-					<div role="tabpanel" class="tab-pane active fade in" id="tab1">
-						<div class="col-md-6 hot-deal-list wow slideInLeft">
-							<div class="item">
-								<div class="col-xs-3">
-									<img src="/client_inc/assets/images/offer1.jpg" alt="Cruise">
-								</div>
-								<div class="col-md-7 col-xs-6">
-									<h5>Hotel Grand Lilly</h5>
-									<p class="location"><i class="fa fa-map-marker"></i> New York, USA</p>
-									<p class="text-sm">Lorem Ipsum is simply dummy text. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-								</div>
-								<div class="col-md-2 col-xs-3">
-									<h4>$499</h4>
-									<h6>Per Night</h6>
-									<a href="#">BOOK</a>
-								</div>
-							</div>
-							<div class="clearfix"></div>
-							<div class="item">
-								<div class="col-xs-3">
-									<img src="/client_inc/assets/images/offer2.jpg" alt="Cruise">
-								</div>
-								<div class="col-md-7 col-xs-6">
-									<h5>Royal Resort</h5>
-									<p class="location"><i class="fa fa-map-marker"></i> New York, USA</p>
-									<p class="text-sm">Lorem Ipsum is simply dummy text. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-								</div>
-								<div class="col-md-2 col-xs-3">
-									<h4>$399</h4>
-									<h6>Per Night</h6>
-									<a href="#">BOOK</a>
-								</div>
-							</div>
-							<div class="clearfix"></div>
-							<div class="item">
-								<div class="col-xs-3">
-									<img src="/client_inc/assets/images/offer3.jpg" alt="Cruise">
-								</div>
-								<div class="col-md-7 col-xs-6">
-									<h5>Hotel Grand Lilly</h5>
-									<p class="location"><i class="fa fa-map-marker"></i> New York, USA</p>
-									<p class="text-sm">Lorem Ipsum is simply dummy text. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-								</div>
-								<div class="col-md-2 col-xs-3">
-									<h4>$499</h4>
-									<h6>Per Night</h6>
-									<a href="#">BOOK</a>
-								</div>
-							</div>
-							<div class="clearfix"></div>
-						</div>
-						<div class="col-md-6 hot-deal-grid wow slideInRight">
-							<div class="col-sm-6 item">
-								<div class="wrapper">
-									<img src="/client_inc/assets/images/tour1.jpg" alt="Cruise">
-									<h5>Paris Starting From $49/Night</h5>
-									<a href="#">DETAILS</a>
-								</div>
-							</div>
-							<div class="col-sm-6 item">
-								<div class="wrapper">
-									<img src="/client_inc/assets/images/tour2.jpg" alt="Cruise">
-									<h5>Bangkok Starting From $69/Night</h5>
-									<a href="#">DETAILS</a>
-								</div>
-							</div>
-							<div class="col-sm-6 item">
-								<div class="wrapper">
-									<img src="/client_inc/assets/images/tour3.jpg" alt="Cruise">
-									<h5>Dubai Starting From $99/Night</h5>
-									<a href="#">DETAILS</a>
-								</div>
-							</div>
-							<div class="col-sm-6 item">
-								<div class="wrapper">
-									<img src="/client_inc/assets/images/tour4.jpg" alt="Cruise">
-									<h5>Italy Starting From $59/Night</h5>
-									<a href="#">DETAILS</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div role="tabpanel" class="tab-pane fade" id="tab2">
-						<div class="col-md-6 hot-deal-list">
-							<div class="item">
-								<div class="col-xs-3">
-									<img src="/client_inc/assets/images/offer3.jpg" alt="Cruise">
-								</div>
-								<div class="col-md-7 col-xs-6">
-									<h5>Hotel Grand Lilly</h5>
-									<p class="location"><i class="fa fa-map-marker"></i> New York, USA</p>
-									<p class="text-sm">Lorem Ipsum is simply dummy text. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-								</div>
-								<div class="col-md-2 col-xs-3">
-									<h4>$499</h4>
-									<h6>Per Night</h6>
-									<a href="#">BOOK</a>
-								</div>
-							</div>
-							<div class="clearfix"></div>
-							<div class="item">
-								<div class="col-xs-3">
-									<img src="/client_inc/assets/images/offer2.jpg" alt="Cruise">
-								</div>
-								<div class="col-md-7 col-xs-6">
-									<h5>Royal Resort</h5>
-									<p class="location"><i class="fa fa-map-marker"></i> New York, USA</p>
-									<p class="text-sm">Lorem Ipsum is simply dummy text. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-								</div>
-								<div class="col-md-2 col-xs-3">
-									<h4>$399</h4>
-									<h6>Per Night</h6>
-									<a href="#">BOOK</a>
-								</div>
-							</div>
-							<div class="clearfix"></div>
-							<div class="item">
-								<div class="col-xs-3">
-									<img src="/client_inc/assets/images/offer1.jpg" alt="Cruise">
-								</div>
-								<div class="col-md-7 col-xs-6">
-									<h5>Hotel Grand Lilly</h5>
-									<p class="location"><i class="fa fa-map-marker"></i> New York, USA</p>
-									<p class="text-sm">Lorem Ipsum is simply dummy text. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-								</div>
-								<div class="col-md-2 col-xs-3">
-									<h4>$499</h4>
-									<h6>Per Night</h6>
-									<a href="#">BOOK</a>
-								</div>
-							</div>
-							<div class="clearfix"></div>
-						</div>
-						<div class="col-md-6 hot-deal-grid">
-							<div class="col-sm-6 item">
-								<div class="wrapper">
-									<img src="/client_inc/assets/images/tour5.jpg" alt="Cruise">
-									<h5>Paris Starting From $49/Night</h5>
-									<a href="#">DETAILS</a>
-								</div>
-							</div>
-							<div class="col-sm-6 item">
-								<div class="wrapper">
-									<img src="/client_inc/assets/images/tour6.jpg" alt="Cruise">
-									<h5>Bangkok Starting From $69/Night</h5>
-									<a href="#">DETAILS</a>
-								</div>
-							</div>
-							<div class="col-sm-6 item">
-								<div class="wrapper">
-									<img src="/client_inc/assets/images/tour7.jpg" alt="Cruise">
-									<h5>Dubai Starting From $99/Night</h5>
-									<a href="#">DETAILS</a>
-								</div>
-							</div>
-							<div class="col-sm-6 item">
-								<div class="wrapper">
-									<img src="/client_inc/assets/images/tour8.jpg" alt="Cruise">
-									<h5>Italy Starting From $59/Night</h5>
-									<a href="#">DETAILS</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div role="tabpanel" class="tab-pane" id="tab3">
-						Lorem Lpsum 3
-					</div>
-					<div role="tabpanel" class="tab-pane" id="tab4">
-						Lorem Lpsum 4
-					</div>
-					<div role="tabpanel" class="tab-pane" id="tab5">
-						Lorem Lpsum 5
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-<!-- END: HOT DEALS -->
 
 
 

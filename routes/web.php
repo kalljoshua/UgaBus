@@ -11,9 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('user.index');
-});
+Route::get('/', 'User\HomeController@index')->name('home');
+
 
 //User authentication routes
 Route::get('/authentication', 'User\AuthenticationController@authentication')->name('user.login.register');
@@ -28,6 +27,7 @@ Route::get('/search', 'User\SearchController@search')->name('search');
 //Booking routes
 Route::get('/bus-details', 'User\BusBookingController@busDetails')->name('bus.details');
 Route::get('/bus-booking', 'User\BusBookingController@busBooking')->name('bus.booking');
+Route::get('/payment-reciepts', 'User\BusBookingController@paymentReciept')->name('payment.reciept');
 
 
 //User routes
