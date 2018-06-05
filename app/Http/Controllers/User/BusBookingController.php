@@ -16,4 +16,9 @@ class BusBookingController extends Controller
     {
     	return view('user.bus-details');
     }
+
+
+    function paymentReciept(){
+    	return view('user.payment-reciept');
+    }
 }
