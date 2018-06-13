@@ -11,9 +11,13 @@
 				<div class="col-md-8 col-sm-7 clear-padding search-box">
 					<div class="col-md-12 col-xs-12 clear-padding user-logged">
 					@if(Auth::guard('user')->user())
-						<a href="#" class="transition-effect">
+					<a href="" class="transition-effect">
+						<img src="/client_inc/assets/images/google-play-badge.png" 
+						style="width: 140%;" class="text-left" alt="app download"></a>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="{{route('user.account',['name'=>Auth::guard('user')->user()->last_name])}}" class="transition-effect">
 							<img src="/client_inc/assets/images/user.jpg" alt="cruise">
-							Hi, {{Auth::guard('user')->user()->name}}
+							Hi, {{Auth::guard('user')->user()->last_name}}
 						</a>
 						<a href="{{route('user.logout')}}" class="transition-effect">
 							<i class="fa fa-sign-out"></i>Sign Out

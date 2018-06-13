@@ -11,7 +11,7 @@
 		<div class="container clear-padding text-center flight-title">
 			<h3>YOUR SELECTION</h3>
 			<h4>Grand Lilly</h4>
-			<span><i class="fa fa-calendar"></i> Check In - 05 Aug <i class="fa fa-calendar"></i> Check Out - 05 Aug <i class="fa fa-male"></i> Guest(s) - 2 Adult</span>
+			<span><i class="fa fa-map-marker"></i> {{$route->travelfrom}} <i class="fa fa-map-marker"></i> {{$route->travelto}} <i class="fa fa-male"></i> Travellers(s) - {{$seats}}</span>
 		</div>
 	</div>
 	<!-- END: PAGE TITLE -->
@@ -36,49 +36,31 @@
 								<img src="/client_inc/assets/images/tour2.jpg" alt="cruise">
 							</div>
 							<div class="col-md-6 col-sm-6">
-								<h4>Wonderful Europe</h4>
+								<h4>{{$route->bus['busname']}}</h4>
 								<div class="col-md-6 col-sm-6 col-xs-6 clear-padding">
-									<p>START</p>
-									<p><i class="fa fa-calendar"></i> SAT, 22 AUG</p>
+									<p>DEPARTURE</p>
+									<p><i class="fa fa-map-marker"></i> {{$route->travelfrom}}</p>
 								</div>
 								<div class="col-md-6 col-sm-6 col-xs-6 clear-padding">
-									<p>END</p>
-									<p><i class="fa fa-calendar"></i> SAT, 29 AUG</p>
+									<p>DESTINATION</p>
+									<p><i class="fa fa-map-marker"></i> {{$route->travelto}}</p>
 								</div>
 								<div class="clearfix"></div>
-								<p><span>Traveller</span> - 2 Adult</p>
-								<p><span>Theme</span> - Honeymoon</p>
+								<p><span>Traveller</span> - {{$seats}}</p>
+								<p><span>Depature Time</span> - {{$route->time_of_departure}}</p>
+								<p><span>Terminal</span> - {{$route->starting_point}}</p>
 							</div>
 							<div class="clearfix visible-sm-block"></div>
 							<div class="col-md-2 text-center">
-								<a href="#">CHANGE</a>
+								<a href="{{ URL::previous() }}">CHANGE</a>
 							</div>
 						</div>
-						<div class="login-box">
-							<h3>Sign In</h3>
-							<div class="booking-form">
-								<div class="col-md-6 col-sm-6">
-									<form >
-										<label>Email</label>
-										<input class="form-control" type="email" name="emailid" placeholder="Enter Your Email" required>
-										<label>Password</label>
-										<input class="form-control" type="password" name="password" placeholder="Enter Password" required>
-										<a href="#">Forget Password?</a>
-										<label>Phone Number (Optional)</label>
-										<input class="form-control" type="text" name="phone">
-										<label><input type="checkbox" name="remember"> Remember me</label>
-										<button type="submit">Login</button>
-									</form>
-								</div>
-								<div class="col-md-6 col-sm-6 text-center">
+						
+							<div class="col-md-12 col-sm-12 text-right">
 									<div class="social-media-login">
-										<a href="#"><i class="fa fa-facebook"></i>Log in With Facebook</a>
-										<span>Or</span>
-										<a href="#"><i class="fa fa-plus"></i>Create Account</a>
+										<a href="{{route('make.payment',['id'=>$route->id])}}"><i class="fa fa-chevron-right"></i>PROCEED TO PAYMENT</a>
 									</div>
-								</div>
 							</div>
-						</div>
 					</div>
 					<div class="col-md-4 col-sm-4 booking-sidebar">
 						<div class="sidebar-item">
@@ -86,12 +68,12 @@
 							<div class="sidebar-body">
 								<table class="table">
 									<tr>
-										<td>Adult 1</td>
-										<td>$199</td>
+										<td>Per Person</td>
+										<td>UGX {{number_format("$route->price_total")}}</td>
 									</tr>
 									<tr>
-										<td>Base Ammount</td>
-										<td>$100</td>
+										<td>Seats Booked</td>
+										<td>{{$seats}}</td>
 									</tr>
 									<tr>
 										<td>Service Tax</td>
@@ -101,9 +83,14 @@
 										<td>Other Taxes</td>
 										<td>$20</td>
 									</tr>
+									<?php 
+										$total = $route->price_total * $seats;
+										Session::put('total_price', $total);
+										Session::put('seats', $seats);
+									?>
 									<tr>
 										<td>You Pay</td>
-										<td class="total">$500</td>
+										<td class="total">UGx {{number_format("$total")}}</td>
 									</tr>
 								</table>
 							</div>

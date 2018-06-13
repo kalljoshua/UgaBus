@@ -25,14 +25,20 @@ Route::get('/logout', 'User\LoginController@logout')->name('user.logout');
 Route::get('/search', 'User\SearchController@search')->name('search');
 
 //Booking routes
-Route::get('/bus-details', 'User\BusBookingController@busDetails')->name('bus.details');
-Route::get('/bus-booking', 'User\BusBookingController@busBooking')->name('bus.booking');
+Route::get('/bus-details/{id}', 'User\BusController@busDetails')->name('bus.details');
+Route::post('/bus-booking', 'User\BusBookingController@busBooking')->name('bus.booking');
+Route::get('/make-payment/{id}', 'User\BusBookingController@makePayment')->name('make.payment');
+Route::post('/process-payment', 'User\BusBookingController@processPayment')->name('process.payment');
 Route::get('/payment-reciepts', 'User\BusBookingController@paymentReciept')->name('payment.reciept');
+Route::post('/newsletter', 'User\NewsletterController@subscribe')->name('newsletter.subscribe');
 
 
 //User routes
 Route::group(['middleware' => 'user'], function () {
     Route::get('/user/{name}', 'User\UserProfileController@userAccount')->name('user.account');
+    Route::post('/password-reset', 'User\UserProfileController@updatePassword')->name('password.reset');
+    Route::post('/profile-update', 'User\UserProfileController@profileUpdate')->name('profile.update');
+
 });
 
 //Agents routes

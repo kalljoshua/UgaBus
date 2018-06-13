@@ -4,7 +4,8 @@
 		<div class="row main-footer-sub">
 			<div class="container clear-padding">
 				<div class="col-md-7 col-sm-7">
-					<form >
+					<form method='post' action="{{route('newsletter.subscribe')}}">
+						{{ csrf_field() }}
 						<label>SUBSCRIBE TO OUR NEWSLETTER</label>
 						<div class="clearfix"></div>
 						<div class="col-md-9 col-sm-8 col-xs-6 clear-padding">
