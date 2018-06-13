@@ -23,54 +23,37 @@
 								<div role="tabpanel" class="tab-pane active" id="taxi">
 									<div class="col-md-8">
 										<form method="get" action="{{route('search')}}">
-											<div class="col-md-12 product-search-title">Search Perfect Car</div>
+											<div class="col-md-12 product-search-title">Search for your Bus</div>
 											<div class="col-md-6 col-sm-6 search-col-padding">
 												<label>Pick Up Location</label>
 												<div class="input-group">
-													<input type="text" name="departure-city" class="form-control" required placeholder="E.g. New York">
+													<input type="text" name="departure" class="form-control" required placeholder="E.g. Kampala">
 													<span class="input-group-addon"><i class="fa fa-map-marker fa-fw"></i></span>
 												</div>
 											</div>
 											<div class="col-md-6 col-sm-6 search-col-padding">
 												<label>Drop Off Location</label>
 												<div class="input-group">
-													<input type="text" name="destination-city" class="form-control" required placeholder="E.g. New York">
+													<input type="text" name="destination" class="form-control" required placeholder="E.g. Gulu">
 													<span class="input-group-addon"><i class="fa fa-map-marker fa-fw"></i></span>
 												</div>
 											</div>
 											<div class="clearfix"></div>
 											<div class="col-md-6 col-sm-6 search-col-padding">
-												<label>Pick Up Date</label>
+												<label>Travel Date</label>
 												<div class="input-group">
-													<input type="text" id="car_start" class="form-control" placeholder="MM/DD/YYYY">
+													<input type="text" id="car_start" name="date" class="form-control" placeholder="MM/DD/YYYY">
 													<span class="input-group-addon"><i class="fa fa-calendar fa-fw"></i></span>
 												</div>
 											</div>
 											<div class="col-md-6 col-sm-6 search-col-padding">
-												<label>Drop Off Date</label>
-												<div class="input-group">
-													<input type="text" id="car_end" class="form-control" placeholder="MM/DD/YYYY">
-													<span class="input-group-addon"><i class="fa fa-calendar fa-fw"></i></span>
-												</div>
-											</div>
-											<div class="clearfix"></div>
-											<div class="col-md-6 col-sm-6 search-col-padding">
-												<label>Car Brnad(Optional)</label><br>
-												<select class="selectpicker" name="brand">
-													<option>BMW</option>
-													<option>Audi</option>
-													<option>Mercedes</option>
-													<option>Suzuki</option>
-													<option>Honda</option>
-													<option>Hyundai</option>
-													<option>Toyota</option>
-												</select>
-											</div>
-											<div class="col-md-6 col-sm-6 search-col-padding">
-												<label>Car Type(Optional)</label><br>
-												<select class="selectpicker" name="car_type">
-													<option>Limo</option>
-													<option>Sedan</option>
+												<label>No of Seats</label><br>
+												<select class="selectpicker" name="seats">
+													<option value="1">1</option>
+													<option value="2">2</option>
+													<option value="3">3</option>
+													<option value="4">4</option>
+													<option value="5">5</option>
 												</select>
 											</div>
 											<div class="clearfix"></div>

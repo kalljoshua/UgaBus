@@ -53,16 +53,17 @@
 								</div>
 								<div class="clearfix"></div>
 								<div class="brief-info-footer">
-									<a href="#"><i class="fa fa-edit"></i>Edit Profile</a>
+									<a data-toggle="tab" href="#profile"><i class="fa fa-edit"></i>Edit Profile</a>
 									<a href="#"><i class="fa fa-plus"></i>Add Travel Preference</a>
 								</div>
 							</div>
 							<div class="clearfix"></div>
 							<div class="most-recent-booking">
-								<h4>Recent Booking</h4>
+								<h4>Recent Travels</h4>
+								@foreach($bookings as $booking)
 								<div class="field-entry">
 									<div class="col-md-6 col-sm-4 col-xs-4 clear-padding">
-										<p><i class="fa fa-plane"></i>New York<i class="fa fa-long-arrow-right"></i>New Delhi</p>
+										<p><i class="fa fa-bus"></i>{{$booking->busroute->travelfrom}}<i class="fa fa-long-arrow-right"></i>{{$booking->busroute->travelto}}</p>
 									</div>
 									<div class="col-md-4 col-sm-6 col-xs-6">
 										<p class="confirmed"><i class="fa fa-check"></i>Confirmed</p>
@@ -72,66 +73,7 @@
 									</div>
 								</div>
 								<div class="clearfix"></div>
-								<div class="field-entry">
-									<div class="col-md-6 col-sm-4 col-xs-4 clear-padding">
-										<p><i class="fa fa-bed"></i>Grand Lilly <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></p>
-									</div>
-									<div class="col-md-4 col-sm-6 col-xs-6">
-										<p class="confirmed"><i class="fa fa-check"></i>Confirmed</p>
-									</div>
-									<div class="col-md-2 col-sm-2 col-xs-2 text-center clear-padding">
-										<a href="#">Detail</a>
-									</div>
-								</div>
-								<div class="clearfix"></div>
-								<div class="field-entry">
-									<div class="col-md-6 col-sm-4 col-xs-4 clear-padding">
-										<p><i class="fa fa-suitcase"></i>Wonderful Europe</p>
-									</div>
-									<div class="col-md-4 col-sm-6 col-xs-6">
-										<p class="failed"><i class="fa fa-times"></i>failed</p>
-									</div>
-									<div class="col-md-2 col-sm-2 col-xs-2 text-center clear-padding">
-										<a href="#">Detail</a>
-									</div>
-								</div>
-								<div class="clearfix"></div>
-								<div class="field-entry">
-									<div class="col-md-6 col-sm-4 col-xs-4 clear-padding">
-										<p><i class="fa fa-plane"></i>New York<i class="fa fa-long-arrow-right"></i>New Delhi</p>
-									</div>
-									<div class="col-md-4 col-sm-6 col-xs-6">
-										<p class="confirmed"><i class="fa fa-check"></i>Confirmed</p>
-									</div>
-									<div class="col-md-2 col-sm-2 col-xs-2 text-center clear-padding">
-										<a href="#">Detail</a>
-									</div>
-								</div>
-								<div class="clearfix"></div>
-								<div class="field-entry">
-									<div class="col-md-6 col-sm-4 col-xs-4 clear-padding">
-										<p><i class="fa fa-bed"></i>Grand Lilly <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></p>
-									</div>
-									<div class="col-md-4 col-sm-6 col-xs-6">
-										<p class="confirmed"><i class="fa fa-check"></i>Confirmed</p>
-									</div>
-									<div class="col-md-2 col-sm-2 col-xs-2 text-center clear-padding">
-										<a href="#">Detail</a>
-									</div>
-								</div>
-								<div class="clearfix"></div>
-								<div class="field-entry">
-									<div class="col-md-6 col-sm-4 col-xs-4 clear-padding">
-										<p><i class="fa fa-suitcase"></i>Wonderful Europe</p>
-									</div>
-									<div class="col-md-4 col-sm-6 col-xs-6">
-										<p class="failed"><i class="fa fa-times"></i>failed</p>
-									</div>
-									<div class="col-md-2 col-sm-2 col-xs-2 text-center clear-padding">
-										<a href="#">Detail</a>
-									</div>
-								</div>
-								<div class="clearfix"></div>
+								@endforeach
 							</div>
 						</div>
 						<div class="col-md-6">
@@ -206,6 +148,7 @@
 						</div>
 						<div class="clearfix"></div>
 						<div class="col-md-12">
+							@foreach($bookings as $booking)
 							<div class="item-entry">
 								<span>Order ID: CR1234</span>
 								<div class="item-content">
@@ -214,145 +157,29 @@
 											<img src="assets/images/offer1.jpg" alt="cruise">
 										</div>
 										<div class="col-md-4 col-sm-4">
-											<h4>Grand Lilly <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></h4>
-											<p>Check In: 22 Aug </p>
-											<p>Check Out: 25 Aug</p>
+											<h4>{{$booking->busroute->bus['busname']}} <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></h4>
+											<p>Leaving from: {{$booking->busroute->travelfrom}} </p>
+											<p>Going to: {{$booking->busroute->travelto}}</p>
 										</div>
 										<div class="col-md-3 col-sm-3">
 											<p class="confirmed"><i class="fa fa-check"></i>Confirmed</p>
 										</div>
 										<div class="col-md-3 col-sm-3">
-											<p><a href="#">Cancel</a></p>
+											<p><a href="#">Details</a></p>
+											<p><a href="#" class="btn-info">Review <i class="fa fa-reply"></i></a></p>
 										</div>
 									</div>
 									<div class="item-footer">
-										<p><strong>Order Date:</strong> 20 Aug 2015<strong>Order Total:</strong> $566</p>
+										<p><strong>Travel Date:</strong> {{$booking->created_at}}<strong>Order Total:</strong> UGx {{number_format("$booking->total_price")}}</p>
 									</div>
 									<div class="clearfix"></div>
 								</div>
 							</div>
-							<div class="item-entry">
-								<span>Order ID: CR1568</span>
-								<div class="item-content">
-									<div class="item-body">
-										<div class="col-md-2 col-sm-2 clear-padding text-center">
-											<img src="assets/images/airline/vistara-2x.png" alt="cruise">
-										</div>
-										<div class="col-md-4 col-sm-4">
-											<h4>New Delhi <i class="fa fa-long-arrow-right"></i> New York</h4>
-											<p>Take Off: 22 Aug </p>
-											<p>Landing: 22 Aug</p>
-										</div>
-										<div class="col-md-3 col-sm-3">
-											<p class="confirmed"><i class="fa fa-check"></i>Confirmed</p>
-										</div>
-										<div class="col-md-3 col-sm-3">
-											<p><a href="#">Cancel</a></p>
-										</div>
-									</div>
-									<div class="item-footer">
-										<p><strong>Order Date:</strong> 20 Aug 2015<strong>Order Total:</strong> $566</p>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-							<div class="item-entry">
-								<span>Order ID: CR9880</span>
-								<div class="item-content">
-									<div class="item-body">
-										<div class="col-md-2 col-sm-2 clear-padding text-center">
-											<img src="assets/images/offer1.jpg" alt="cruise">
-										</div>
-										<div class="col-md-4 col-sm-4">
-											<h4>Wonderful Europe</h4>
-											<p>Start: 22 Aug </p>
-											<p>End: 25 Aug</p>
-										</div>
-										<div class="col-md-3 col-sm-3">
-											<p class="failed"><i class="fa fa-times"></i>Payment Failed</p>
-										</div>
-									</div>
-									<div class="item-footer">
-										<p><strong>Order Date:</strong> 20 Aug 2015<strong>Order Total:</strong> $566</p>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-							<div class="item-entry">
-								<span>Order ID: CR1234</span>
-								<div class="item-content">
-									<div class="item-body">
-										<div class="col-md-2 col-sm-2 clear-padding text-center">
-											<img src="assets/images/offer2.jpg" alt="cruise">
-										</div>
-										<div class="col-md-4 col-sm-4">
-											<h4>Grand Lilly <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></h4>
-											<p>Check In: 22 Aug </p>
-											<p>Check Out: 25 Aug</p>
-										</div>
-										<div class="col-md-3 col-sm-3">
-											<p class="confirmed"><i class="fa fa-check"></i>Confirmed</p>
-										</div>
-										<div class="col-md-3 col-sm-3">
-											<p><a href="#">Cancel</a></p>
-										</div>
-									</div>
-									<div class="item-footer">
-										<p><strong>Order Date:</strong> 20 Aug 2015<strong>Order Total:</strong> $566</p>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-							<div class="item-entry completed">
-								<span>Order ID: CR1568</span>
-								<div class="item-content">
-									<div class="item-body">
-										<div class="col-md-2 col-sm-2 clear-padding text-center">
-											<img src="assets/images/airline/vistara-2x.png" alt="cruise">
-										</div>
-										<div class="col-md-4 col-sm-4">
-											<h4>New Delhi <i class="fa fa-long-arrow-right"></i> New York</h4>
-											<p>Take Off: 22 Aug </p>
-											<p>Landing: 22 Aug</p>
-										</div>
-										<div class="col-md-3 col-sm-3">
-											<p class="confirmed"><i class="fa fa-check"></i>Completed</p>
-										</div>
-										<div class="col-md-3 col-sm-3">
-											<p><a href="#">Submit Review</a></p>
-										</div>
-									</div>
-									<div class="item-footer">
-										<p><strong>Order Date:</strong> 20 Aug 2015<strong>Order Total:</strong> $566</p>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-							<div class="item-entry completed">
-								<span>Order ID: CR9880</span>
-								<div class="item-content">
-									<div class="item-body">
-										<div class="col-md-2 col-sm-2 clear-padding text-center">
-											<img src="assets/images/offer3.jpg" alt="cruise">
-										</div>
-										<div class="col-md-4 col-sm-4">
-											<h4>Wonderful Europe</h4>
-											<p>Start: 22 Aug </p>
-											<p>End: 25 Aug</p>
-										</div>
-										<div class="col-md-3 col-sm-3">
-											<p class="confirmed"><i class="fa fa-check"></i>Completed</p>
-										</div>
-										<div class="col-md-3 col-sm-3">
-											<p><a href="#">Submit Review</a></p>
-										</div>
-									</div>
-									<div class="item-footer">
-										<p><strong>Order Date:</strong> 20 Aug 2015<strong>Order Total:</strong> $566</p>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
+							@endforeach
+							
+							
+							
+							
 							<div class="text-center load-more">
 								<a href="#">LOAD MORE</a>
 							</div>
@@ -363,90 +190,43 @@
 							<div class="user-personal-info">
 								<h4>Personal Information</h4>
 								<div class="user-info-body">
-									<form >
+									<form method="post" action="{{route('profile.update')}}">
+										{{csrf_field()}}
 										<div class="col-md-6 col-sm-6">
 											<label>First Name</label>
-											<input type="text" name="fname" required placeholder="First Name" class="form-control">
+											<input type="text" name="fname" value="{{Auth::guard('user')->user()->first_name}}" class="form-control">
 										</div>
 										<div class="col-md-6 col-sm-6">
 											<label>First Name</label>
-											<input type="text" name="lname" required placeholder="Last Name" class="form-control">
+											<input type="text" name="lname" value="{{Auth::guard('user')->user()->last_name}}" class="form-control">
 										</div>
 										<div class="clearfix"></div>
 										<div class="col-md-12">
 											<label>Email-ID</label>
-											<input type="email" name="email" required placeholder="lenore@example.com" class="form-control">
+											<input type="email" name="email" value="{{Auth::guard('user')->user()->email}}" class="form-control">
 										</div>
 										<div class="col-md-12">
 											<label>Contact Number</label>
-											<input type="text" name="contact" required class="form-control">
+											<input type="text" name="contact" value="{{Auth::guard('user')->user()->phone_no}}" class="form-control">
 										</div>
 										<div class="col-md-12">
-											<label>Date Of Birth</label>
+											<label>City/State</label>
 											<div class="clearfix"></div>
-											<div class="col-md-4 col-sm-4 col-xs-4 clear-padding">
-												<select class="form-control" name="day">
-													<option>Day</option>
-													<option>01</option>
-													<option>02</option>
-													<option>03</option>
-													<option>04</option>
-													<option>05</option>
-												</select>
-											</div>
-											<div class="col-md-4 col-sm-4 col-xs-4">
-												<select class="form-control" name="month">
-													<option>Month</option>
-													<option>01</option>
-													<option>02</option>
-													<option>03</option>
-													<option>04</option>
-													<option>05</option>
-												</select>
-											</div>
-											<div class="col-md-4 col-sm-4 col-xs-4 clear-padding">
-												<select class="form-control" name="year">
-													<option>Year</option>
-													<option>1990</option>
-													<option>1991</option>
-													<option>1992</option>
-													<option>1993</option>
-													<option>1994</option>
-												</select>
-											</div>
+											<input type="text" name="city" value="{{Auth::guard('user')->user()->city}}" class="form-control">
+										</div>
+										<div class="col-md-12">
+											<label>Country</label>
+											<div class="clearfix"></div>
+											<input type="text" name="country" value="{{Auth::guard('user')->user()->country}}" class="form-control">
 										</div>
 										<div class="col-md-12">
 											<label>Current Address</label>
-											<textarea placeholder="Your Current Address" id="current-address" class="form-control" rows="5"></textarea>
-											<div class="col-md-6 col-sm-6 col-xs-6 clear-padding">
-												<input type="text" name="zip-code" class="form-control" placeholder="Zip Code">
-											</div>
-											<div class="col-md-6 col-sm-6 col-xs-6">
-												<input type="text" name="zip-code" class="form-control" placeholder="City">
-											</div>
-											<div class="col-md-6 col-sm-6 clear-padding">
-												<select class="form-control" name="country">
-													<option>Country</option>
-													<option>Australia</option>
-													<option>India</option>
-													<option>USA</option>
-													<option>UK</option>
-												</select>
-											</div>
-											<div class="col-md-6 col-sm-6">
-												<select class="form-control" name="state">
-													<option>State</option>
-													<option>CA</option>
-													<option>GA</option>
-													<option>NY</option>
-													<option>SA</option>
-													<option>WA</option>
-												</select>
-											</div>
+											<textarea placeholder="Your Current Address" id="current-address" name="address" class="form-control" rows="5">{{Auth::guard('user')->user()->address}}
+											</textarea>
 										</div>	
 										<div class="col-md-12">
 											<label>Upload Avatar</label>
-											<input type="file" name="profile-pic" class="upload-pic">
+											<input type="file" name="profile" class="upload-pic">
 										</div>
 										<div class="clearfix"></div>
 										<div class="col-md-6 col-sm-6 col-xs-6 text-center">
@@ -463,18 +243,19 @@
 							<div class="user-change-password">
 								<h4>Change Password</h4>
 								<div class="change-password-body">
-									<form >
+									<form method="post" action="{{route('password.reset')}}">
+										{{ csrf_field() }}
 										<div class="col-md-12">
 											<label>Old Password</label>
-											<input type="password" placeholder="Old Password" class="form-control" name="old-password">
+											<input type="password" placeholder="Old Password" class="form-control" name="oldpass">
 										</div>
 										<div class="col-md-12">
 											<label>New Password</label>
-											<input type="password" placeholder="New Password" class="form-control" name="new-password">
+											<input type="password" placeholder="New Password" class="form-control" name="newpass">
 										</div>
 										<div class="col-md-12">
 											<label>Confirm Password</label>
-											<input type="password" placeholder="Confirm Password" class="form-control" name="confirm-password">
+											<input type="password" placeholder="Confirm Password" class="form-control" name="confirmpass">
 										</div>
 										<div class="col-md-12 text-center">
 											 <button type="submit">SAVE CHANGES</button>

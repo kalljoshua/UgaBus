@@ -9,7 +9,7 @@ class BusRoute extends Model
 
     protected $table = "bus_routes";
 
-     public function bus()
+    public function bus()
     {
         return $this->belongsTo('App\Bus','bus_id');
     }
@@ -23,5 +23,8 @@ class BusRoute extends Model
     }
     public function images(){
         return $this->hasMany('App\ServiceImage');
+    }
+    public function bookings(){
+        return $this->hasMany('App\Booking');
     }
 }

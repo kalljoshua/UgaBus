@@ -4,6 +4,7 @@
 @endsection
 @section('content')
 
+
 	@include('user.menu')
 
 	<!-- START: MODIFY SEARCH -->
@@ -75,7 +76,7 @@
 		<!-- START: FILTER AREA -->
 		<div class="col-md-3 clear-padding">
 			<div class="filter-head text-center">
-				<h4>25 Result Found Matching Your Search.</h4>
+				<h4>{{$routes->count()}} Results Found Matching Your Search.</h4>
 			</div>
 			<div class="filter-area">
 				<div class="price-filter filter">
@@ -165,6 +166,7 @@
 					</select>
 				</div>
 			</div>
+			@if(sizeOf($routes)>0)
 			<!-- END: SORT AREA -->
 			<div class="clearfix visible-xs-block"></div>
 			<div class="col-sm-2 view-switcher">
@@ -180,6 +182,7 @@
 			<div class="clearfix"></div>
 			<!-- START: HOTEL LIST VIEW -->
 			<div class="switchable col-md-12 clear-padding">
+				@foreach($routes as $route)
 				<div  class="hotel-list-view">
 					<div class="wrapper">
 						<div class="col-md-4 col-sm-6 switch-img clear-padding">
@@ -188,30 +191,30 @@
 						<div class="col-md-6 col-sm-6 hotel-info">
 							<div>
 								<div class="hotel-header">
-									<h5>BMW Sedan <span><i class="fa fa-star colored"></i><i class="fa fa-star colored"></i><i class="fa fa-star colored"></i><i class="fa fa-star colored"></i><i class="fa fa-star-o colored"></i></span></h5>
-									<p>BMW</p>
+									<h5>{{$route->travelfrom}} to {{$route->travelto}}<span><i class="fa fa-star colored"></i><i class="fa fa-star colored"></i><i class="fa fa-star colored"></i><i class="fa fa-star colored"></i><i class="fa fa-star-o colored"></i></span></h5>
+									<p><a href="{{route('bus.details',['id' => $route->bus['id']])}}"> {{$route->bus['busname']}} </a></p>
 								</div>
 								<div class="hotel-desc">
 									<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry lorem Ipsum has been.</p>
 								</div>
 								<div class="car-detail">
 									<div class="col-md-6 col-sm-6 col-xs-6 clear-padding">
-										<p><i class="fa fa-calendar"></i>2 Year</p>
+										<p><i class="fa fa-map-marker"></i>{{$route->starting_point}}</p>
 									</div>
 									<div class="col-md-6 col-sm-6 col-xs-6 clear-padding">
-										<p><i class="fa fa-road"></i>2100 KM</p>
-									</div>
-									<div class="clearfix"></div>
-									<div class="col-md-6 col-sm-6 col-xs-6 clear-padding">
-										<p><i class="fa fa-tint"></i>Patrol</p>
-									</div>
-									<div class="col-md-6 col-sm-6 col-xs-6 clear-padding">
-										<p><i class="fa fa-users"></i>5 Person</p>
+										<p><i class="fa fa-road"></i>{{$route->bus['busnumber']}}</p>
 									</div>
 									<div class="clearfix"></div>
+									<div class="col-md-6 col-sm-6 col-xs-6 clear-padding">
+										<p><i class="fa fa-clock-o"></i>{{$route->time_of_departure}}</p>
+									</div>
+									<div class="col-md-6 col-sm-6 col-xs-6 clear-padding">
+										<p><i class="fa fa-users"></i>{{$seats}} Person</p>
+									</div>
+									<div class="clearfix"></div>
 									<div class="clearfix"></div>
 									<div class="col-md-6 col-sm-6 col-xs-6 clear-padding">
-										<p><i class="fa fa-dashboard"></i>220 KMPH</p>
+										<p><i class="fa fa-clock-o"></i>{{$route->time_of_arrival}}</p>
 									</div>
 									<div class="col-md-6 col-sm-6 col-xs-6 clear-padding">
 										<p><i class="fa fa-cog"></i>12 MPL</p>
@@ -230,335 +233,43 @@
 							</div>
 							<div class="room-book-box">
 								<div class="price">
-									<h5>$50/Person</h5>
+									<h5>UGX {{number_format("$route->price_total")}}/Person</h5>
 								</div>
 								<div class="book">
-									<a href="{{route('bus.booking')}}">BOOK</a>
+									<form action="{{ route('bus.booking') }}" method="POST">
+                                        {{ csrf_field() }}
+                                        <input type="hidden" name="id" value="{{ $route->id }}">
+                                        <input type="hidden" name="seats" value="{{ $seats }}">
+                                        <input type="hidden" name="price" value="{{ $route->price_total }}">
+                                        <button type="submit" class="btn-sm btn-danger">BOOK</button>
+                                    </form>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div  class="hotel-list-view">
-					<div class="wrapper">
-						<div class="col-md-4 col-sm-6 switch-img clear-padding">
-							<img src="/client_inc/assets/images/car11.jpg" alt="cruise">
-						</div>
-						<div class="col-md-6 col-sm-6 hotel-info">
-							<div>
-								<div class="hotel-header">
-									<h5>BMW Sedan <span><i class="fa fa-star colored"></i><i class="fa fa-star colored"></i><i class="fa fa-star colored"></i><i class="fa fa-star colored"></i><i class="fa fa-star-o colored"></i></span></h5>
-									<p>BMW</p>
-								</div>
-								<div class="hotel-desc">
-									<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry lorem Ipsum has been.</p>
-								</div>
-								<div class="car-detail">
-									<div class="col-md-6 col-sm-6 col-xs-6 clear-padding">
-										<p><i class="fa fa-calendar"></i>2 Year</p>
-									</div>
-									<div class="col-md-6 col-sm-6 col-xs-6 clear-padding">
-										<p><i class="fa fa-road"></i>2100 KM</p>
-									</div>
-									<div class="clearfix"></div>
-									<div class="col-md-6 col-sm-6 col-xs-6 clear-padding">
-										<p><i class="fa fa-tint"></i>Patrol</p>
-									</div>
-									<div class="col-md-6 col-sm-6 col-xs-6 clear-padding">
-										<p><i class="fa fa-users"></i>5 Person</p>
-									</div>
-									<div class="clearfix"></div>
-									<div class="clearfix"></div>
-									<div class="col-md-6 col-sm-6 col-xs-6 clear-padding">
-										<p><i class="fa fa-dashboard"></i>220 KMPH</p>
-									</div>
-									<div class="col-md-6 col-sm-6 col-xs-6 clear-padding">
-										<p><i class="fa fa-cog"></i>12 MPL</p>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-						<div class="clearfix visible-sm-block"></div>
-						<div class="col-md-2 rating-price-box text-center clear-padding car-item">
-							<div class="rating-box">
-								<div class="user-rating">
-									<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i>
-									<span>128 Guest Reviews.</span>
-								</div>
-							</div>
-							<div class="room-book-box">
-								<div class="price">
-									<h5>$50/Person</h5>
-								</div>
-								<div class="book">
-									<a href="{{route('bus.booking')}}">BOOK</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>		
-				<div class="clearfix visible-sm-block"></div>
-				<div  class="hotel-list-view">
-					<div class="wrapper">
-						<div class="col-md-4 col-sm-6 switch-img clear-padding">
-							<img src="/client_inc/assets/images/car12.jpg" alt="cruise">
-						</div>
-						<div class="col-md-6 col-sm-6 hotel-info">
-							<div>
-								<div class="hotel-header">
-									<h5>BMW Sedan <span><i class="fa fa-star colored"></i><i class="fa fa-star colored"></i><i class="fa fa-star colored"></i><i class="fa fa-star colored"></i><i class="fa fa-star-o colored"></i></span></h5>
-									<p>BMW</p>
-								</div>
-								<div class="hotel-desc">
-									<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry lorem Ipsum has been.</p>
-								</div>
-								<div class="car-detail">
-									<div class="col-md-6 col-sm-6 col-xs-6 clear-padding">
-										<p><i class="fa fa-calendar"></i>2 Year</p>
-									</div>
-									<div class="col-md-6 col-sm-6 col-xs-6 clear-padding">
-										<p><i class="fa fa-road"></i>2100 KM</p>
-									</div>
-									<div class="clearfix"></div>
-									<div class="col-md-6 col-sm-6 col-xs-6 clear-padding">
-										<p><i class="fa fa-tint"></i>Patrol</p>
-									</div>
-									<div class="col-md-6 col-sm-6 col-xs-6 clear-padding">
-										<p><i class="fa fa-users"></i>5 Person</p>
-									</div>
-									<div class="clearfix"></div>
-									<div class="clearfix"></div>
-									<div class="col-md-6 col-sm-6 col-xs-6 clear-padding">
-										<p><i class="fa fa-dashboard"></i>220 KMPH</p>
-									</div>
-									<div class="col-md-6 col-sm-6 col-xs-6 clear-padding">
-										<p><i class="fa fa-cog"></i>12 MPL</p>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-						<div class="clearfix visible-sm-block"></div>
-						<div class="col-md-2 rating-price-box text-center clear-padding car-item">
-							<div class="rating-box">
-								<div class="user-rating">
-									<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i>
-									<span>128 Guest Reviews.</span>
-								</div>
-							</div>
-							<div class="room-book-box">
-								<div class="price">
-									<h5>$50/Person</h5>
-								</div>
-								<div class="book">
-									<a href="{{route('bus.booking')}}">BOOK</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="clearfix visible-md-block"></div>
-				<div  class="hotel-list-view">
-					<div class="wrapper">
-						<div class="col-md-4 col-sm-6 switch-img clear-padding">
-							<img src="/client_inc/assets/images/car13.jpg" alt="cruise">
-						</div>
-						<div class="col-md-6 col-sm-6 hotel-info">
-							<div>
-								<div class="hotel-header">
-									<h5>BMW Sedan <span><i class="fa fa-star colored"></i><i class="fa fa-star colored"></i><i class="fa fa-star colored"></i><i class="fa fa-star colored"></i><i class="fa fa-star-o colored"></i></span></h5>
-									<p>BMW</p>
-								</div>
-								<div class="hotel-desc">
-									<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry lorem Ipsum has been.</p>
-								</div>
-								<div class="car-detail">
-									<div class="col-md-6 col-sm-6 col-xs-6 clear-padding">
-										<p><i class="fa fa-calendar"></i>2 Year</p>
-									</div>
-									<div class="col-md-6 col-sm-6 col-xs-6 clear-padding">
-										<p><i class="fa fa-road"></i>2100 KM</p>
-									</div>
-									<div class="clearfix"></div>
-									<div class="col-md-6 col-sm-6 col-xs-6 clear-padding">
-										<p><i class="fa fa-tint"></i>Patrol</p>
-									</div>
-									<div class="col-md-6 col-sm-6 col-xs-6 clear-padding">
-										<p><i class="fa fa-users"></i>5 Person</p>
-									</div>
-									<div class="clearfix"></div>
-									<div class="clearfix"></div>
-									<div class="col-md-6 col-sm-6 col-xs-6 clear-padding">
-										<p><i class="fa fa-dashboard"></i>220 KMPH</p>
-									</div>
-									<div class="col-md-6 col-sm-6 col-xs-6 clear-padding">
-										<p><i class="fa fa-cog"></i>12 MPL</p>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-						<div class="clearfix visible-sm-block"></div>
-						<div class="col-md-2 rating-price-box text-center clear-padding car-item">
-							<div class="rating-box">
-								<div class="user-rating">
-									<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i>
-									<span>128 Guest Reviews.</span>
-								</div>
-							</div>
-							<div class="room-book-box">
-								<div class="price">
-									<h5>$50/Person</h5>
-								</div>
-								<div class="book">
-									<a href="{{route('bus.booking')}}">BOOK</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="clearfix visible-sm-block"></div>
-				<div  class="hotel-list-view">
-					<div class="wrapper">
-						<div class="col-md-4 col-sm-6 switch-img clear-padding">
-							<img src="/client_inc/assets/images/car10.jpg" alt="cruise">
-						</div>
-						<div class="col-md-6 col-sm-6 hotel-info">
-							<div>
-								<div class="hotel-header">
-									<h5>BMW Sedan <span><i class="fa fa-star colored"></i><i class="fa fa-star colored"></i><i class="fa fa-star colored"></i><i class="fa fa-star colored"></i><i class="fa fa-star-o colored"></i></span></h5>
-									<p>BMW</p>
-								</div>
-								<div class="hotel-desc">
-									<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry lorem Ipsum has been.</p>
-								</div>
-								<div class="car-detail">
-									<div class="col-md-6 col-sm-6 col-xs-6 clear-padding">
-										<p><i class="fa fa-calendar"></i>2 Year</p>
-									</div>
-									<div class="col-md-6 col-sm-6 col-xs-6 clear-padding">
-										<p><i class="fa fa-road"></i>2100 KM</p>
-									</div>
-									<div class="clearfix"></div>
-									<div class="col-md-6 col-sm-6 col-xs-6 clear-padding">
-										<p><i class="fa fa-tint"></i>Patrol</p>
-									</div>
-									<div class="col-md-6 col-sm-6 col-xs-6 clear-padding">
-										<p><i class="fa fa-users"></i>5 Person</p>
-									</div>
-									<div class="clearfix"></div>
-									<div class="clearfix"></div>
-									<div class="col-md-6 col-sm-6 col-xs-6 clear-padding">
-										<p><i class="fa fa-dashboard"></i>220 KMPH</p>
-									</div>
-									<div class="col-md-6 col-sm-6 col-xs-6 clear-padding">
-										<p><i class="fa fa-cog"></i>12 MPL</p>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-						<div class="clearfix visible-sm-block"></div>
-						<div class="col-md-2 rating-price-box text-center clear-padding car-item">
-							<div class="rating-box">
-								<div class="user-rating">
-									<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i>
-									<span>128 Guest Reviews.</span>
-								</div>
-							</div>
-							<div class="room-book-box">
-								<div class="price">
-									<h5>$50/Person</h5>
-								</div>
-								<div class="book">
-									<a href="{{route('bus.booking')}}">BOOK</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div  class="hotel-list-view">
-					<div class="wrapper">
-						<div class="col-md-4 col-sm-6 switch-img clear-padding">
-							<img src="/client_inc/assets/images/car11.jpg" alt="cruise">
-						</div>
-						<div class="col-md-6 col-sm-6 hotel-info">
-							<div>
-								<div class="hotel-header">
-									<h5>BMW Sedan <span><i class="fa fa-star colored"></i><i class="fa fa-star colored"></i><i class="fa fa-star colored"></i><i class="fa fa-star colored"></i><i class="fa fa-star-o colored"></i></span></h5>
-									<p>BMW</p>
-								</div>
-								<div class="hotel-desc">
-									<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry lorem Ipsum has been.</p>
-								</div>
-								<div class="car-detail">
-									<div class="col-md-6 col-sm-6 col-xs-6 clear-padding">
-										<p><i class="fa fa-calendar"></i>2 Year</p>
-									</div>
-									<div class="col-md-6 col-sm-6 col-xs-6 clear-padding">
-										<p><i class="fa fa-road"></i>2100 KM</p>
-									</div>
-									<div class="clearfix"></div>
-									<div class="col-md-6 col-sm-6 col-xs-6 clear-padding">
-										<p><i class="fa fa-tint"></i>Patrol</p>
-									</div>
-									<div class="col-md-6 col-sm-6 col-xs-6 clear-padding">
-										<p><i class="fa fa-users"></i>5 Person</p>
-									</div>
-									<div class="clearfix"></div>
-									<div class="clearfix"></div>
-									<div class="col-md-6 col-sm-6 col-xs-6 clear-padding">
-										<p><i class="fa fa-dashboard"></i>220 KMPH</p>
-									</div>
-									<div class="col-md-6 col-sm-6 col-xs-6 clear-padding">
-										<p><i class="fa fa-cog"></i>12 MPL</p>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-						<div class="clearfix visible-sm-block"></div>
-						<div class="col-md-2 rating-price-box text-center clear-padding car-item">
-							<div class="rating-box">
-								<div class="user-rating">
-									<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i>
-									<span>128 Guest Reviews.</span>
-								</div>
-							</div>
-							<div class="room-book-box">
-								<div class="price">
-									<h5>$50/Person</h5>
-								</div>
-								<div class="book">
-									<a href="{{route('bus.booking')}}">BOOK</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+				@endforeach
+				
 				<!-- END: HOTEL LIST VIEW -->
 				<div class="clearfix"></div>
 			</div>
+			@else
+				<p>No results found!</p>
+			@endif
 			<div class="clearfix"></div>
 			<!-- START: PAGINATION -->
 			<div class="bottom-pagination">
 				<nav class="pull-right">
 					<ul class="pagination pagination-lg">
-						<li><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
-						<li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-						<li><a href="#">2 <span class="sr-only">(current)</span></a></li>
-						<li><a href="#">3 <span class="sr-only">(current)</span></a></li>
-						<li><a href="#">4 <span class="sr-only">(current)</span></a></li>
-						<li><a href="#">5 <span class="sr-only">(current)</span></a></li>
-						<li><a href="#">6 <span class="sr-only">(current)</span></a></li>
-						<li><a href="#" aria-label="Previous"><span aria-hidden="true">&#187;</span></a></li>
+						<?php echo $routes->render(); ?>
 					</ul>
 				</nav>
 			</div>
 			<!-- END: PAGINATION -->
 		</div>
 		<!-- END: INDIVIDUAL LISTING AREA -->
+
+		
 	</div>
 </div>
 <!-- END: LISTING AREA -->
