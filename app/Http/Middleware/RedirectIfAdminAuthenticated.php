@@ -14,7 +14,7 @@ class RedirectIfAdminAuthenticated
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, $guard = 'admin')
     {
         if (!Auth::guard($guard)->check()) {
             flash('Must be logged in! Please login to gain access.')->warning();
