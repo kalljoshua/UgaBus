@@ -48,6 +48,46 @@ Route::group(['middleware' => 'agent'], function () {
 
 //Admin routes
 Route::group(['middleware' => 'admin'], function () {
+    //Dashboard
+    Route::get('/admin','Admin\DashboardController@index')->name('admin.dashboard');
+
+    //Staff
+    Route::get('/admin/staff','Admin\AdminsController@getAllAdmins')->name('admin.staff');
+    Route::post('/admin/staff/save','Admin\AdminsController@save')->name('admin.staff.save');
+    Route::get('/admin/staff/create','Admin\AdminsController@create')->name('admin.create_new_staff');
+    Route::get('/admin/staff/{id}/edit', 'Admin\AdminsController@edit')->name('admin.edit_staff_details');
+    Route::post('/admin/staff/update','Admin\AdminsController@update')->name('admin.staff.update');
+
+    //Users
+    Route::get('/admin/users','Admin\UsersController@getAllUsers')->name('admin.users');
+
+    //Buses
+    Route::get('/admin/buses/create','Admin\BusesController@createBus')->name('admin.create_new_bus');
+    Route::post('/admin/buses/save','Admin\BusesController@save')->name('admin.buses.save');
+    Route::get('/admin/buses','Admin\BusesController@getAllBuses')->name('admin.buses');
+
+    //Agents
+    Route::get('/admin/agents/create','Admin\AgentsController@createAgent')->name('admin.create_new_agent');
+    Route::post('/admin/agents/save','Admin\AgentsController@save')->name('admin.agents.save');
+    Route::get('/admin/agents','Admin\AgentsController@getAllAgents')->name('admin.agents');
+
+    //Bookings
+    Route::get('/admin/bookings','Admin\BookingsController@getAllBookings')->name('admin.bookings');
+
+    //Routes
+    Route::get('/admin/routes','Admin\RoutesController@getAllRoutes')->name('admin.routes');
+
+    //Parks
+    Route::get('/admin/parks','Admin\ParksController@getAllParks')->name('admin.parks');
+
 
 });
+
+//Admin authentication
+Route::get('/admin/login', function(){
+    return view('admin.login');
+})->name('admin.login');
+
+Route::post('/admin/login', 'Admin\AdminLoginController@login');
+Route::get('/admin/logout', 'Admin\AdminLoginController@logout');
 
