@@ -18,6 +18,14 @@
 						<a href="{{route('user.logout')}}" class="transition-effect">
 							<i class="fa fa-sign-out"></i>Sign Out
 						</a>
+					@elseif(Auth::guard('agent')->user())
+						<a href="{{route('agent.account',['name'=>Auth::guard('agent')->user()->last_name])}}" class="transition-effect">
+							<img src="/client_inc/assets/images/user.jpg" alt="cruise">
+							Hi, {{Auth::guard('agent')->user()->last_name}}
+						</a>
+						<a href="{{route('user.logout')}}" class="transition-effect">
+							<i class="fa fa-sign-out"></i>Sign Out
+						</a>
 					@else
 					<a href="" class="transition-effect">
 						<a href="{{route('user.login.register')}}" 
