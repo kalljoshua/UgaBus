@@ -14,7 +14,7 @@ class VerifyController extends Controller
         $user = User::where('email_verification_code',$token)->first();
            if($user)
             {
-                $user ->status=1;
+                $user ->email_verified_status=1;
                 $user ->email_verification_code=NULL;
                 if($user->save()){
                 flash('Account verified successfully')->success();

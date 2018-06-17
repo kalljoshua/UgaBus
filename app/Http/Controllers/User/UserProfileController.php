@@ -13,9 +13,10 @@ class UserProfileController extends Controller
 {
     public function userAccount($name)
     {
-        $user= User::where('last_name',$name)->first();
+        $user= User::where('last_name',$name)
+        ->where('id',Auth::guard('user')->user()->id)->first();
         $user_email = Auth::guard('user')->user()->email;
-        $bookings = Booking::where('email',$user_email)->get();
+        $bookings = Booking::where('user_id',$user_email)->get();
         if($user->email == $user_email)
         return view('user.user_account')
         ->with('bookings',$bookings)
@@ -49,7 +50,21 @@ class UserProfileController extends Controller
     }
 
     function profileUpdate(Request $request){
-        return $request;
+
+        $user_id = Auth::guard('user')->id();
+        $user = User::find($user_id);
+        $user->first_name = $request->input('fname');
+        $user->last_name = $request->input('lname');
+        $user->email = $request->input('email');
+        $user->phone = $request->input('contact');
+        
+        if($user->save()){
+            flash('Profile update was successfully done.')->success();
+            return Redirect::back();
+        }else{
+            flash('Profile update failed. Please try again!')->success();
+            return Redirect::back();
+        }
 
     }
 

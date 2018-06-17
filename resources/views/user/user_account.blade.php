@@ -207,22 +207,7 @@
 										</div>
 										<div class="col-md-12">
 											<label>Contact Number</label>
-											<input type="text" name="contact" value="{{Auth::guard('user')->user()->phone_no}}" class="form-control">
-										</div>
-										<div class="col-md-12">
-											<label>City/State</label>
-											<div class="clearfix"></div>
-											<input type="text" name="city" value="{{Auth::guard('user')->user()->city}}" class="form-control">
-										</div>
-										<div class="col-md-12">
-											<label>Country</label>
-											<div class="clearfix"></div>
-											<input type="text" name="country" value="{{Auth::guard('user')->user()->country}}" class="form-control">
-										</div>
-										<div class="col-md-12">
-											<label>Current Address</label>
-											<textarea placeholder="Your Current Address" id="current-address" name="address" class="form-control" rows="5">{{Auth::guard('user')->user()->address}}
-											</textarea>
+											<input type="text" name="contact" value="{{Auth::guard('user')->user()->phone}}" class="form-control">
 										</div>	
 										<div class="col-md-12">
 											<label>Upload Avatar</label>
@@ -263,7 +248,7 @@
 									</form>
 								</div>
 							</div>
-							<div class="user-preference">
+							<!---<div class="user-preference">
 								<h4 data-toggle="collapse" data-target="#flight-preference" aria-expanded="false" aria-controls="flight-preference">
 										<i class="fa fa-plane"></i> Flight Preference <span class="pull-right"><i class="fa fa-chevron-down"></i></span>
 								</h4>
@@ -301,8 +286,8 @@
 										</div>
 									</form>
 								</div>
-							</div>
-							<div class="user-preference">
+							</div>-->
+							<!---<div class="user-preference">
 								<h4 data-toggle="collapse" data-target="#hotel-preference" aria-expanded="false" aria-controls="hotel-preference">
 										<i class="fa fa-bed"></i> Hotel Preference <span class="pull-right"><i class="fa fa-chevron-down"></i></span>
 								</h4>
@@ -348,7 +333,7 @@
 										</div>
 									</form>
 								</div>
-							</div>
+							</div>-->
 						</div>
 					</div>
 					<div id="wishlist" class="tab-pane fade in">

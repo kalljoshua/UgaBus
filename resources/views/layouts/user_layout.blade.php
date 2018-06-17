@@ -57,11 +57,12 @@
 <!-- END: SITE-WRAPPER -->
 
 <!-- Load Scripts -->
+
+<script src="/client_inc/assets/js/respond.js"></script>
+<script src="/client_inc/assets/js/jquery.js"></script>
 <script>
     $('div.alerts').not('.alert-important').delay(5000).fadeOut(1500);
 </script>
-<script src="/client_inc/assets/js/respond.js"></script>
-<script src="/client_inc/assets/js/jquery.js"></script>
 <script src="/client_inc/assets/plugins/owl.carousel.min.js"></script>
 <script src="/client_inc/assets/js/bootstrap.min.js"></script>
 <script src="/client_inc/assets/js/jquery-ui.min.js"></script>
@@ -105,7 +106,7 @@ src="/client_inc/assets/plugins/supersized.3.1.3.min.js"></script>
 					slide_counter           :   1,		//Display slide numbers
 					slide_captions          :   1,		//Slide caption (Pull from "title" in slides array)
 					slides 					:  	[		//Slideshow Images
-														{image : '/client_inc/assets/images/hotel-slide.jpg', title : 'Slide 1'}
+														{image : '/client_inc/assets/images/bg-image12.jpg', title : 'Slide 1'}
 												]
 												
 				}); 

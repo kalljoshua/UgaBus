@@ -19,7 +19,7 @@
 		<div class="container clear-padding text-center flight-title">
 			<h3>YOUR SELECTION</h3>
 			<h4>Grand Lilly</h4>
-			<span><i class="fa fa-map-marker"></i> {{$route->travelfrom}} <i class="fa fa-map-marker"></i> {{$route->travelto}} <i class="fa fa-male"></i> Travellers(s) - {{$seats}}</span>
+			<span><i class="fa fa-map-marker"></i> {{$route->travel_from}} <i class="fa fa-map-marker"></i> {{$route->travel_to}} <i class="fa fa-male"></i> Travellers(s) - {{$seats}}</span>
 		</div>
 	</div>
 	<!-- END: PAGE TITLE -->
@@ -76,17 +76,11 @@
 									<h4>Choose payment method</h4>
 
 									<div class="col-md-12">
+										@foreach($payment_methods as $payment_method)
 										<label data-toggle="collapse" data-target="#saved-card-1">
-											<input type="radio" name="getway" value="mobile_money"> <span>Mobile Money</span></label>
+											<input type="radio" name="getway" value="{{$payment_method->id}}"> <span>{{$payment_method->payment_type}}</span></label>
 										<div class="clearfix"></div>
-
-										<label data-toggle="collapse" data-target="#saved-card-2">
-											<input type="radio" name="getway" value="visa"> <span>Visa Card</span></label>
-										<div class="clearfix"></div>
-
-										<label data-toggle="collapse" data-target="#saved-card-2">
-											<input type="radio" name="getway" value="terminal"> <span>At the Teminal</span></label>						
-										<div class="clearfix"></div>
+										@endforeach
 										<div>
 											<button type="submit">CONFIRM BOOKING <i class="fa fa-chevron-right"></i></button>
 										</div>
@@ -119,17 +113,11 @@
 									<h4>Choose payment method</h4>
 
 									<div class="col-md-12">
+										@foreach($payment_methods as $payment_method)
 										<label data-toggle="collapse" data-target="#saved-card-1">
-											<input type="radio" name="getway" value="mobile_money"> <span>Mobile Money</span></label>
+											<input type="radio" name="getway" value="{{$payment_method->id}}"> <span>{{$payment_method->payment_type}}</span></label>
 										<div class="clearfix"></div>
-
-										<label data-toggle="collapse" data-target="#saved-card-2">
-											<input type="radio" name="getway" value="visa"> <span>Visa Card</span></label>
-										<div class="clearfix"></div>
-
-										<label data-toggle="collapse" data-target="#saved-card-2">
-											<input type="radio" name="getway" value="terminal"> <span>At the Teminal</span></label>						
-										<div class="clearfix"></div>
+										@endforeach
 										<div>
 											<button type="submit">CONFIRM BOOKING <i class="fa fa-chevron-right"></i></button>
 										</div>
@@ -145,7 +133,7 @@
 							<h4><i class="fa fa-phone"></i>Need Help?</h4>
 							<div class="sidebar-body text-center">
 								<p>Need Help? Call us or drop a message. Our agents will be in touch shortly.</p>
-								<h2>+91 1234567890</h2>
+								<h2>+256 704741443</h2>
 							</div>
 						</div>
 					</div>
