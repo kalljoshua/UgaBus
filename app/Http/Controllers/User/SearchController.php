@@ -5,7 +5,7 @@ namespace App\Http\Controllers\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Input, Redirect;
-use App\BusRoute;
+use App\Route;
 
 class SearchController extends Controller
 {
@@ -20,7 +20,7 @@ class SearchController extends Controller
 
         //search based on depaature-city
         if ($departure && !$destination && !$date) {
-            $routes = BusRoute::where('travelfrom', $departure)
+            $routes = Route::where('travel_from', $departure)
                 //->where('active', 1)
                 ->paginate(5);
             if ($routes->count() > 0) {
@@ -33,7 +33,7 @@ class SearchController extends Controller
         
         //search based on destination-city
         if (!$departure && $destination && !$date) {
-            $routes = BusRoute::where('travelto', $destination)
+            $routes = Route::where('travel_to', $destination)
                 //->where('active', 1)
                 ->paginate(5);
             if ($routes->count() > 0) {
@@ -45,8 +45,8 @@ class SearchController extends Controller
         }
 
         //search based on date
-        if (!$departure && !$destination && $date) {
-            $routes = BusRoute::where($day, 'yes')
+       /*if (!$departure && !$destination && $date) {
+            $routes = Route::where($day, 'yes')
                 //->where('active', 1)
                 ->paginate(5);
             if ($routes->count() > 0) {
@@ -55,12 +55,12 @@ class SearchController extends Controller
                 flash('No results found for this search')->error();
                 return view('user.search-results', ['routes' => $routes, 'seats' => $seats]);
             }
-        }
+        }*/
         
         if ($departure && $destination && $date) {
-            $routes=BusRoute::where('travelfrom', $departure)
-                ->where('travelto', $destination)
-                ->where($day, 'yes')
+            $routes=Route::where('travel_from', $departure)
+                ->where('travel_to', $destination)
+                //->where($day, 'yes')
                 //->where('active', 1)
                 ->paginate(5);
                 //return $routes;

@@ -10,6 +10,16 @@ class Bus extends Model
 	
     public function routes()
     {
-        return $this->hasMany('App\BusRoute', 'bus_id');
+        return $this->hasMany('App\Route');
+    }
+
+    public function agent()
+    {
+    	return $this->belongsTo('App\Agent');
+    }
+
+    public function park()
+    {
+        return $this->belongsTo('App\Park');
     }
 }

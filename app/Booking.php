@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Booking extends Model
 {
-    public function busroute()
+    public function route()
     {
-        return $this->belongsTo('App\BusRoute','bus_route_id');
+        return $this->belongsTo('App\Route');
     }
 }

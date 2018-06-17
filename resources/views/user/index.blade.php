@@ -6,6 +6,29 @@
 
     
     @include('user.menu')
+    <style type="text/css">
+	.app-section a> img{
+		width:100%;	
+	}
+	.app-section {
+		position: relative;
+	}
+	.iphone_app {
+		bottom: 35px;
+		left: 10%;
+		position: absolute;
+		z-index: 999999;
+	}
+	.android_app {
+		position: absolute;
+		z-index: 999999;
+		bottom: 35px;
+		left: 26%;
+	}
+	.app-section {
+	padding:0 !important;	
+	}
+    </style>
 
 	<!-- BEGIN: SEARCH SECTION -->
 	<div class="row vertical-search">
@@ -21,7 +44,7 @@
 								
 								<!-- START: CAR SEARCH -->
 								<div role="tabpanel" class="tab-pane active" id="taxi">
-									<div class="col-md-8">
+									<div class="col-md-12">
 										<form method="get" action="{{route('search')}}">
 											<div class="col-md-12 product-search-title">Search for your Bus</div>
 											<div class="col-md-6 col-sm-6 search-col-padding">
@@ -58,19 +81,12 @@
 											</div>
 											<div class="clearfix"></div>
 											<div class="col-md-12 search-col-padding">
-												<button type="submit" class="search-button btn transition-effect">Search Cars</button>
+												<button type="submit" class="search-button btn transition-effect">Search Buses</button>
 											</div>
 											<div class="clearfix"></div>
 										</form>
 									</div>
-									<div class="offer-box col-md-4">
-										<div class="item">
-											<img src="/client_inc/assets/images/car11.jpg" alt="cruise">
-											<h4>BMW</h4>
-											<h5>Starting From $399/Day</h5>
-											<a href="#">KNOW MORE</a>
-										</div>
-									</div>
+									
 									<div class="clearfix"></div>
 								</div>
 								<!-- END: CAR SEARCH -->								
@@ -125,8 +141,8 @@
 	<div class="row hot-deals">
 		<div class="container clear-padding">
 			<div class="section-title text-center">
-				<h2>Recommended Routes</h2>
-				<h4>SAVE MORE</h4>
+				<h2>POPULAR ROUTES</h2>
+				<h4>Travel Together</h4>
 			</div>
 			<div role="tabpanel" class="text-center">
 				<!-- END: CATEGORY TAB -->
@@ -142,43 +158,71 @@
 									<img src="/client_inc/assets/images/offer1.jpg" alt="Cruise">
 								</div>
 								<div class="col-md-7 col-xs-6">
-									<h5>{{$route->bus['busname']}}</h5>
+									<h5>{{$route->bus->agent['company']}}</h5>
 									<p class="location">
-										<i class="fa fa-map-marker"></i> {{$route->travelfrom}} to {{$route->travelto}}</p>
-									<p class="text-sm">Lorem Ipsum is simply dummy text. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+										<i class="fa fa-map-marker"></i> {{$route->travel_from}} to {{$route->travel_to}}</p>
+									<p class="text-sm">
+
+								<div class="car-detail">
+									<div class="col-md-6 col-sm-6 col-xs-6 clear-padding">
+										<p><i class="fa fa-clock-o"></i>{{$route->time_of_departure}}</p>
+									</div>
+									<div class="col-md-6 col-sm-6 col-xs-6 clear-padding">
+										<p><i class="fa fa-clock-o"></i>{{$route->estimated_time_of_arrival}}</p>
+									</div>
+									<div class="clearfix"></div>
+									<div class="col-md-12 col-sm-12 col-xs-12 clear-padding">
+										<p><i class="fa fa-bus"></i>{{$route->bus->make}} - {{$route->bus->model}}</p>
+									</div>									
+									<div class="clearfix"></div>
+								</div>
+									</p>
 								</div>
 								<div class="col-md-2 col-xs-3">
-									<h4>UGX {{number_format("$route->price_total")}}</h4>
+									<h4>UGX {{number_format("$route->unit_seat_price")}}</h4>
 									<h6>Per seat</h6>
-									<a href="{{route('bus.booking')}}">BOOK</a>
+									<form action="{{ route('bus.booking') }}" method="POST">
+                                        {{ csrf_field() }}
+                                        <input type="hidden" name="id" value="{{ $route->id }}">
+                                        <input type="hidden" name="seats" value="1">
+                                        <input type="hidden" name="price" value="{{ $route->unit_seat_price }}">
+                                        <button type="submit" class="btn-sm btn-danger">BOOK</button>
+                                    </form>
 								</div>
 							</div>
 							<div class="clearfix"></div>
 							@endforeach
 						</div>
 						<div class="col-md-6 hot-deal-grid wow slideInRight">
-							<div class="col-sm-6 item">
+							<div class="col-sm-4 item">
 								<div class="wrapper">
 									<img src="/client_inc/assets/images/tour1.jpg" alt="Cruise">
 									<h5>Paris Starting From $49/Night</h5>
 									<a href="#">DETAILS</a>
 								</div>
 							</div>
-							<div class="col-sm-6 item">
+							<div class="col-sm-4 item">
 								<div class="wrapper">
 									<img src="/client_inc/assets/images/tour2.jpg" alt="Cruise">
 									<h5>Bangkok Starting From $69/Night</h5>
 									<a href="#">DETAILS</a>
 								</div>
 							</div>
-							<div class="col-sm-6 item">
+							<div class="col-sm-4 item">
+								<div class="wrapper">
+									<img src="/client_inc/assets/images/tour2.jpg" alt="Cruise">
+									<h5>Bangkok Starting From $69/Night</h5>
+									<a href="#">DETAILS</a>
+								</div>
+							</div>
+							<div class="col-sm-4 item">
 								<div class="wrapper">
 									<img src="/client_inc/assets/images/tour3.jpg" alt="Cruise">
 									<h5>Dubai Starting From $99/Night</h5>
 									<a href="#">DETAILS</a>
 								</div>
 							</div>
-							<div class="col-sm-6 item">
+							<div class="col-sm-4 item">
 								<div class="wrapper">
 									<img src="/client_inc/assets/images/tour4.jpg" alt="Cruise">
 									<h5>Italy Starting From $59/Night</h5>
@@ -202,8 +246,8 @@
 	<div class="row top-offer">
 		<div class="container">
 			<div class="section-title text-center">
-				<h2>RECENT BLOG POSTS</h2>
-				<h4>NEWS</h4>
+				<h2>TRAVELLERS' STORIES</h2>
+				<h4>Testimonials</h4>
 			</div>
 			<div class="owl-carousel" id="post-list">
 				<div class="room-grid-view wow slideInUp" data-wow-delay="0.1s">
@@ -340,43 +384,16 @@
 
 <!-- START: WHY CHOOSE US SECTION -->
 <section id="why-choose-us">
-	<div class="row choose-us-row">
-		<div class="container clear-padding">
-			<div class="light-section-title text-center">
-				<h2>WHY CHOOSE US?</h2>
-				<h4>REASONS TO TRUST US</h4>
-				<div class="space"></div>
-				<p>
-					Lorem Ipsum is simply dummy text. Lorem Ipsum is simply dummy text of the printing and typesetting industry.<br>
-					Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
-				</p>
-			</div>
-			<div class="col-md-4 col-sm-4 wow slideInLeft">
-				<div class="choose-us-item text-center">
-					<div class="choose-icon"><i class="fa fa-suitcase"></i></div>
-					<h4>Handpicked Tour</h4>
-					<p>Lorem Ipsum is simply dummy text. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-					<a href="#">KNOW MORE</a>
-				</div>
-			</div>
-			<div class="col-md-4 col-sm-4 wow slideInUp">
-				<div class="choose-us-item text-center">
-					<div class="choose-icon"><i class="fa fa-phone"></i></div>
-					<h4>Dedicated Support</h4>
-					<p>Lorem Ipsum is simply dummy text. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-					<a href="#">KNOW MORE</a>
-				</div>
-			</div>
-			<div class="col-md-4 col-sm-4 wow slideInRight">
-				<div class="choose-us-item text-center">
-					<div class="choose-icon"><i class="fa fa-smile-o"></i></div>
-					<h4>Lowest Price</h4>
-					<p>Lorem Ipsum is simply dummy text. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-					<a href="#">KNOW MORE</a>
-				</div>
-			</div>
-		</div>
-	</div>
+	<section class="app-section section-separator animatedParent">
+		<a target="_blank" href="https://play.google.com/store/apps/details?id=com.ugabus">
+            <img src="/client_inc/assets/images/app-img.png" alt="Image"></a>
+            <a href="#" class="iphone_app">
+            	<img src="/client_inc/assets/images/apple.png" alt="Image"></a>
+            <a target="_blank" 
+            href="https://play.google.com/store/apps/details?id=com.ugabus" 
+            class="android_app"><img src="/client_inc/assets/images/google.png" 
+            	alt="Image"></a>
+        </section>
 </section>
 <!-- END: WHY CHOOSE US SECTION -->
 

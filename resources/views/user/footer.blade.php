@@ -31,42 +31,42 @@
 		</div>
 		<div class="main-footer row">
 			<div class="container clear-padding">
-				<div class="col-md-3 col-sm-6 about-box">
-					<h3>CRUISE</h3>
-					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-						Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-					<a href="#">READ MORE</a>
+				<div class="col-md-3 col-sm-6 links">
+					<h4>Usefull Links</h4>
+					<ul>
+						<li><a href="/">Home</a></li>
+						<li><a href="#">About Us</a></li>
+						<li><a href="#">How it works</a></li>
+						<li><a href="#">FAQ</a></li>
+						<li><a href="#">Privacy Policy</a></li>
+						<li><a href="#">Terms of Use</a></li>
+						<li><a href="#">Our Services</a></li>
+					</ul>
 				</div>
 				<div class="col-md-3 col-sm-6 links">
-					<h4>Popular Tours</h4>
+					<h4>Popular Routes</h4>
 					<ul>
-						<li><a href="#">Romantic France</a></li>
-						<li><a href="#">Wonderful Lodnon</a></li>
-						<li><a href="#">Awesome Amsterdam</a></li>
-						<li><a href="#">Wild Africa</a></li>
-						<li><a href="#">Beach Goa</a></li>
-						<li><a href="#">Casino Los Vages</a></li>
-						<li><a href="#">Romantic France</a></li>
+						@foreach($route_id as $routes)
+							<?php 
+							$route = App\Route::find($routes)->first();
+							?><li><a href="#">{{$route['travel_from']}} <i class="fa fa-arrow-right"></i> {{$route['travel_to']}}</a></li> 
+						@endforeach
 					</ul>
 				</div>
 				<div class="clearfix visible-sm-block"></div>
 				<div class="col-md-3 col-sm-6 links">
-					<h4>Our Services</h4>
+					<h4>Featured Buses</h4>
 					<ul>
-						<li><a href="#">Domestic Flights</a></li>
-						<li><a href="#">International Flights</a></li>
-						<li><a href="#">Tours & Holidays</a></li>
-						<li><a href="#">Domestic Hotels</a></li>
-						<li><a href="#">International Hotels</a></li>
-						<li><a href="#">Cruise Holidays</a></li>
-						<li><a href="#">Car Rental</a></li>
+						@foreach($buses as $bus)
+							<li><a href="{{route('bus.details',['id'=>$bus->id])}}">{{$bus->agent->company}}</a></li>
+						@endforeach
 					</ul>
 				</div>
 				<div class="col-md-3 col-sm-6 contact-box">
 					<h4>Contact Us</h4>
-					<p><i class="fa fa-home"></i> Street #156 Burbank, Studio City Hollywood, California USA</p>
-					<p><i class="fa fa-phone"></i> +91 1234567890</p>
-					<p><i class="fa fa-envelope-o"></i> support@domain.com</p>
+					<p><i class="fa fa-home"></i> Plot 29, Nkinzi Rd Wandegeya Kampala-Uganda East Africa</p>
+					<p><i class="fa fa-phone"></i> +256 704741443</p>
+					<p><i class="fa fa-envelope-o"></i> support@ugabus.com</p>
 				</div>
 				<div class="clearfix"></div>
 				<div class="col-md-12 text-center we-accept">
@@ -74,8 +74,8 @@
 					<ul>
 						<li><img src="/client_inc/assets/images/card/mastercard.png" alt="cruise"></li>
 						<li><img src="/client_inc/assets/images/card/visa.png" alt="cruise"></li>
-						<li><img src="/client_inc/assets/images/card/american-express.png" alt="cruise"></li>
-						<li><img src="/client_inc/assets/images/card/mastercard.png" alt="cruise"></li>
+						<li><img src="/client_inc/assets/images/card/5.png" alt="cruise"></li>
+						<li><img src="/client_inc/assets/images/card/6.png" alt="cruise"></li>
 					</ul>
 				</div>
 			</div>
@@ -83,15 +83,11 @@
 		<div class="main-footer-nav row">
 			<div class="container clear-padding">
 				<div class="col-md-6 col-sm-6">
-					<p>Copyright &copy; 2015 LimpidThemes. All Rights Reserved.</p>
+					<p>Copyright &copy; <?php echo date('Y');?> Ugabus. All Rights Reserved.</p>
 				</div>
 				<div class="col-md-6 col-sm-6">
 					<ul>
-						<li><a href="#">FLIGHTS</a></li>
-						<li><a href="#">TOURS</a></li>
-						<li><a href="#">CARS</a></li>
-						<li><a href="#">HOTELS</a></li>
-						<li><a href="#">BLOG</a></li>
+						
 					</ul>
 				</div>
 				<div class="go-up">

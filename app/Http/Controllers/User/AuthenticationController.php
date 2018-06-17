@@ -24,7 +24,7 @@ class AuthenticationController extends Controller
 
         if(Input::has('fname')) $user->first_name = Input::get('fname');
         if(Input::has('lname')) $user->last_name = Input::get('lname');
-        if(Input::has('phone')) $user->phone_no = Input::get('phone');
+        if(Input::has('phone')) $user->phone = Input::get('phone');
         if(Input::has('email')) $user->email = Input::get('email');
         if(Input::has('pass')) $pass = Input::get('pass');
         if(Input::has('password')) $password = Input::get('password');

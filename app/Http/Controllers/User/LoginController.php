@@ -32,7 +32,7 @@ class LoginController extends Controller
         if ($this->guard()->attempt(['email' => $email, 'password' => $password]))
         {
             // Authentication passed...
-            if(Auth::guard('user')->user()->status==1) {
+            if(Auth::guard('user')->user()->email_verified_status==1) {
                 if (Session::has('oldUrl')) {
                     $oldUrl = Session::get('oldUrl');
                     Session::forget('oldUrl');
