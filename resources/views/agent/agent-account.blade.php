@@ -25,11 +25,8 @@
 						class="text-center"><i class="fa fa-user"></i> 
 						<span>Profile</span></a></li>
 						<li><a data-toggle="tab" href="#wishlist"
-						 class="text-center"><i class="fa fa-heart-o"></i> 
-						 <span>Wishlist</span></a></li>
-						<li><a data-toggle="tab" href="#cards" 
-						class="text-center"><i class="fa fa-credit-card"></i> 
-						<span>My Cards</span></a></li>
+						 class="text-center"><i class="fa fa-bus"></i> 
+						 <span>My Buses</span></a></li>						
 						<li><a data-toggle="tab" href="#complaint" 
 						class="text-center"><i class="fa fa-edit"></i> 
 						<span>Complaints</span></a></li>
@@ -49,7 +46,7 @@
 									<h5><i class="fa fa-envelope-o"></i>
 									{{$user->email}}</h5>
 									<h5><i class="fa fa-phone"></i>{{$user->phone}}</h5>
-									<h5><i class="fa fa-map-marker"></i>Burbank, USA</h5>
+									<h5><i class="fa fa-briefcase"></i>{{$user->company}}</h5>
 								</div>
 								<div class="clearfix"></div>
 								<div class="brief-info-footer">
@@ -60,19 +57,23 @@
 							<div class="clearfix"></div>
 							<div class="most-recent-booking">
 								<h4>Recent Travels</h4>
-								@foreach($bookings as $booking)
-								<div class="field-entry">
-									<div class="col-md-6 col-sm-4 col-xs-4 clear-padding">
-										<p><i class="fa fa-bus"></i>{{$booking->route->travel_from}}<i class="fa fa-long-arrow-right"></i>{{$booking->route->travel_to}}</p>
-									</div>
-									<div class="col-md-4 col-sm-6 col-xs-6">
-										<p class="confirmed"><i class="fa fa-check"></i>Confirmed</p>
-									</div>
-									<div class="col-md-2 col-sm-2 col-xs-2 text-center clear-padding">
-										<a href="#">Detail</a>
-									</div>
-								</div>
-								<div class="clearfix"></div>
+								@foreach($user->buses as $bus)
+									@foreach($bus->routes as $route)
+										@foreach(App\Booking::where('route_id',$route->id)->get() as $booking)
+										<div class="field-entry">
+											<div class="col-md-6 col-sm-4 col-xs-4 clear-padding">
+												<p><i class="fa fa-bus"></i>{{$booking->route->travel_from}}<i class="fa fa-long-arrow-right"></i>{{$booking->route->travel_to}}</p>
+											</div>
+											<div class="col-md-4 col-sm-6 col-xs-6">
+												<p class="confirmed"><i class="fa fa-check"></i>Confirmed</p>
+											</div>
+											<div class="col-md-2 col-sm-2 col-xs-2 text-center clear-padding">
+												<a href="#">Detail</a>
+											</div>
+										</div>
+										<div class="clearfix"></div>
+										@endforeach
+									@endforeach
 								@endforeach
 							</div>
 						</div>
@@ -148,38 +149,39 @@
 						</div>
 						<div class="clearfix"></div>
 						<div class="col-md-12">
-							@foreach($bookings as $booking)
-							<div class="item-entry">
-								<span>Order ID: CR1234</span>
-								<div class="item-content">
-									<div class="item-body">
-										<div class="col-md-2 col-sm-2 clear-padding text-center">
-											<img src="assets/images/offer1.jpg" alt="cruise">
+							@foreach($user->buses as $bus)
+								@foreach($bus->routes as $route)
+									@foreach(App\Booking::where('route_id',$route->id)->get() as $booking)
+										<div class="item-entry">
+											<span>Order ID: CR1234</span>
+											<div class="item-content">
+												<div class="item-body">
+													<div class="col-md-2 col-sm-2 clear-padding text-center">
+														<img src="assets/images/offer1.jpg" alt="cruise">
+													</div>
+													<div class="col-md-4 col-sm-4">
+														<h4>{{$booking->route->bus->agent['company']}} <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></h4>
+														<p>Leaving from: {{$booking->route->travel_from}} </p>
+														<p>Going to: {{$booking->route->travel_to}}</p>
+													</div>
+													<div class="col-md-3 col-sm-3">
+														<p class="confirmed"><i class="fa fa-check"></i>Confirmed</p>
+													</div>
+													<div class="col-md-3 col-sm-3">
+														<p><a href="#">Details</a></p>
+														<p><a href="#" class="btn-info">Review <i class="fa fa-reply"></i></a></p>
+													</div>
+												</div>
+												<div class="item-footer">
+													<p><strong>Travel Date:</strong> {{$booking->created_at}}<strong>Order Total:</strong> UGx {{number_format($booking->route->unit_seat_price)}}</p>
+												</div>
+												<div class="clearfix"></div>
+											</div>
 										</div>
-										<div class="col-md-4 col-sm-4">
-											<h4>{{$booking->route->bus->agent['company']}} <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></h4>
-											<p>Leaving from: {{$booking->route->travel_from}} </p>
-											<p>Going to: {{$booking->route->travel_to}}</p>
-										</div>
-										<div class="col-md-3 col-sm-3">
-											<p class="confirmed"><i class="fa fa-check"></i>Confirmed</p>
-										</div>
-										<div class="col-md-3 col-sm-3">
-											<p><a href="#">Details</a></p>
-											<p><a href="#" class="btn-info">Review <i class="fa fa-reply"></i></a></p>
-										</div>
-									</div>
-									<div class="item-footer">
-										<p><strong>Travel Date:</strong> {{$booking->created_at}}<strong>Order Total:</strong> UGx {{number_format($booking->route->unit_seat_price)}}</p>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-							@endforeach
-							
-							
-							
-							
+									@endforeach
+								@endforeach
+							@endforeach	
+
 							<div class="text-center load-more">
 								<a href="#">LOAD MORE</a>
 							</div>
@@ -194,25 +196,34 @@
 										{{csrf_field()}}
 										<div class="col-md-6 col-sm-6">
 											<label>First Name</label>
-											<input type="text" name="fname" value="{{Auth::guard('user')->user()->first_name}}" class="form-control">
+											<input type="text" name="fname" value="{{Auth::guard('agent')->user()->first_name}}" class="form-control" readonly="true">
 										</div>
 										<div class="col-md-6 col-sm-6">
 											<label>First Name</label>
-											<input type="text" name="lname" value="{{Auth::guard('user')->user()->last_name}}" class="form-control">
+											<input type="text" name="lname" value="{{Auth::guard('agent')->user()->last_name}}" class="form-control" readonly="true">
 										</div>
 										<div class="clearfix"></div>
 										<div class="col-md-12">
 											<label>Email-ID</label>
-											<input type="email" name="email" value="{{Auth::guard('user')->user()->email}}" class="form-control">
+											<input type="email" name="email" value="{{Auth::guard('agent')->user()->email}}" class="form-control" readonly="true">
 										</div>
 										<div class="col-md-12">
 											<label>Contact Number</label>
-											<input type="text" name="contact" value="{{Auth::guard('user')->user()->phone}}" class="form-control">
+											<input type="text" name="contact" value="{{Auth::guard('agent')->user()->phone}}" class="form-control" readonly="true">
 										</div>	
 										<div class="col-md-12">
-											<label>Upload Avatar</label>
-											<input type="file" name="profile" class="upload-pic">
+											<label>Company</label>
+											<input type="text" name="company" value="{{Auth::guard('agent')->user()->company}}" class="form-control" readonly="true">
+										</div>	
+										<div class="col-md-12">
+											<label>Address</label>
+											<input type="text" name="address" value="{{Auth::guard('agent')->user()->agent_address}}" class="form-control" readonly="true">
 										</div>
+										<div class="col-md-12">
+											<label>Birth Date</label>
+											<input type="text" name="date_of_birth" value="{{Auth::guard('agent')->user()->date_of_birth}}" class="form-control" readonly="true">
+										</div>	
+										
 										<div class="clearfix"></div>
 										<div class="col-md-6 col-sm-6 col-xs-6 text-center">
 											 <button type="submit">SAVE CHANGES</button>
@@ -338,204 +349,51 @@
 					</div>
 					<div id="wishlist" class="tab-pane fade in">
 						<div class="col-md-12">
+							@foreach($user->buses as $bus)
 							<div class="item-entry">
-								<span><i class="fa fa-hotel"></i> Hotel</span>
-								<div class="item-content">
-									<div class="item-body">
-										<div class="col-md-2 col-sm-2 clear-padding text-center">
-											<img src="assets/images/offer1.jpg" alt="cruise">
+							<span><i class="fa fa-bus"></i> {{$bus->agent['company']}}</span>
+								<div class="item-content">									
+										<div class="item-body">
+											<div class="col-xs-3">
+												<img src="/client_inc/assets/images/offer1.jpg" alt="Cruise">
+											</div>
+											<div class="col-md-7 col-xs-6">
+												<h5><i class="fa fa-bus"></i> {{$bus->agent['company']}}</h5>
+												<p class="location">
+													<i class="fa fa-map-marker"></i> {{$bus->park->park_name}}</p>
+												<p class="text-sm">
+
+											<div class="car-detail">
+												<div class="col-md-6 col-sm-6 col-xs-6 clear-padding">
+													<p><i class="fa fa-tag"></i>{{$bus->license_plate_number}}</p>
+												</div>
+												<div class="col-md-6 col-sm-6 col-xs-6 clear-padding">
+													<p><i class="fa fa-setting"></i>{{$bus->primary_color}} and {{$bus->secondary_color}}</p>
+												</div>
+												<div class="clearfix"></div>
+												<div class="col-md-12 col-sm-12 col-xs-12 clear-padding">
+													<p><i class="fa fa-bus"></i>{{$bus->make}} - {{$bus->model}}</p>
+												</div>									
+												<div class="clearfix"></div>
+											</div>
+												</p>
+											</div>
+											<div class="col-md-2 col-xs-3">	
+												<h4 class="text-center">{{$bus->routes->count()}}</h4>				
+												<h4 class="text-center">Routes</h4>					
+											</div>
 										</div>
-										<div class="col-md-7 col-sm-7">
-											<h4>Grand Lilly <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></h4>
-											<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
-										</div>
-										<div class="col-md-3 col-sm-3">
-											<p><a href="#">Remove</a></p>
-										</div>
-									</div>
-									<div class="item-footer">
-										<p><strong>Order Total:</strong> $566 <a href="#">Book Now</a></p>
-									</div>
-									<div class="clearfix"></div>
+										<div class="clearfix"></div>
+									
 								</div>
 							</div>
-							<div class="item-entry">
-								<span><i class="fa fa-hotel"></i> Hotel</span>
-								<div class="item-content">
-									<div class="item-body">
-										<div class="col-md-2 col-sm-2 clear-padding text-center">
-											<img src="assets/images/offer2.jpg" alt="cruise">
-										</div>
-										<div class="col-md-7 col-sm-7">
-											<h4>Grand Lilly <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></h4>
-											<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
-										</div>
-										<div class="col-md-3 col-sm-3">
-											<p><a href="#">Remove</a></p>
-										</div>
-									</div>
-									<div class="item-footer">
-										<p><strong>Order Total:</strong> $566 <a href="#">Book Now</a></p>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-							<div class="item-entry">
-								<span><i class="fa fa-hotel"></i> Hotel</span>
-								<div class="item-content">
-									<div class="item-body">
-										<div class="col-md-2 col-sm-2 clear-padding text-center">
-											<img src="assets/images/offer3.jpg" alt="cruise">
-										</div>
-										<div class="col-md-7 col-sm-7">
-											<h4>Grand Lilly <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></h4>
-											<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
-										</div>
-										<div class="col-md-3 col-sm-3">
-											<p><a href="#">Remove</a></p>
-										</div>
-									</div>
-									<div class="item-footer">
-										<p><strong>Order Total:</strong> $566 <a href="#">Book Now</a></p>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-							<div class="item-entry">
-								<span><i class="fa fa-plane"></i> Flight</span>
-								<div class="item-content">
-									<div class="item-body">
-										<div class="col-md-2 col-sm-2 clear-padding text-center">
-											<img src="assets/images/offer2.jpg" alt="cruise">
-										</div>
-										<div class="col-md-7 col-sm-7">
-											<h4>New York <i class="fa fa-long-arrow"></i> New Delhi</h4>
-											<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
-										</div>
-										<div class="col-md-3 col-sm-3">
-											<p><a href="#">Remove</a></p>
-										</div>
-									</div>
-									<div class="item-footer">
-										<p><strong>Order Total:</strong> $566 <a href="#">Book Now</a></p>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-							<div class="item-entry">
-								<span><i class="fa fa-suitcase"></i> Tour</span>
-								<div class="item-content">
-									<div class="item-body">
-										<div class="col-md-2 col-sm-2 clear-padding text-center">
-											<img src="assets/images/offer1.jpg" alt="cruise">
-										</div>
-										<div class="col-md-7 col-sm-7">
-											<h4>Wonderful Europe</h4>
-											<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
-										</div>
-										<div class="col-md-3 col-sm-3">
-											<p><a href="#">Remove</a></p>
-										</div>
-									</div>
-									<div class="item-footer">
-										<p><strong>Order Total:</strong> $566 <a href="#">Book Now</a></p>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
+							@endforeach							
+							
 							<div class="load-more text-center">
 								<a href="#">Load More</a>
 							</div>
 						</div>
-					</div>
-					<div id="cards" class="tab-pane fade in">
-						<div class="col-md-12">
-							<div class="col-md-6">
-								<div class="card-entry">
-									<div class="pull-right">
-										<p><a href="#"><i class="fa fa-pencil"></i></a><a href="#"><i class="fa fa-times"></i></a></p>
-									</div>
-									<h3>XXXX XXXX XXXX 1234</h3>
-									<p>Valid Thru 06/17</p>
-									<div class="clearfix"></div>
-									<div class="card-type">
-										<p>Name On Card</p>
-										<div class="pull-left">
-											<h3>Lenore</h3>
-										</div>
-										<div class="pull-right">
-											<img src="assets/images/card/mastercard.png" alt="cruise">
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="card-entry">
-									<div class="pull-right">
-										<p><a href="#"><i class="fa fa-pencil"></i></a><a href="#"><i class="fa fa-times"></i></a></p>
-									</div>
-									<h3>XXXX XXXX XXXX 2345</h3>
-									<p>Valid Thru 06/17</p>
-									<div class="clearfix"></div>
-									<div class="card-type">
-										<p>Name On Card</p>
-										<div class="pull-left">
-											<h3>Lenore</h3>
-										</div>
-										<div class="pull-right">
-											<img src="assets/images/card/visa.png" alt="cruise">
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="clearfix"></div>
-							<div class="col-md-6">
-								<div class="card-entry primary-card">
-									<div class="pull-left">
-										<span>Primary</span>
-									</div>
-									<div class="pull-right">
-										<p><a href="#"><i class="fa fa-pencil"></i></a><a href="#"><i class="fa fa-times"></i></a></p>
-									</div>
-									<div class="clearfix"></div>
-									<h3>XXXX XXXX XXXX 1234</h3>
-									<p>Valid Thru 06/17</p>
-									<div class="clearfix"></div>
-									<div class="card-type">
-										<p>Name On Card</p>
-										<div class="pull-left">
-											<h3>Lenore</h3>
-										</div>
-										<div class="pull-right">
-											<img src="assets/images/card/mastercard.png" alt="cruise">
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="user-add-card">
-									<form >
-										<input class="form-control" name="card-number" type="text" required placeholder="Card Number">
-										<input class="form-control" name="cardholder-name" type="text" required placeholder="Cardholder Name">
-										<div class="col-md-6 col-sm-6 col-xs-6 clear-padding">
-											<input class="form-control" name="valid-month" type="text" required placeholder="Expiry Month">
-										</div>
-										<div class="col-md-6 col-sm-6 col-xs-6">
-											<input class="form-control" name="valid-year" type="text" required placeholder="Expiry Year">
-										</div>
-										<div class="clearfix"></div>
-										<div class="col-md-4 clear-padding">
-											<input class="form-control" name="cvv" type="password" required placeholder="CVV">
-										</div>
-										<div class="clearfix"></div>
-										<div>
-											 <button type="submit">ADD CARD</button>
-										</div>
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
+					</div>					
 					<div id="complaint" class="tab-pane fade in">
 						<div class="col-md-12">
 							<div class="recent-complaint">

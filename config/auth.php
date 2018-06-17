@@ -61,6 +61,14 @@ return [
             'driver' => 'token',
             'provider' => 'users',
         ],
+        'agent' => [
+            'driver' => 'session',
+            'provider' => 'agents',
+        ],
+        'agent-api' => [
+            'driver' => 'token',
+            'provider' => 'agents',
+        ],
     ],
 
     /*
@@ -88,6 +96,10 @@ return [
         'admins' => [
             'driver' => 'eloquent',
             'model' => App\Admin::class,
+        ],
+        'agents' => [
+            'driver' => 'eloquent',
+            'model' => App\Agent::class,
         ],
 
         // 'users' => [
@@ -119,6 +131,11 @@ return [
         ],
         'admins' => [
             'provider' => 'admins',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+        'agents' => [
+            'provider' => 'agents',
             'table' => 'password_resets',
             'expire' => 60,
         ],
