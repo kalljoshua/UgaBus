@@ -53,7 +53,7 @@ padding-top:7px;
 	<!-- END: PAGE TITLE -->
 	
 	<!-- START: CAR GALLERY -->
-	<div class="row hotel-detail">
+	<div class="row hotel-detail" style="background-color: white;">
 		<div class="container">
 		<div class="reciept">
 			<div class="row" style="margin-top:10px;">

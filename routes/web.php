@@ -43,7 +43,8 @@ Route::group(['middleware' => 'user'], function () {
 
 //Agents routes
 Route::group(['middleware' => 'agent'], function () {
-
+	Route::get('/agent/{name}', 'Agent\AgentProfileController@agentAccount')->name('agent.account');
+    Route::post('/password-reset', 'Agent\AgentProfileController@updatePassword')->name('password.reset');
 });
 
 //Admin routes

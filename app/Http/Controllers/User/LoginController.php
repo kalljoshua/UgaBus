@@ -15,10 +15,16 @@ class LoginController extends Controller
     use AuthenticatesUsers;
 
     protected $redirectTo = '/user';
+    protected $redirectToAgent = '/agent';
 
     protected function guard()
     {
         return Auth::guard('user');
+    }
+
+    protected function guard_agent()
+    {
+        return Auth::guard('agent');
     }
 
     public function login(Request $request)
@@ -51,6 +57,10 @@ class LoginController extends Controller
                 flash('Verify your account first')->error();
                 return redirect(route('user.login.register'));
             }
+
+        }else if($this->guard_agent()->attempt(['email' => $email, 'password' => $password])){
+            flash('User Login successfully')->success();
+                    return redirect()->intended(route('agent.account',['name'=>Auth::guard('agent')->user()->last_name]));
         }else{
             flash('Wrong Email or password. Try again later!')->error();
             return Redirect::back()->withInput(Input::all());

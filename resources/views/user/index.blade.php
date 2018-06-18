@@ -179,7 +179,7 @@
 									</p>
 								</div>
 								<div class="col-md-2 col-xs-3">
-									<h4>UGX {{number_format("$route->unit_seat_price")}}</h4>
+									<h4>UGX {{number_format($route->unit_seat_price)}}</h4>
 									<h6>Per seat</h6>
 									<form action="{{ route('bus.booking') }}" method="POST">
                                         {{ csrf_field() }}
