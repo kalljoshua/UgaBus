@@ -24,15 +24,9 @@
 						<li><a data-toggle="tab" href="#profile" 
 						class="text-center"><i class="fa fa-user"></i> 
 						<span>Profile</span></a></li>
-						<li><a data-toggle="tab" href="#wishlist"
-						 class="text-center"><i class="fa fa-heart-o"></i> 
-						 <span>Wishlist</span></a></li>
 						<li><a data-toggle="tab" href="#cards" 
 						class="text-center"><i class="fa fa-credit-card"></i> 
-						<span>My Cards</span></a></li>
-						<li><a data-toggle="tab" href="#complaint" 
-						class="text-center"><i class="fa fa-edit"></i> 
-						<span>Complaints</span></a></li>
+						<span>My Wallet</span></a></li>						
 					</ul>
 				</div>
 			</div>
@@ -54,7 +48,7 @@
 								<div class="clearfix"></div>
 								<div class="brief-info-footer">
 									<a data-toggle="tab" href="#profile"><i class="fa fa-edit"></i>Edit Profile</a>
-									<a href="#"><i class="fa fa-plus"></i>Add Travel Preference</a>
+									<a href="{{route('route.listing')}}"><i class="fa fa-plus"></i>Book a bus</a>
 								</div>
 							</div>
 							<div class="clearfix"></div>
@@ -77,6 +71,29 @@
 							</div>
 						</div>
 						<div class="col-md-6">
+							<!--<div class="user-notification">
+									<h4>Notification</h4>
+									<div class="notification-body">
+										<div class="notification-entry">
+											<p><i class="fa fa-plane"></i> Domestic Flights Starting from $199 <span class="pull-right">1m ago</span></p>
+										</div>
+										<div class="notification-entry">
+											<p><i class="fa fa-bed"></i> 20% Cashback on hotel booking <span class="pull-right">1h ago</span></p>
+										</div>
+										<div class="notification-entry">
+											<p><i class="fa fa-bolt"></i> 50% off on all items <span class="pull-right">08h ago</span></p>
+										</div>
+										<div class="notification-entry">
+											<p><i class="fa fa-sun-o"></i> New Year special offer <span class="pull-right">1d ago</span></p>
+										</div>
+										<div class="notification-entry">
+											<p><i class="fa fa-plane"></i> Domestic Flights Starting from $199 <span class="pull-right">1m ago</span></p>
+										</div>
+										<div class="notification-entry">
+											<p><i class="fa fa-bed"></i> 20% Cashback on hotel booking <span class="pull-right">1h ago</span></p>
+										</div>
+									</div>
+							</div>-->
 							<div class="user-profile-offer">
 								<h4>Offers For You</h4>
 								<div class="offer-body">
@@ -109,29 +126,7 @@
 									<div class="clearfix"></div>
 								</div>
 							</div>
-							<div class="user-notification">
-									<h4>Notification</h4>
-									<div class="notification-body">
-										<div class="notification-entry">
-											<p><i class="fa fa-plane"></i> Domestic Flights Starting from $199 <span class="pull-right">1m ago</span></p>
-										</div>
-										<div class="notification-entry">
-											<p><i class="fa fa-bed"></i> 20% Cashback on hotel booking <span class="pull-right">1h ago</span></p>
-										</div>
-										<div class="notification-entry">
-											<p><i class="fa fa-bolt"></i> 50% off on all items <span class="pull-right">08h ago</span></p>
-										</div>
-										<div class="notification-entry">
-											<p><i class="fa fa-sun-o"></i> New Year special offer <span class="pull-right">1d ago</span></p>
-										</div>
-										<div class="notification-entry">
-											<p><i class="fa fa-plane"></i> Domestic Flights Starting from $199 <span class="pull-right">1m ago</span></p>
-										</div>
-										<div class="notification-entry">
-											<p><i class="fa fa-bed"></i> 20% Cashback on hotel booking <span class="pull-right">1h ago</span></p>
-										</div>
-									</div>
-							</div>
+
 						</div>
 					</div>
 					<div id="booking" class="tab-pane fade in">
@@ -166,7 +161,7 @@
 										</div>
 										<div class="col-md-3 col-sm-3">
 											<p><a href="#">Details</a></p>
-											<p><a href="#" class="btn-info">Review <i class="fa fa-reply"></i></a></p>
+											<p><a data-toggle="modal" data-target="#myModal{{$booking->id}}" class="btn-info">Review <i class="fa fa-reply"></i></a></p>
 										</div>
 									</div>
 									<div class="item-footer">
@@ -175,14 +170,25 @@
 									<div class="clearfix"></div>
 								</div>
 							</div>
-							@endforeach
-							
-							
-							
-							
-							<div class="text-center load-more">
-								<a href="#">LOAD MORE</a>
+							<!-- Modal -->
+							<div class="modal fade" id="myModal{{$booking->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+							  <div class="modal-dialog" role="document">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+							        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+							      </div>
+							      <div class="modal-body">
+							     Ved prakash 9752224368
+							      </div>
+							      <div class="modal-footer">
+							        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							        <button type="button" class="btn btn-primary">Save changes</button>
+							      </div>
+							    </div>
+							  </div>
 							</div>
+							@endforeach
 						</div>
 					</div>
 					<div id="profile" class="tab-pane fade in">
@@ -542,24 +548,22 @@
 								<h3>Service Requests</h3>
 								<div class="complaint-tabs">
 									<ul class="nav nav-tabs">
-										<li class="active"><a data-toggle="tab" href="#active-complaint" class="text-center"><i class="fa fa-bolt"></i> Active (6)</a></li>
-										<li><a data-toggle="tab" href="#resolved-complaint" class="text-center"><i class="fa fa-history"></i> Resolved (4)</a></li>	
+										<li class="active"><a data-toggle="tab" href="#active-complaint" class="text-center"><i class="fa fa-bolt"></i> Active ({{$complaints->count()-$replied}})</a></li>
+										<li><a data-toggle="tab" href="#resolved-complaint" class="text-center"><i class="fa fa-history"></i> Resolved ({{$replied}})</a></li>	
 									</ul>
 								</div>
 								<div class="tab-content">
-									<div id="active-complaint" class="tab-pane fade in active">
-										<p><a href="#"><span>Ticket #123456:</span> My last booking was failed but ammount has been dedicted from my account.</a></p>
-										<p><a href="#"><span>Ticket #113443:</span> My last booking was failed but ammount has been dedicted from my account.</a></p>
-										<p><a href="#"><span>Ticket #113443:</span> My last booking was failed but ammount has been dedicted from my account.</a></p>
-										<p><a href="#"><span>Ticket #123456:</span> My last booking was failed but ammount has been dedicted from my account.</a></p>
-										<p><a href="#"><span>Ticket #113443:</span> My last booking was failed but ammount has been dedicted from my account.</a></p>
-										<p><a href="#"><span>Ticket #113443:</span> My last booking was failed but ammount has been dedicted from my account.</a></p>
+									<div id="active-complaint" class="tab-pane fade in active">					
+										@foreach($complaints as $complain)
+											<p><a href="#"><span>Ticket #123456:</span> {{$complaint->complaint}}</a></p>
+										@endforeach
 									</div>
 									<div id="resolved-complaint" class="tab-pane fade in">
-										<p><a href="#"><span>Ticket #123456:</span> My last booking was failed but ammount has been dedicted from my account.</a></p>
-										<p><a href="#"><span>Ticket #113443:</span> My last booking was failed but ammount has been dedicted from my account.</a></p>
-										<p><a href="#"><span>Ticket #113443:</span> My last booking was failed but ammount has been dedicted from my account.</a></p>
-										<p><a href="#"><span>Ticket #123456:</span> My last booking was failed but ammount has been dedicted from my account.</a></p>
+										@foreach($complaints as $complain)
+											@if($complaint->status == 1)
+												<p><a href="#"><span>Ticket #123456:</span> {{$complaint->complaint}}</a></p>
+											@endif
+										@endforeach
 									</div>
 								</div>
 								<h3>New Requests</h3>

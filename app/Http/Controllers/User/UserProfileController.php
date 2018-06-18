@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Booking;
+use App\ComplaintReply;
+use App\Complaint;
 use Input, Redirect;
 
 class UserProfileController extends Controller
@@ -16,10 +18,15 @@ class UserProfileController extends Controller
         $user= User::where('last_name',$name)
         ->where('id',Auth::guard('user')->user()->id)->first();
         $user_email = Auth::guard('user')->user()->email;
-        $bookings = Booking::where('user_id',$user_email)->get();
+        $bookings = Booking::where('user_id',Auth::guard('user')->user()->id)->get();
+        $complaints = Complaint::where('user_id',Auth::guard('user')->user()->id)->get();
+        $replied = Complaint::where('user_id',Auth::guard('user')->user()->id)
+        ->where('status',1)->count();
         if($user->email == $user_email)
         return view('user.user_account')
         ->with('bookings',$bookings)
+        ->with('complaints',$complaints)
+        ->with('replied',$replied)
         ->with('user',$user);
     }
 
