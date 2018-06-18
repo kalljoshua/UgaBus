@@ -56,7 +56,7 @@
 
                                                 </td>
                                                 <td>
-                                                    <a class="btn-fab btn-fab-sm btn-primary shadow text-white"><i
+                                                    <a class="btn-fab btn-fab-sm btn-primary shadow text-white" href="/admin/buses/{{$bus->id}}/edit"><i
                                                                 class="icon-pencil"></i></a>
                                                 </td>
                                             </tr>

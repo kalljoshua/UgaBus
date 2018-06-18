@@ -98,4 +98,60 @@ class BusesController extends Controller
         return view('admin.buses')->with('buses', $buses);
 
     }
+
+    function edit(Request $request, $id){
+        $bus = Bus::find($id);
+
+        $agents = Agent::where('id','<>',$bus->agent_id)->get();
+        $parks = Park::where('id','<>',$bus->park_id)->get();
+
+        return view('admin.edit_bus_details')->with('agents',$agents)
+            ->with('parks',$parks)->with('bus',$bus);
+    }
+
+    function update(Request $request){
+        $id = $request->input('id');
+        $make = $request->input('make');
+        $model = $request->input('model');
+        $license_plate_number = $request->input('license_plate_number');
+        $primary_color = $request->input('primary_color');
+        $secondary_color = $request->input('secondary_color');
+        $agent_id = $request->input('agent_id');
+        $company = $request->input('company');
+        $park_id = $request->input('park_id');
+        $travel_from = $request->input('travel_from');
+        $travel_to = $request->input('travel_to');
+        $seat_price = $request->input('seat_price');
+        $dep_time = $request->input('dep_time');
+        $arr_time = $request->input('arr_time');
+        $publish = $request->input('publish');
+
+        $bus = Bus::find($id);
+
+        $bus->make = $request->input('make');
+        $bus->model = $request->input('model');
+        $bus->license_plate_number = $request->input('license_plate_number');
+        $bus->primary_color = $request->input('primary_color');
+        $bus->secondary_color = $request->input('secondary_color');
+        $bus->agent_id = $request->input('agent_id');
+        $company = $request->input('company');
+        $bus->park_id = $request->input('park_id');
+        $travel_from = $request->input('travel_from');
+        $travel_to = $request->input('travel_to');
+        $seat_price = $request->input('seat_price');
+        $dep_time = $request->input('dep_time');
+        $arr_time = $request->input('arr_time');
+        $publish = $request->input('publish');
+
+        if($bus->save()){
+            $agents = Agent::where('id','<>',$bus->agent_id)->get();
+            $parks = Park::where('id','<>',$bus->park_id)->get();
+
+            return view('admin.edit_bus_details')->with('agents',$agents)
+                ->with('parks',$parks)->with('bus',$bus);
+        }else{
+            return "Error updating bus details";
+        }
+
+    }
 }
