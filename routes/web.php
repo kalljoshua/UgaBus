@@ -31,14 +31,14 @@ Route::get('/make-payment/{id}', 'User\BusBookingController@makePayment')->name(
 Route::post('/process-payment', 'User\BusBookingController@processPayment')->name('process.payment');
 Route::get('/payment-reciepts', 'User\BusBookingController@paymentReciept')->name('payment.reciept');
 Route::post('/newsletter', 'User\NewsletterController@subscribe')->name('newsletter.subscribe');
-
+Route::get('/routes', 'User\RoutesController@allRoutes')->name('route.listing');
 
 //User routes
 Route::group(['middleware' => 'user'], function () {
     Route::get('/user/{name}', 'User\UserProfileController@userAccount')->name('user.account');
     Route::post('/password-reset', 'User\UserProfileController@updatePassword')->name('password.reset');
-    Route::post('/profile-update', 'User\UserProfileController@profileUpdate')->name('profile.update');
-
+    Route::post('/profile-update', 'User\UserProfileController@profileUpdate')->name('profile.update');    
+    Route::post('/send-complaint', 'User\ComplaintsController@submitComplaint')->name('complait.submit');
 });
 
 //Agents routes

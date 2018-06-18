@@ -65,7 +65,7 @@
 									<div class="col-md-6 ol-sm-6">
 										<label>Phone Number</label>
 										<input type="text" name="phonenumber" 
-										value="{{Auth::guard('user')->user()->phone_no}}" class="form-control" required>
+										value="{{Auth::guard('user')->user()->phone}}" class="form-control" required>
 										<div class="clearfix"></div>
 									</div>
 									<br>
