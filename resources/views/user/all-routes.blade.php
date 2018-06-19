@@ -97,7 +97,7 @@
 									<div class="clearfix"></div>
 									<div class="clearfix"></div>
 									<div class="col-md-6 col-sm-6 col-xs-6 clear-padding">
-										<p><i class="fa fa-users"></i>{{$seats}} Person</p>
+										<p><i class="fa fa-users"></i>1 Person</p>
 									</div>									
 									<div class="col-md-6 col-sm-6 col-xs-6 clear-padding">
 										<p><i class="fa fa-bus"></i>{{$route->bus->make}} - {{$route->bus->model}}</p>
@@ -122,7 +122,7 @@
 									<form action="{{ route('bus.booking') }}" method="POST">
                                         {{ csrf_field() }}
                                         <input type="hidden" name="id" value="{{ $route->id }}">
-                                        <input type="hidden" name="seats" value="{{ $seats }}">
+                                        <input type="hidden" name="seats" value="1">
                                         <input type="hidden" name="price" value="{{ $route->unit_seat_price }}">
                                         <button type="submit" class="btn-sm btn-danger">BOOK</button>
                                     </form>

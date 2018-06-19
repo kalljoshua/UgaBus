@@ -110,25 +110,24 @@
 					<h4>SEARCH - SELECT - BOOK</h4>
 					<div class="space"></div>
 					<p>
-						Lorem Ipsum is simply dummy text. Lorem Ipsum is simply dummy text of the printing and typesetting industry.<br>
-						Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+						The booking process is easy, it can be done in just a few simple steps. 
 					</p>
 				</div>
 				<div class="work-step">
 					<div class="col-md-4 col-sm-4 first-step text-center">
 						<i class="fa fa-search"></i>
 						<h5>SEARCH</h5>
-						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+						<p>From the Home page, select your city of departure and arrival, along with your intended travel dates (one way or return trip). Click Search to display the available buses going to your routes and select the bus of your choice from the listing page.</p>
 					</div>
 					<div class="col-md-4 col-sm-4 second-step text-center">
 						<i class="fa fa-heart-o"></i>
 						<h5>SELECT</h5>
-						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+						<p>You will next be required to provide passenger details, choose payment methods and provide payment details. Payment can be done using MTN mobile Money or Airtel Mobile Money.</p>
 					</div>
 					<div class="col-md-4 col-sm-4 third-step text-center">
 						<i class="fa fa-shopping-cart"></i>
 						<h5>BOOK</h5>
-						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+						<p>After payment verification, a message will be sent to you. This message will be containing your ticket details. On your travel day, simply present the mobile SMS printed to our representative at the bus terminal and your bus ticket will be issued for travel. </p>
 					</div>
 				</div>
 			</div>
@@ -196,37 +195,38 @@
 						<div class="col-md-6 hot-deal-grid wow slideInRight">
 							<div class="col-sm-4 item">
 								<div class="wrapper">
-									<img src="/client_inc/assets/images/tour1.jpg" alt="Cruise">
-									<h5>Paris Starting From $49/Night</h5>
-									<a href="#">DETAILS</a>
+									<img src="/client_inc/assets/images/Uganda.png" alt="Cruise">
+									<h5>Uganda</h5>
 								</div>
 							</div>
 							<div class="col-sm-4 item">
 								<div class="wrapper">
-									<img src="/client_inc/assets/images/tour2.jpg" alt="Cruise">
-									<h5>Bangkok Starting From $69/Night</h5>
-									<a href="#">DETAILS</a>
+									<img src="/client_inc/assets/images/Kenya.png" alt="Cruise">
+									<h5>Kenya</h5>
 								</div>
 							</div>
 							<div class="col-sm-4 item">
 								<div class="wrapper">
-									<img src="/client_inc/assets/images/tour2.jpg" alt="Cruise">
-									<h5>Bangkok Starting From $69/Night</h5>
-									<a href="#">DETAILS</a>
+									<img src="/client_inc/assets/images/Tanzania.png" alt="Cruise">
+									<h5>Tanzania</h5>
 								</div>
 							</div>
 							<div class="col-sm-4 item">
 								<div class="wrapper">
-									<img src="/client_inc/assets/images/tour3.jpg" alt="Cruise">
-									<h5>Dubai Starting From $99/Night</h5>
-									<a href="#">DETAILS</a>
+									<img src="/client_inc/assets/images/Burundi.png" alt="Cruise">
+									<h5>Burundi</h5>
 								</div>
 							</div>
 							<div class="col-sm-4 item">
 								<div class="wrapper">
-									<img src="/client_inc/assets/images/tour4.jpg" alt="Cruise">
-									<h5>Italy Starting From $59/Night</h5>
-									<a href="#">DETAILS</a>
+									<img src="/client_inc/assets/images/rwanda.png" alt="Cruise">
+									<h5>Rwandat</h5>
+								</div>
+							</div>
+							<div class="col-sm-4 item">
+								<div class="wrapper">
+									<img src="/client_inc/assets/images/South-Sudan.png" alt="Cruise">
+									<h5>South-Sudan</h5>
 								</div>
 							</div>
 						</div>
