@@ -157,7 +157,19 @@
 									<img src="/client_inc/assets/images/offer1.jpg" alt="Cruise">
 								</div>
 								<div class="col-md-7 col-xs-6">
-									<h5>{{$route->bus->agent['company']}}</h5>
+									<h5>{{$route->bus->agent['company']}}
+										<i class="tour-price-single animated growIn slower"
+	                                              style="color: #FDC600; font-size: 15px">
+	                                                @for ($k=1; $k <= 5 ; $k++)
+	                                                <i data-title="Average Rate: 5 / 5"
+	                                                      class="bottom-ratings tip">
+	                                                        <i class="glyphicon glyphicon-star{{ ($k <= $route->rating) ? '' : '-empty'}}"
+	                                                              style="font-size: 15px"></i>
+	                                                    </i>
+	                                            @endfor
+	                                            ({{$route->rating}})
+	                                        </i>
+									</h5>
 									<p class="location">
 										<i class="fa fa-map-marker"></i> {{$route->travel_from}} to {{$route->travel_to}}</p>
 									<p class="text-sm">
@@ -220,7 +232,7 @@
 							<div class="col-sm-4 item">
 								<div class="wrapper">
 									<img src="/client_inc/assets/images/rwanda.png" alt="Cruise">
-									<h5>Rwandat</h5>
+									<h5>Rwanda</h5>
 								</div>
 							</div>
 							<div class="col-sm-4 item">
@@ -250,19 +262,20 @@
 				<h4>Testimonials</h4>
 			</div>
 			<div class="owl-carousel" id="post-list">
+				@foreach($stories as $story)
 				<div class="room-grid-view wow slideInUp" data-wow-delay="0.1s">
-					<img src="/client_inc/assets/images/offer1.jpg" alt="cruise">
+					<img src="/images/story/admin_listing_150x150/{{$story->image}}" alt="cruise">
 					<div class="room-info">
 						<div class="post-title">
-							<h5>POST TITLE GOES HERE</h5>
-							<p><i class="fa fa-calendar"></i> Jul 15, 2015</p>
+							<h5>{{$story->title}}</h5>
+							<p><i class="fa fa-clock-o"></i> {{$story->created_at->diffForHumans()}}</p>
 						</div>
 						<div class="post-desc">
-							<p>Lorem Ipsum is simply dummy text. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+							<p>{!! str_limit($story->body, $limit = 120, $end = '[...]') !!}</p>
 						</div>
 						<div class="room-book">
 							<div class="col-md-8 col-sm-6 col-xs-6 clear-padding post-alt">
-								<h5><i class="fa fa-comments"></i> 2 <i class="fa fa-share-alt"></i> 20 </h5>
+								<h5> <i class="fa fa-share-alt"></i> {{$story->views}} </h5>
 							</div>
 							<div class="col-md-4 col-sm-6 col-xs-6 clear-padding">
 								<a href="#" class="text-center">MORE</a> 
@@ -271,111 +284,7 @@
 						<div class="clearfix"></div>
 					</div>
 				</div>
-				<div class="room-grid-view wow slideInUp" data-wow-delay="0.2s">
-					<img src="/client_inc/assets/images/offer2.jpg" alt="cruise">
-					<div class="room-info">
-						<div class="post-title">
-							<h5>POST TITLE GOES HERE</h5>
-							<p><i class="fa fa-calendar"></i> Jul 15, 2015</p>
-						</div>
-						<div class="post-desc">
-							<p>Lorem Ipsum is simply dummy text. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-						</div>
-						<div class="room-book">
-							<div class="col-md-8 col-sm-6 col-xs-6 clear-padding post-alt">
-								<h5><i class="fa fa-comments"></i> 2 <i class="fa fa-share-alt"></i> 20 </h5>
-							</div>
-							<div class="col-md-4 col-sm-6 col-xs-6 clear-padding">
-								<a href="#" class="text-center">MORE</a> 
-							</div>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-				</div>
-				<div class="room-grid-view wow slideInUp" data-wow-delay="0.3s">
-					<img src="/client_inc/assets/images/offer3.jpg" alt="cruise">
-					<div class="room-info">
-						<div class="post-title">
-							<h5>POST TITLE GOES HERE</h5>
-							<p><i class="fa fa-calendar"></i> Jul 15, 2015</p>
-						</div>
-						<div class="post-desc">
-							<p>Lorem Ipsum is simply dummy text. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-						</div>
-						<div class="room-book">
-							<div class="col-md-8 col-sm-6 col-xs-6 clear-padding post-alt">
-								<h5><i class="fa fa-comments"></i> 2 <i class="fa fa-share-alt"></i> 20 </h5>
-							</div>
-							<div class="col-md-4 col-sm-6 col-xs-6 clear-padding">
-								<a href="#" class="text-center">MORE</a> 
-							</div>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-				</div>
-				<div class="room-grid-view wow slideInUp" data-wow-delay="0.4s">
-					<img src="/client_inc/assets/images/offer4.jpg" alt="cruise">
-					<div class="room-info">
-						<div class="post-title">
-							<h5>POST TITLE GOES HERE</h5>
-							<p><i class="fa fa-calendar"></i> Jul 15, 2015</p>
-						</div>
-						<div class="post-desc">
-							<p>Lorem Ipsum is simply dummy text. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-						</div>
-						<div class="room-book">
-							<div class="col-md-8 col-sm-6 col-xs-6 clear-padding post-alt">
-								<h5><i class="fa fa-comments"></i> 2 <i class="fa fa-share-alt"></i> 20 </h5>
-							</div>
-							<div class="col-md-4 col-sm-6 col-xs-6 clear-padding">
-								<a href="#" class="text-center">MORE</a> 
-							</div>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-				</div>
-				<div class="room-grid-view wow slideInUp" data-wow-delay="0.5s">
-					<img src="/client_inc/assets/images/offer3.jpg" alt="cruise">
-					<div class="room-info">
-						<div class="post-title">
-							<h5>POST TITLE GOES HERE</h5>
-							<p><i class="fa fa-calendar"></i> Jul 15, 2015</p>
-						</div>
-						<div class="post-desc">
-							<p>Lorem Ipsum is simply dummy text. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-						</div>
-						<div class="room-book">
-							<div class="col-md-8 col-sm-6 col-xs-6 clear-padding post-alt">
-								<h5><i class="fa fa-comments"></i> 2 <i class="fa fa-share-alt"></i> 20 </h5>
-							</div>
-							<div class="col-md-4 col-sm-6 col-xs-6 clear-padding">
-								<a href="#" class="text-center">MORE</a> 
-							</div>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-				</div>
-				<div class="room-grid-view wow slideInUp" data-wow-delay="0.6s">
-					<img src="/client_inc/assets/images/offer2.jpg" alt="cruise">
-					<div class="room-info">
-						<div class="post-title">
-							<h5>POST TITLE GOES HERE</h5>
-							<p><i class="fa fa-calendar"></i> Jul 15, 2015</p>
-						</div>
-						<div class="post-desc">
-							<p>Lorem Ipsum is simply dummy text. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-						</div>
-						<div class="room-book">
-							<div class="col-md-8 col-sm-6 col-xs-6 clear-padding post-alt">
-								<h5><i class="fa fa-comments"></i> 2 <i class="fa fa-share-alt"></i> 20 </h5>
-							</div>
-							<div class="col-md-4 col-sm-6 col-xs-6 clear-padding">
-								<a href="#" class="text-center">MORE</a> 
-							</div>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-				</div>
+				@endforeach
 			</div>
 		</div>
 	</div>
