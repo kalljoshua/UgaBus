@@ -9,25 +9,32 @@ use App\User;
 use App\Booking;
 use App\ComplaintReply;
 use App\Complaint;
+use App\UserTravelStory;
 use Input, Redirect;
 
 class UserProfileController extends Controller
 {
     public function userAccount($name)
     {
+        $id = Auth::guard('user')->user()->id;
         $user= User::where('last_name',$name)
-        ->where('id',Auth::guard('user')->user()->id)->first();
+        ->where('id',$id)->first();
+
         $user_email = Auth::guard('user')->user()->email;
-        $bookings = Booking::where('user_id',Auth::guard('user')->user()->id)->get();
-        $complaints = Complaint::where('user_id',Auth::guard('user')->user()->id)->get();
+        $bookings = Booking::where('user_id',$id)->get();
+        $complaints = Complaint::where('user_id',$id)->get();
+        $stories = UserTravelStory::where('user_id',$id)->paginate(4);
+
         $replied = Complaint::where('user_id',Auth::guard('user')->user()->id)
-        ->where('status',1)->count();
+        ->where('status',1)->count();        
+
         if($user->email == $user_email)
-        return view('user.user_account')
-        ->with('bookings',$bookings)
-        ->with('complaints',$complaints)
-        ->with('replied',$replied)
-        ->with('user',$user);
+            return view('user.user_account')
+            ->with('bookings',$bookings)
+            ->with('complaints',$complaints)
+            ->with('stories',$stories)
+            ->with('replied',$replied)
+            ->with('user',$user);
     }
 
     function updatePassword (Request $request){

@@ -24,13 +24,20 @@ Route::get('/logout', 'User\LoginController@logout')->name('user.logout');
 //Search routes
 Route::get('/search', 'User\SearchController@search')->name('search');
 
+//user stories routes
+Route::get('/story/{id}', 'User\StoriesController@displayStory')->name('story.display');
+
 //Booking routes
 Route::get('/bus-details/{id}', 'User\BusController@busDetails')->name('bus.details');
 Route::post('/bus-booking', 'User\BusBookingController@busBooking')->name('bus.booking');
 Route::get('/make-payment/{id}', 'User\BusBookingController@makePayment')->name('make.payment');
 Route::post('/process-payment', 'User\BusBookingController@processPayment')->name('process.payment');
 Route::get('/payment-reciepts', 'User\BusBookingController@paymentReciept')->name('payment.reciept');
+
+//newsletter routes
 Route::post('/newsletter', 'User\NewsletterController@subscribe')->name('newsletter.subscribe');
+
+//busroutes routes
 Route::get('/routes', 'User\RoutesController@allRoutes')->name('route.listing');
 
 //User routes
@@ -39,6 +46,8 @@ Route::group(['middleware' => 'user'], function () {
     Route::post('/password-reset', 'User\UserProfileController@updatePassword')->name('password.reset');
     Route::post('/profile-update', 'User\UserProfileController@profileUpdate')->name('profile.update');    
     Route::post('/send-complaint', 'User\ComplaintsController@submitComplaint')->name('complait.submit');
+    Route::post('/review-submit', 'User\ReviewsController@submitReview')->name('review.submit');
+    Route::post('/story-submit', 'User\StoriesController@submitStory')->name('create.story.submit');
 });
 
 //Agents routes
