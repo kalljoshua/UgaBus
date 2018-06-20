@@ -20,6 +20,10 @@
                         <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-payments"
                            role="tab" aria-controls="v-pills-payments"><i class="icon icon-money-1"></i>All Routes</a>
                     </li>
+                    <li>
+                        <a class="nav-link" href="/admin/routes/create"><i class="icon icon-plus-circle"></i> Add
+                            New Route</a>
+                    </li>
                 </ul>
             </div>
 
@@ -78,7 +82,7 @@
 
                 </div>
             </div>
-            <nav class="pt-3" aria-label="Page navigation">
+            {{--<nav class="pt-3" aria-label="Page navigation">
                 <ul class="pagination">
                     <li class="page-item"><a class="page-link" href="#">Previous</a>
                     </li>
@@ -91,7 +95,7 @@
                     <li class="page-item"><a class="page-link" href="#">Next</a>
                     </li>
                 </ul>
-            </nav>
+            </nav>--}}
         </div>
     </div>
 

@@ -81,6 +81,8 @@ Route::group(['middleware' => 'admin'], function () {
 
     //Routes
     Route::get('/admin/routes', 'Admin\RoutesController@getAllRoutes')->name('admin.routes');
+    Route::get('/admin/routes/create', 'Admin\RoutesController@create')->name('admin.routes.create');
+    Route::post('/admin/routes/save', 'Admin\RoutesController@save')->name('admin.routes.save');
 
     //Parks
     Route::get('/admin/parks', 'Admin\ParksController@getAllParks')->name('admin.parks');
@@ -152,9 +154,9 @@ Route::get('/payment-remote', function () {
                     <APIPassword>134b-WiCT-HRvs-l5ZN-1BpX-9DPt-ClBR-jSfG</APIPassword>
                     <Method>acdepositfunds</Method>
                     <NonBlocking></NonBlocking>
-                    <Amount>200</Amount>
+                    <Amount>2000</Amount>
                     <Account>256785570221</Account>
-                    <AccountProviderCode></AccountProviderCode>
+                    <AccountProviderCode>MTN_UGANDA</AccountProviderCode>
                     <Narrative></Narrative>
                     <NarrativeFileName></NarrativeFileName>
                     <NarrativeFileBase64></NarrativeFileBase64>
@@ -164,11 +166,12 @@ Route::get('/payment-remote', function () {
                     </Request>
                     </AutoCreate>';
 
-    $url = "https://paymentsapi1.yo.co.ug/ybs/task.php";
+    $url = "https://paymentsapi2.yo.co.ug/ybs/task.php";
 
     //setting the curl parameters.
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt( $ch, CURLOPT_POST, true );
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
         'Content-Type: text/xml',
         'Content-transfer-encoding: text'

@@ -57,6 +57,8 @@
                                                 </td>
                                                 <td>
                                                     <a class="btn-fab btn-fab-sm btn-primary shadow text-white" href="/admin/buses/{{$bus->id}}/edit"><i
+                                                                class="icon-eye"></i></a>
+                                                    <a class="btn-fab btn-fab-sm btn-primary shadow text-white" href="/admin/buses/{{$bus->id}}/edit"><i
                                                                 class="icon-pencil"></i></a>
                                                 </td>
                                             </tr>
@@ -68,7 +70,7 @@
                     </div>
                 </div>
             </div>
-            <nav class="pt-3" aria-label="Page navigation">
+            {{--<nav class="pt-3" aria-label="Page navigation">
                 <ul class="pagination">
                     <li class="page-item"><a class="page-link" href="#">Previous</a>
                     </li>
@@ -81,7 +83,7 @@
                     <li class="page-item"><a class="page-link" href="#">Next</a>
                     </li>
                 </ul>
-            </nav>
+            </nav>--}}
         </div>
     </div>
 @endsection

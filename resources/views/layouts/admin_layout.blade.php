@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="/admin_inc/assets/img/basic/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="" type="image/x-icon">
     <title>UgaBus:Admin</title>
     <!-- CSS -->
     <link rel="stylesheet" href="/admin_inc/assets/css/app.css">
@@ -150,6 +150,9 @@
                                 class="icon icon-angle-left s-18 pull-right"></i></a>
                     <ul class="treeview-menu">
                         <li><a href="/admin/routes"><i class="icon icon-circle-o"></i>All Routes</a>
+                        </li>
+                        <li><a href="/admin/routes/create"><i class="icon icon-add"></i>Add
+                                New Route</a>
                         </li>
                     </ul>
                 </li>
