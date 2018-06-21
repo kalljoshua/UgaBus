@@ -16,7 +16,9 @@
 							</button>
 							
 							<!-- BEGIN: LOGO -->
-							<a class="navbar-brand logo" href="/">UgaBus</a>
+							<a class="navbar-brand logo" href="/">
+								UgaBus
+							</a>
 						</div>
 						
 						<!-- BEGIN: NAVIGATION -->       

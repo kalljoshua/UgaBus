@@ -51,6 +51,12 @@ class StoriesController extends Controller
 
     }
 
+    function displayStory($id){
+    	$story = UserTravelStory::find($id);
+    	return view('user.user-story')
+    	->with('story',$story);
+    }
+
     function resizePostImage($path,$image_name)
     {
 
@@ -62,6 +68,10 @@ class StoriesController extends Controller
         Image::make($image_path)
             ->resize(810, 400)
             ->save(public_path().'/images/story/user_810x400/'.$image_name);
+
+        Image::make($image_path)
+            ->resize(1258, 600)
+            ->save(public_path().'/images/story/user_1258x600/'.$image_name);
 
         Image::make($image_path)
             ->resize(99, 99)

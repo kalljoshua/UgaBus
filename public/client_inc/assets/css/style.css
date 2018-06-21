@@ -614,7 +614,7 @@ h5 {
 	-moz-transition: all 0.3s ease;
 }
 .light-menu .navbar-contact a:hover {
-	color: #00adef;
+	color: #1f4294;
 }
 .light-menu i {
 	margin-right: 2px;
@@ -644,13 +644,13 @@ h5 {
 	padding: 15px 0px 15px 20px !important;
 }
 .light-menu .navbar-nav > li > a:hover{
-	color: #00adef;
+	color: #1f4294;
 }
 .light-menu .navbar-default .navbar-nav > .active > a, 
 .light-menu .navbar-default .navbar-nav > .active > a:focus, 
 .light-menu .navbar-default .navbar-nav > .active > a:hover {
 	background: transparent;
-	color: #00adef;
+	color: #1f4294;
 }
 .light-menu .dropdown-menu > li > a {
 	background: transparent none repeat scroll 0 0;
@@ -839,7 +839,7 @@ h5 {
 	color: #ffffff;
 }
 .ui-datepicker-calendar a:hover {
-	color: #00ADEF;
+	color: #1f4294;
 }
 .ui-datepicker-calendar td {
 	padding: 10px 5px;
@@ -863,7 +863,7 @@ h5 {
 	cursor: pointer;
 }
 .ui-datepicker-header a:hover {
-	color: #00ADEF;
+	color: #1f4294;
 }
 .ui-spinner-up i {
 	color: #BEC4C8;
@@ -903,13 +903,13 @@ h5 {
 	background: #07253F !important;
 }
 .bootstrap-select.btn-group .dropdown-menu li a:hover {
-	color: #00ADEF;
+	color: #1f4294;
 }
 .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
 	width: 100%;
 }
 .btn:hover {
-	color: #00ADEF;
+	color: #1f4294;
 }
 .search-button {
 	background: #f9676b;
@@ -928,7 +928,7 @@ h5 {
 	-o-transition: all 0.3s ease;
 }
 .search-button:hover {
-	background: #00adef;
+	background: #1f4294;
 	color: #fff;
 }
 .owl-theme .owl-dots .owl-dot.active span, 
@@ -1065,7 +1065,7 @@ h5 {
     padding: 8px 10px;
 }
 .offer-box a:hover {
-	background: #00adef;
+	background: #1f4294;
 }
 .vertical-search,
 .full-width-search {
@@ -1147,8 +1147,8 @@ h5 {
 	font-weight: bold;
 }
 .icon-desc i {
-	color: #00ADEF;
-	border: 2px solid #00ADEF;
+	color: #1f4294;
+	border: 2px solid #1f4294;
 	padding: 30px 32px;
 	border-radius: 50%;
 	
@@ -1169,7 +1169,7 @@ h5 {
 	margin-top: 10px;
 }
 .home-product h5 {
-	color: #00ADEF;
+	color: #1f4294;
 	font-weight: bold;
 }
 .home-product p {
@@ -1304,7 +1304,7 @@ h5 {
 	width: 50px;
 	height: 4px;
 	display: inline-block;
-	background: #00ADEF;
+	background: #1f4294;
 	margin: 10px 0;
 }
 .pricing-info {
@@ -1616,7 +1616,7 @@ h5 {
 	margin: 5px 0px;
 }
 .room-grid-view  .room-info .room-title p {
-	color: #00ADEF;
+	color: #1f4294;
 }
 .room-grid-view  .room-info .hotel-ammeties i{
 	border: 1px solid #BEC4C8;
@@ -1669,7 +1669,7 @@ h5 {
 }
 .room-grid-view:hover .room-info .room-book  a{
 	color: #ffffff;
-	background: #00ADEF;
+	background: #1f4294;
 }
 /* Subscribe Section */ 
 .subscribe-box .form-control {
@@ -1688,7 +1688,7 @@ h5 {
     width: 100%;
 }
 .subscribe-box button:hover {
-	background: #00adef;
+	background: #1f4294;
 	color: #fff;
 }
 .subscribe-row {
@@ -1767,11 +1767,11 @@ h5 {
     text-align: center;
 }
 .col-grid .bottom a:hover {
-	background: #00adef;
+	background: #1f4294;
 }
 .col-grid h5 {
 	font-weight: bold;
-	color: #00adef;
+	color: #1f4294;
 	margin-top: 0px;
 }
 .col-grid p i {
@@ -1823,7 +1823,7 @@ h5 {
     line-height: 2;
     margin-right: 0;
 	border-radius: 0;
-	background: #00adef;
+	background: #1f4294;
 }
 .hot-deals .nav-tabs .active {
 	position: relative;
@@ -1885,10 +1885,10 @@ h5 {
 	margin-bottom: 15px;
 }
 .hot-deal-list .item a:hover {
-	background: #00adef;
+	background: #1f4294;
 }
 .hot-deal-list .item .location {
-	color: #00adef;
+	color: #1f4294;
 }
 .hot-deal-list .item .text-sm {
 	line-height: 2;
@@ -2027,7 +2027,7 @@ h5 {
 	color: #ffffff;
 }
 .modify-search .input-group-addon {
-	background: #00ADEF;
+	background: #1f4294;
 	border: none;
 	border-radius: 0;
 }
@@ -2041,7 +2041,7 @@ h5 {
 }
 .modify-search .modify-search-button {
 	height: 45px;
-	background: #00ADEF;
+	background: #1f4294;
 	color: #ffffff;
 	border-radius: 0;
 	font-weight: bold;
@@ -2056,7 +2056,7 @@ h5 {
 	transition: all 0.3s ease;
 }
 .modify-search .modify-search-button:hover {
-	color: #00ADEF;
+	color: #1f4294;
 	background: #ffffff;
 }
 .filter-head {
@@ -2127,7 +2127,7 @@ h5 {
 	color: red;
 	font-family: FontAwesome;
 	padding: 5px;
-	background: #00ADEF;
+	background: #1f4294;
 	color: #ffffff;
 }
 .price-filter input {
@@ -2148,7 +2148,7 @@ h5 {
 	margin-right: 5px;
 }
 .filter-area h5 {
-	color: #00ADEF;
+	color: #1f4294;
 	margin-top: 0;
 	font-weight: bold;
 	letter-spacing: 1px;
@@ -2184,7 +2184,7 @@ h5 {
 }
 .name-filter .input-group-addon {
 	color: #ffffff;
-	background: #00ADEF;
+	background: #1f4294;
 	border: none;
 	border-radius: 0;
 }
@@ -2236,7 +2236,7 @@ h5 {
 .pagination > .active > span, 
 .pagination > .active > span:focus, 
 .pagination > .active > span:hover {
-	background: #00ADEF;
+	background: #1f4294;
 	border: 1px solid transparent;
 }
 .pagination-lg > li:last-child > a, 
@@ -2312,11 +2312,11 @@ h5 {
 	margin: 0px 2px;
 }
 .hotel-list-view .hotel-header p {
-	color: #00ADEF;
+	color: #1f4294;
 }
 .hotel-list-view .hotel-header p  i {
 	margin: 0 5px;
-	color: #00ADEF;
+	color: #1f4294;
 }
 .hotel-list-view .hotel-facility  i{
 	border: 1px solid #bec4c8;
@@ -2372,12 +2372,12 @@ h5 {
 }
 .hotel-list-view:hover .room-book-box {
 	color: #ffffff;
-	background: #00ADEF;
+	background: #1f4294;
 }
 .hotel-list-view:hover .room-book-box a{
 	color: #ffffff;
 	border: 2px solid #ffffff;
-	background: #00ADEF;
+	background: #1f4294;
 }
 @media (max-width: 991px) {
 	.hotel-list-view  img{
@@ -2423,7 +2423,7 @@ h5 {
 	color: #ffffff;
 }
 .filter-area .stop-filter .btn-primary {
-	background: #00ADEF;
+	background: #1f4294;
 	border: transparent;
 	border-radius: 0;
 }
@@ -2525,7 +2525,7 @@ h5 {
 	margin-top: 10px;
 }
 .flight-list-view:hover .book a{
-	background: #00ADEF;
+	background: #1f4294;
 }
 .flight-details .close{
 	font-size: 20px;
@@ -2563,7 +2563,7 @@ h5 {
 }
 .flight-details-book a:hover {
 	color: #ffffff;
-	background: #00ADEF;
+	background: #1f4294;
 }
 .flight-details-body {
 	margin-top: 20px;
@@ -2791,7 +2791,7 @@ h5 {
 	font-weight: bold;
 }
 .flight-list-v2:hover .flight-list-footer .pull-right a {
-	background: #00ADEF;
+	background: #1f4294;
 }
 .flight-list-footer .refund {
 	color: #F2676B;
@@ -3008,7 +3008,7 @@ h5 {
 	margin-top: 15px;
 }
 .cruise-list-view strong {
-	color: #00ADEF;
+	color: #1f4294;
 	margin-right: 10px;
 }
 .cruise-list-view i {
@@ -3072,7 +3072,7 @@ h5 {
 	text-decoration: underline;
 }
 .cruise-list-view:hover .price {
-	background: #00ADEF;
+	background: #1f4294;
 }
 @media (max-width: 991px) {
 	.cruise-list-view .booking-box {
@@ -3144,7 +3144,7 @@ h5 {
 	margin-top: 10px;
 }
 .room-type .panel-collapse a:hover {
-	background: #00ADEF;
+	background: #1f4294;
 }
 .panel-group {
 	margin-bottom: 0px;
@@ -3327,7 +3327,7 @@ h5 {
 	color: #172741;
 }
 .similar-hotel-box a:hover {
-	color: #00adef
+	color: #1f4294
 }
 .similar-hotel-box span {
 	margin-top: 5px;
@@ -3355,7 +3355,7 @@ h5 {
 }
 .room-complete-detail .room-info-wrapper h5 {
 	margin-top: 0;
-	color: #00adef;
+	color: #1f4294;
 	font-weight: bold;
 }
 .room-complete-detail .room-info-wrapper h4 {
@@ -3388,7 +3388,7 @@ h5 {
 	color: #fff;
 }
 .room-complete-detail .nav-tabs > li > a {
-    background: #00adef none repeat scroll 0 0;
+    background: #1f4294 none repeat scroll 0 0;
     border-radius: 0;
     color: #fff;
     line-height: 1.42857;
@@ -3550,7 +3550,7 @@ h5 {
     padding: 10px 50px;
 }
 .load-more a:hover {
-	background: #00adef;
+	background: #1f4294;
 }
 #write-review .form-control {
 	border-radius: 0;
@@ -3570,7 +3570,7 @@ h5 {
     padding: 10px 50px;
 }
 .submit-review:hover {
-	background: #00adef;
+	background: #1f4294;
 	color: #ffffff;
 }
 @media (max-width: 991px) {
@@ -3855,7 +3855,7 @@ h5 {
 	color: #F2676B;
 }
 .package-complete-detail .nav-tabs > li > a {
-    background: #00adef none repeat scroll 0 0;
+    background: #1f4294 none repeat scroll 0 0;
     border-radius: 0;
     color: #fff;
     line-height: 1.42857;
@@ -3950,7 +3950,7 @@ h5 {
     padding: 10px 15px;
 }
 .package-summary-footer .book a:hover {
-	background: #00adef;
+	background: #1f4294;
 }
 .package-detail-sidebar  .assitance-body {
 	padding: 20px;
@@ -4210,7 +4210,7 @@ h5 {
     padding: 10px 50px;
 }
 .booking-form button:hover {
-	background: #00adef;
+	background: #1f4294;
 }
 .social-media-login {
 	margin-top: 20px;
@@ -4274,7 +4274,7 @@ h5 {
     padding: 10px 20px;
 }
 .passenger-detail-body button:hover {
-	background: #00adef;
+	background: #1f4294;
 }
 .passenger-detail-body button i {
 	margin-left: 5px;
@@ -4328,7 +4328,7 @@ h5 {
     padding: 10px 20px;
 }
 .paypal-pay a:hover {
-	background: #00adef;
+	background: #1f4294;
 }
 @media (max-width: 767px) {
 	.login-box {
@@ -4357,7 +4357,7 @@ h5 {
 	color: #E1974F;
 }
 .booking-summary .loc {
-	color: #00adef;
+	color: #1f4294;
 }
 .booking-summary .fa-map-marker {
 	margin-right: 5px;
@@ -4418,7 +4418,7 @@ h5 {
     padding: 7px 15px;
 }
 .booking-summary-v2 a:hover {
-	background: #00adef;
+	background: #1f4294;
 }
 @media (max-width: 991px) {
 	.booking-summary-v2 a {
@@ -4479,7 +4479,7 @@ h5 {
 .sidebar-search .input-group-addon {
 	border-radius: 0px;
 	color: #ffffff;
-	background: #00adef;
+	background: #1f4294;
 	border: none;
 	padding: 10px 25px;
 }
@@ -4494,7 +4494,7 @@ h5 {
 	color: #07253F;
 }
 .recent-post a:hover {
-	color: #00adef;
+	color: #1f4294;
 }
 .recent-post .wrapper {
 	margin-bottom: 15px;
@@ -4516,7 +4516,7 @@ h5 {
 	font-weight: bold;
 }
 .sidebar-subscribe button:hover {
-	background: #00adef;
+	background: #1f4294;
 }
 .recent-post .wrapper:last-child {
 	margin-bottom: 0px;
@@ -4528,7 +4528,7 @@ h5 {
 	color: #07253F;
 }
 .post-cat a:hover {
-	color: #00adef;
+	color: #1f4294;
 }
 .post-cat .list-group {
 	margin-bottom: 0px;
@@ -4564,7 +4564,7 @@ h5 {
 	color: #172755;
 }
 .post-body p a:hover {
-	color: #00adef;
+	color: #1f4294;
 }
 .post-footer {
 	overflow: hidden;
@@ -4574,7 +4574,7 @@ h5 {
 	margin-top: 15px;
 }
 .post-footer  h5 a {
-	color: #00adef;
+	color: #1f4294;
 }
 .post-footer .read-more a {
 	background: #f2676b none repeat scroll 0 0;
@@ -4584,7 +4584,7 @@ h5 {
     padding: 15px 20px;
 }
 .post-footer .read-more a:hover {
-	background: #00adef;
+	background: #1f4294;
 }
 .post-wrapper .youtube-video {
 	width: 100%;
@@ -4600,7 +4600,7 @@ h5 {
 	margin-bottom: 40px;
 }
 .blog-load-more:hover {
-	background: #00adef;
+	background: #1f4294;
 	color: #ffffff;
 }
 /*********************************************************************************
@@ -4623,7 +4623,7 @@ h5 {
 	color: #172755;
 }
 .single-post-wrapper .blog-title p a:hover {
-	color: #00adef;
+	color: #1f4294;
 }
 .single-post-wrapper .main-content img{
 	max-width: 100%;
@@ -4644,7 +4644,7 @@ h5 {
 	color: #172755;
 }
 .single-post-wrapper .social-share a:hover {
-	color: #00adef;
+	color: #1f4294;
 }
 .single-post-wrapper .social-share i {
 	font-size: 25px;
@@ -4663,7 +4663,7 @@ h5 {
 	color: #F2676B;
 }
 .blog-links a:hover {
-	color: #00adef;
+	color: #1f4294;
 }
 .author-wrapper {
 	padding: 30px;
@@ -4744,7 +4744,7 @@ h5 {
 .contact-address {
 	color: #ffffff;
 	padding: 60px 0px;
-	background: #00adef;
+	background: #1f4294;
 }
 .contact-address h2 {
 	font-weight: 800;
@@ -4851,7 +4851,7 @@ h5 {
 	display: inline-block;
 }
 .team-member a:hover {
-	color: #00adef;
+	color: #1f4294;
 }
 .our-service {
 	padding: 60px 0px;
@@ -5169,7 +5169,7 @@ h5 {
 .submit-complaint button {
 	border: 0px;
 	color: #fff;
-	background: #00adef;
+	background: #1f4294;
 	padding: 10px 20px;
 	margin-top: 20px;
 	font-weight: bold;
@@ -5266,7 +5266,7 @@ h5 {
 	color: #07253F;
 }
 .recent-complaint .tab-content a:hover {
-	color: #00adef;
+	color: #1f4294;
 }
 .recent-complaint .tab-content a span {
 	font-weight: 600;
@@ -5394,7 +5394,7 @@ h5 {
 	width: 100%;
 }
 .centered-box .subscribe	button:hover {
-	background: #00adef;
+	background: #1f4294;
 } 
 .centered-box .social-media {
 	margin-top: 40px;
@@ -5418,7 +5418,7 @@ h5 {
 	color: #f9676b;
 }
 .centered-box .social-media li a:hover {
-	color: #00adef;
+	color: #1f4294;
 }
 .centered-box .copyright {
 	margin-top: 20px;
@@ -5536,7 +5536,7 @@ h5 {
 	-webkit-animation: loader 2s infinite 1s;
 	opacity: 0;
 	color: #fff;
-	background: #00adef;
+	background: #1f4294;
 }
 .loading-animation span:nth-child(4) {
 	animation: loader 2s infinite 1.5s;
@@ -5846,9 +5846,9 @@ h5 {
 }
 .hotel-subscribe-row .form-control {
 	background: #fff;
-	border-left: 1px solid #00adef;
-	border-top: 1px solid #00adef;
-	border-bottom: 1px solid #00adef;
+	border-left: 1px solid #1f4294;
+	border-top: 1px solid #1f4294;
+	border-bottom: 1px solid #1f4294;
 	border-right: none;
 	color: #07253F;
 }
@@ -5906,7 +5906,7 @@ h5 {
 }
 .sm-footer .social-media i {
     border-radius: 50%;
-	background: #00adef;
+	background: #1f4294;
 	color: #fff;
     height: 30px;
     margin: 0 10px 0 0;
@@ -6203,7 +6203,7 @@ h5 {
 }
 .tour-gallery p i {
 	margin-right: 7px;
-	color: #00adef;
+	color: #1f4294;
 }
 .tour-gallery .price h4 {
 	color: #fff;
@@ -6241,7 +6241,7 @@ h5 {
 	margin: 60px 10px 20px;
 }
 .choose-icon {
-	background: #00adef none repeat scroll 0 0;
+	background: #1f4294 none repeat scroll 0 0;
     color: #fff;
     height: 60px;
     left: 43%;
@@ -6738,7 +6738,7 @@ h5 {
 	margin-right: 5px;
 }
 .main-footer-sub button:hover {
-	background: #00adef;
+	background: #1f4294;
 }
 .main-footer-sub .social-media ul {
 	padding: 0px;
@@ -6758,7 +6758,7 @@ h5 {
     width: 40px;
 }
 .main-footer-sub .social-media li a:hover {
-	background: #00adef;
+	background: #1f4294;
 }
 .main-footer-sub .social-media li a i {
 	font-size: 16px;
@@ -6994,7 +6994,7 @@ h5 {
 }
 .login-form button:hover,
 .sign-up-form button:hover {
-	background: #00adef;
+	background: #1f4294;
 }
 .login-form button i,
 .sign-up-form button i  {
@@ -7122,7 +7122,7 @@ h5 {
 	-webkit-transition: all 0.3s ease;
 }
 .cbtn:hover {
-	background: #00adef;
+	background: #1f4294;
 }
 .lg-btn {
 	font-size: 20px;
@@ -7186,7 +7186,7 @@ h5 {
     padding: 8px 10px;
 }
 #cabin .inclusion-body h5 a:hover {
-	background: #00adef;
+	background: #1f4294;
 }
 
 
@@ -7250,12 +7250,12 @@ h5 {
 	margin: 0px 2px;
 }
 .product-grid-view .hotel-header p {
-	color: #00ADEF;
+	color: #1f4294;
 	line-height: 1.6;
 }
 .product-grid-view .hotel-header p  i {
 	margin: 0 5px;
-	color: #00ADEF;
+	color: #1f4294;
 }
 .product-grid-view .hotel-facility  i{
 	border: 1px solid #bec4c8;
@@ -7329,12 +7329,12 @@ h5 {
 }
 .product-grid-view:hover .room-book-box {
 	color: #ffffff;
-	background: #00ADEF;
+	background: #1f4294;
 }
 .product-grid-view:hover .room-book-box a{
 	color: #ffffff;
 	border: 2px solid #ffffff;
-	background: #00ADEF;
+	background: #1f4294;
 }
 .view-switcher {
 	margin-top: 40px;
@@ -7344,7 +7344,7 @@ h5 {
     display: inline-block;
     font-size: 20px;
     padding: 5px;
-	color: #00adef;
+	color: #1f4294;
 }
 .view-switcher a:hover {
 	color: #f9676b;
