@@ -256,6 +256,7 @@
 <!-- BEGIN: RECENT BLOG POST -->
 <section id="recent-blog">
 	<div class="row top-offer">
+		@if(sizeOf($stories)>0)
 		<div class="container">
 			<div class="section-title text-center">
 				<h2>TRAVELLERS' STORIES</h2>
@@ -278,7 +279,7 @@
 								<h5> <i class="fa fa-share-alt"></i> {{$story->views}} </h5>
 							</div>
 							<div class="col-md-4 col-sm-6 col-xs-6 clear-padding">
-								<a href="#" class="text-center">MORE</a> 
+								<a href="{{route('story.display',['id'=>$story->id])}}" class="text-center">MORE</a> 
 							</div>
 						</div>
 						<div class="clearfix"></div>
@@ -287,6 +288,7 @@
 				@endforeach
 			</div>
 		</div>
+		@endif
 	</div>
 </section>
 <!-- END: RECENT BLOG POST -->

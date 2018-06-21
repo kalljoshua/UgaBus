@@ -19,11 +19,11 @@
 				<div class="col-md-5 col-sm-5">
 					<div class="social-media pull-right">
 						<ul>
-							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-							<li><a href="#"><i class="fa fa-instagram"></i></a></li>
-							<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-							<li><a href="#"><i class="fa fa-youtube"></i></a></li>
+							<li><a href="https://www.facebook.com/UGABUS/?__mref=message_bubble"><i class="fa fa-facebook"></i></a></li>
+							<li><a href="https://twitter.com/UgaBus_Ug"><i class="fa fa-twitter"></i></a></li>
+							<!--<li><a href="#"><i class="fa fa-instagram"></i></a></li>
+							<li><a href="#"><i class="fa fa-google-plus"></i></a></li>-->
+							<li><a href="https://www.youtube.com/channel/UCB7aZgTPZ74ZCangJ_TQLfw"><i class="fa fa-youtube"></i></a></li>
 						</ul>
 					</div>
 				</div>
@@ -35,12 +35,10 @@
 					<h4>Usefull Links</h4>
 					<ul>
 						<li><a href="/">Home</a></li>
-						<li><a href="#">About Us</a></li>
-						<li><a href="#">How it works</a></li>
-						<li><a href="#">FAQ</a></li>
-						<li><a href="#">Privacy Policy</a></li>
-						<li><a href="#">Terms of Use</a></li>
-						<li><a href="#">Our Services</a></li>
+						<li><a href="{{route('about.us')}}">About Us</a></li>
+						<li><a href="{{route('faq')}}">FAQ</a></li>
+						<li><a href="{{route('privacy.policy')}}">Privacy Policy</a></li>
+						<li><a href="{{route('use.terms')}}">Terms of Use</a></li>
 					</ul>
 				</div>
 				<div class="col-md-3 col-sm-6 links">
@@ -74,8 +72,8 @@
 					<ul>
 						<li><img src="/client_inc/assets/images/card/mastercard.png" alt="cruise"></li>
 						<li><img src="/client_inc/assets/images/card/visa.png" alt="cruise"></li>
-						<li><img src="/client_inc/assets/images/card/5.png" alt="cruise"></li>
-						<li><img src="/client_inc/assets/images/card/6.png" alt="cruise"></li>
+						<li><img src="/client_inc/assets/images/card/5.png" style="width: 54px; height: 30px" alt="cruise"></li>
+						<li><img src="/client_inc/assets/images/card/6.png" style="width: 54px; height: 30px" alt="cruise"></li>
 					</ul>
 				</div>
 			</div>

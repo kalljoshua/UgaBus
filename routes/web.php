@@ -21,6 +21,12 @@ Route::get('/verify/{token}', 'User\VerifyController@verify')->name('verify');
 Route::post('/login', 'User\LoginController@login')->name('user.login.submit');
 Route::get('/logout', 'User\LoginController@logout')->name('user.logout');
 
+//footer pages routes
+Route::get('/faqs', 'User\HomeController@faq')->name('faq');
+Route::get('/about-us', 'User\HomeController@about')->name('about.us');
+Route::get('/privacy-policy', 'User\HomeController@privacy')->name('privacy.policy');
+Route::get('/terms-of-use', 'User\HomeController@terms')->name('use.terms');
+
 //Search routes
 Route::get('/search', 'User\SearchController@search')->name('search');
 
