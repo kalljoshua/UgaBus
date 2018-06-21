@@ -39,18 +39,31 @@
                                     <div class="col-md-8">
                                         <div class="form-group m-0">
                                             <label for="bus" class="col-form-label s-12">BUS</label>
+                                            @if($selected_bus == true)
+                                                <input id="bus" name="bus"
+                                                       value="{{$bus->id}}"
+                                                       placeholder="Enter Driver Full Name"
+                                                       class="form-control r-0 light s-12 " type="hidden">
+                                                <input id="bus" name="bus"
+                                                       value="{{$bus->company->company_name}} :: {{$bus->license_plate_number}}"
+                                                       class="form-control r-0 light s-12 " type="text" disabled="">
+                                            @else
                                             <!--<input type="text" class="form-control"  placeholder="Mobile Phones" required>-->
-                                            <select id="bus" name="bus" class="custom-select form-control"
-                                                    required>
-                                                <option value="">Select Bus</option>
-                                                @foreach($buses as $bus)
-                                                    <option value="{{$bus->id}}">{{$bus->agent->company}} {{$bus->license_plate_number}}</option>
-                                                @endforeach
-                                            </select>
+                                                <select id="bus" name="bus" class="custom-select form-control"
+                                                        required>
+                                                    <option value="">Select Bus</option>
+                                                    @foreach($buses as $bus)
+                                                        <option value="{{$bus->id}}">{{$bus->company->company_name}}
+                                                            :: {{$bus->license_plate_number}}</option>
+                                                    @endforeach
+                                                </select>
+                                            @endif
+
                                         </div>
                                         <div class="form-group m-0">
                                             <label for="driver_name" class="col-form-label s-12">BUS DRIVER NAME</label>
-                                            <input id="driver_name" name="driver_name" placeholder="Enter Driver Full Name"
+                                            <input id="driver_name" name="driver_name"
+                                                   placeholder="Enter Driver Full Name"
                                                    class="form-control r-0 light s-12 " type="text">
                                         </div>
                                     </div>
@@ -156,7 +169,8 @@
                                 <div class="form-row">
                                     <div class="form-group col-5 m-0">
                                         <label for="travel_period" class="col-form-label s-12">TRAVEL PERIOD</label>
-                                        <select id="travel_period" name="travel_period" class="custom-select form-control"
+                                        <select id="travel_period" name="travel_period"
+                                                class="custom-select form-control"
                                                 required>
                                             <option value="">Select Travel Period</option>
                                             <option value="0">Hours</option>
@@ -177,7 +191,7 @@
                                         <label for="arrival_time" class="col-form-label s-12">ARRIVAL TIME</label>
                                         <input type="time" name="arrival_time" class="form-control r-0 light s-12"
                                                id="arrival_time"
-                                                placeholder="Enter Arrival time">
+                                               placeholder="Enter Arrival time">
                                     </div>
                                 </div>
                             </div>

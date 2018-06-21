@@ -34,6 +34,42 @@
                 <div class="row">
                     <div class="col-md-8 ">
                         <div class="card mt-4">
+                            <h6 class="card-header white">Company & Agent</h6>
+                            <div class="card-body text-success">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="category">Bus Park</label>
+                                        <select id="category" name="company_id" class="custom-select form-control"
+                                                required>
+                                            <option value="">Select Bus Park</option>
+                                            <option value="{{$bus->company->id}}" selected>{{$bus->company->company_name}}</option>
+                                            @foreach($companies as $company)
+                                                <option value="{{$company->id}}">{{$company->company_name}}</option>
+                                            @endforeach
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Please provide a valid category.
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="category">Agent Name</label>
+                                        <!--<input type="text" class="form-control"  placeholder="Mobile Phones" required>-->
+                                        <select id="category" name="agent_id" class="custom-select form-control"
+                                                required>
+                                            <option value="">Select Agent</option>
+                                            <option value="{{$bus->agent->id}}" selected>{{$bus->agent->first_name}} {{$bus->agent->last_name}}</option>
+                                            @foreach($agents as $agent)
+                                                <option value="{{$agent->id}}">{{$agent->first_name}} {{$agent->last_name}}</option>
+                                            @endforeach
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Please provide a valid category.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mt-4">
                             <h6 class="card-header white">Bus Details</h6>
                             <div class="card-body text-success">
                                 <div class="row">
@@ -85,91 +121,17 @@
                             </div>
                         </div>
                         <div class="card mt-4">
-                            <h6 class="card-header white">Agent</h6>
-                            <div class="card-body text-success">
+                            <h6 class="card-header white">Vehicle Image</h6>
+                            <div class="card-body">
+                                <label for="file" class="col-form-label s-12">PROFILE PICTURE</label>
                                 <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <label for="category">Agent Name</label>
-                                        <!--<input type="text" class="form-control"  placeholder="Mobile Phones" required>-->
-                                        <select id="category" name="agent_id" class="custom-select form-control"
-                                                required>
-                                            <option value="">Select Agent</option>
-                                            <option value="{{$bus->agent->id}}" selected>{{$bus->agent->first_name}} {{$bus->agent->last_name}}</option>
-                                            @foreach($agents as $agent)
-                                                <option value="{{$agent->id}}">{{$agent->first_name}} {{$agent->last_name}}</option>
-                                            @endforeach
-                                        </select>
-                                        <div class="invalid-feedback">
-                                            Please provide a valid category.
-                                        </div>
+                                    <div class="col-md-8 mb-4">
+                                        <img id="blah" src="/user_avatars/placeholder.svg" alt="your image"
+                                             class="img-thumbnail rounded float-left"/>
                                     </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label for="validationCustom02">Company</label>
-                                        <input type="text" name="company" class="form-control" id="validationCustom02"
-                                               placeholder="Company Name" required disabled="">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <label for="category">Bus Park</label>
-                                        <select id="category" name="park_id" class="custom-select form-control"
-                                                required>
-                                            <option value="">Select Bus Park</option>
-                                            <option value="{{$bus->park->id}}" selected>{{$bus->park->park_name}}</option>
-                                            @foreach($parks as $park)
-                                                <option value="{{$park->id}}">{{$park->park_name}}</option>
-                                            @endforeach
-                                        </select>
-                                        <div class="invalid-feedback">
-                                            Please provide a valid category.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card mt-4">
-                            <h6 class="card-header white">Bus Routes</h6>
-                            <div class="card-body text-success">
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <label for="validationCustom01">Travel From</label>
-                                        <input type="text" name="travel_from" class="form-control"
-                                               id="validationCustom01"
-                                               placeholder="Enter departure location" required>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label for="validationCustom02">Travel To</label>
-                                        <input type="text" name="travel_to" class="form-control" id="validationCustom02"
-                                               placeholder="Enter destination location" required>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <label for="category">Seat Price(SHS)</label>
-                                        <input type="text" name="seat_price" class="form-control"
-                                               id="validationCustom01"
-                                               placeholder="Product Name" required>
-                                        <div class="invalid-feedback">
-                                            Please provide a valid category.
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="validationCustom04">Departure Time</label>
-                                        <input type="time" name="dep_time" class="form-control" id="validationCustom04"
-                                               placeholder="00:00 AM"
-                                               required>
-                                        <div class="invalid-feedback">
-                                            Please provide a valid price.
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="sku">Estimated Arrival Time</label>
-                                        <input type="time" name="arr_time" class="form-control" id="sku"
-                                               placeholder="00:00 PM"
-                                               required>
-                                        <div class="invalid-feedback">
-                                            Please provide a valid sku.
-                                        </div>
+                                    <div class="col-md-8 mb-4">
+                                        <input hidden id="files" type='file' onchange="readURL(this);" name="file"/>
+                                        <label for="files" class="btn btn-primary">Select picture</label>
                                     </div>
                                 </div>
                             </div>

@@ -9,6 +9,8 @@
     <title>UgaBus:Admin</title>
     <!-- CSS -->
     <link rel="stylesheet" href="/admin_inc/assets/css/app.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.1.1/min/dropzone.min.css"
+          rel="stylesheet" type="text/css">
     <style>
         .loader {
             position: fixed;
@@ -114,17 +116,28 @@
 
             <ul class="sidebar-menu">
                 <li class="header"><strong>MAIN NAVIGATION</strong></li>
-                <li class="treeview"><a href="/admin">
+                {{--<li class="treeview"><a href="/admin">
                         <i class="icon icon-sailing-boat-water purple-text s-18"></i> <span>Dashboard</span> <i
                                 class="icon icon-angle-left s-18 pull-right"></i>
                     </a>
-                </li>
+                </li>--}}
                 <li class="treeview"><a href="#"><i class="icon icon-account_box light-green-text s-18"></i>Agents<i
                                 class="icon icon-angle-left s-18 pull-right"></i></a>
                     <ul class="treeview-menu">
                         <li><a href="/admin/agents"><i class="icon icon-circle-o"></i>All Agents</a>
                         </li>
                         <li><a href="/admin/agents/create"><i class="icon icon-add"></i>Add Agent</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="treeview"><a href="#"><i class="icon icon-business_center text-blue s-18"></i>Bus Companies<i
+                                class="icon icon-angle-left s-18 pull-right"></i></a>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="/admin/companies"><i class="icon icon-circle-o"></i>All Bus Companies</a>
+                        </li>
+                        <li><a href="/admin/companies/create"><i class="icon icon-add"></i>Add
+                                New Bus Company</a>
                         </li>
                     </ul>
                 </li>
@@ -139,13 +152,6 @@
                         </li>
                     </ul>
                 </li>
-                <li class="treeview"><a href="#"><i class="icon icon-book-bookmark light-green-text s-18"></i>Bookings<i
-                                class="icon icon-angle-left s-18 pull-right"></i></a>
-                    <ul class="treeview-menu">
-                        <li><a href="/admin/bookings"><i class="icon icon-circle-o"></i>All Bookings</a>
-                        </li>
-                    </ul>
-                </li>
                 <li class="treeview"><a href="#"><i class="icon icon-road text-red s-18"></i>Routes<i
                                 class="icon icon-angle-left s-18 pull-right"></i></a>
                     <ul class="treeview-menu">
@@ -156,13 +162,20 @@
                         </li>
                     </ul>
                 </li>
-                <li class="treeview"><a href="#"><i class="icon icon-local_parking text-black s-18"></i>Parks<i
+                <li class="treeview"><a href="#"><i class="icon icon-book-bookmark light-green-text s-18"></i>Bookings<i
+                                class="icon icon-angle-left s-18 pull-right"></i></a>
+                    <ul class="treeview-menu">
+                        <li><a href="/admin/bookings"><i class="icon icon-circle-o"></i>All Bookings</a>
+                        </li>
+                    </ul>
+                </li>
+                {{--<li class="treeview"><a href="#"><i class="icon icon-local_parking text-black s-18"></i>Parks<i
                                 class="icon icon-angle-left s-18 pull-right"></i></a>
                     <ul class="treeview-menu">
                         <li><a href="/admin/parks"><i class="icon icon-circle-o"></i>All Parks</a>
                         </li>
                     </ul>
-                </li>
+                </li>--}}
                 <li class="treeview"><a href="#"><i class="icon icon-user light-green-text s-18"></i>Users<i
                                 class="icon icon-angle-left s-18 pull-right"></i></a>
                     <ul class="treeview-menu">
@@ -281,8 +294,27 @@
              immediately after the control sidebar -->
     <div class="control-sidebar-bg shadow white fixed"></div>
 </div>
-<!--/#app -->
-<script src="/admin_inc/assets/js/app.js"></script>
+<script src="/admin_inc/assets/js/app.unminified.js"></script>
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah')
+                    .attr('src', e.target.result)
+                    .width(150)
+                    .height(200);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+<script>
+    $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
+</script>
+
 </body>
 </html>
 

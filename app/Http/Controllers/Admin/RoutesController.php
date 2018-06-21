@@ -17,7 +17,8 @@ class RoutesController extends Controller
 
     function create(){
         $buses = Bus::all();
-        return view('admin.create_new_route')->with('buses', $buses);
+        return view('admin.create_new_route')->with('buses', $buses)
+            ->with('selected_bus', false);
     }
 
     function save(Request $request){
@@ -77,8 +78,8 @@ class RoutesController extends Controller
         }
 
         if($route->save()){
-            $buses = Bus::all();
-            return view('admin.create_new_route')->with('buses', $buses);
+            flash('Route details saved successfully!');
+            return redirect('/admin/buses');
         }
 
     }

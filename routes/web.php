@@ -64,12 +64,19 @@ Route::group(['middleware' => 'admin'], function () {
     //Users
     Route::get('/admin/users', 'Admin\UsersController@getAllUsers')->name('admin.users');
 
+    //Companies
+    Route::get('/admin/companies/create', 'Admin\CompaniesController@create')->name('admin.companies.create');
+    Route::post('/admin/companies/save', 'Admin\CompaniesController@save')->name('admin.companies.save');
+    Route::get('/admin/companies', 'Admin\CompaniesController@getAllCompanies')->name('admin.companies');
+
     //Buses
     Route::get('/admin/buses/create', 'Admin\BusesController@createBus')->name('admin.create_new_bus');
     Route::post('/admin/buses/save', 'Admin\BusesController@save')->name('admin.buses.save');
     Route::get('/admin/buses', 'Admin\BusesController@getAllBuses')->name('admin.buses');
     Route::get('/admin/buses/{id}/edit', 'Admin\BusesController@edit')->name('admin.edit_bus_details');
-    Route::post('/admin/buses/update', 'Admin\BusesController@update')->name('admin.staff.update');
+    Route::get('/admin/buses/{id}/edit', 'Admin\BusesController@edit')->name('admin.edit_bus_details');
+    Route::post('/admin/buses/upload-image', 'Admin\BusesController@uploadImage')->name('admin.upload.image');
+    Route::get('/admin/buses/{id}/route', 'Admin\BusesController@create_route')->name('admin.bus.route');
 
     //Agents
     Route::get('/admin/agents/create', 'Admin\AgentsController@createAgent')->name('admin.create_new_agent');
