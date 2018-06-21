@@ -61,7 +61,7 @@
                                                 <tbody>
                                                     @foreach($routes as $route)
                                                         <tr>
-                                                            <td>ROUTE-10521</td>
+                                                            <td>ROUTE-100{{$route->id}}</td>
                                                             <td>{{$route->travel_from}}</td>
                                                             <td>{{$route->travel_to}}</td>
                                                             <td>{{$route->travel_period}}</td>

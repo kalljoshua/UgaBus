@@ -29,7 +29,8 @@
     </header>
     <div class="container-fluid animatedParent animateOnce my-3">
         <div class="animated fadeInUpShort">
-            <form method="post" action="/admin/buses/update" id="needs-validation" novalidate>
+            @include('flash::message')
+            <form method="post" action="/admin/buses/update" id="needs-validation" novalidate enctype="multipart/form-data">
                 {{csrf_field()}}
                 <div class="row">
                     <div class="col-md-8 ">
@@ -42,7 +43,8 @@
                                         <select id="category" name="company_id" class="custom-select form-control"
                                                 required>
                                             <option value="">Select Bus Park</option>
-                                            <option value="{{$bus->company->id}}" selected>{{$bus->company->company_name}}</option>
+                                            <option value="{{$bus->company->id}}"
+                                                    selected>{{$bus->company->company_name}}</option>
                                             @foreach($companies as $company)
                                                 <option value="{{$company->id}}">{{$company->company_name}}</option>
                                             @endforeach
@@ -57,7 +59,8 @@
                                         <select id="category" name="agent_id" class="custom-select form-control"
                                                 required>
                                             <option value="">Select Agent</option>
-                                            <option value="{{$bus->agent->id}}" selected>{{$bus->agent->first_name}} {{$bus->agent->last_name}}</option>
+                                            <option value="{{$bus->agent->id}}"
+                                                    selected>{{$bus->agent->first_name}} {{$bus->agent->last_name}}</option>
                                             @foreach($agents as $agent)
                                                 <option value="{{$agent->id}}">{{$agent->first_name}} {{$agent->last_name}}</option>
                                             @endforeach
@@ -126,8 +129,14 @@
                                 <label for="file" class="col-form-label s-12">PROFILE PICTURE</label>
                                 <div class="row">
                                     <div class="col-md-8 mb-4">
-                                        <img id="blah" src="/user_avatars/placeholder.svg" alt="your image"
-                                             class="img-thumbnail rounded float-left"/>
+                                        @if($bus->image != '')
+                                            <img id="blah" src="/bus_images/{{$bus->image}}" alt="your image"
+                                                 class="img-thumbnail rounded float-left"/>
+                                        @else
+                                            <img id="blah" src="/user_avatars/placeholder.svg" alt="your image"
+                                                 class="img-thumbnail rounded float-left"/>
+                                        @endif
+
                                     </div>
                                     <div class="col-md-8 mb-4">
                                         <input hidden id="files" type='file' onchange="readURL(this);" name="file"/>
@@ -143,18 +152,27 @@
                             <div class="card-body text-success">
 
                                 <div class="custom-control custom-checkbox mb-3">
-                                    <input type="checkbox" name="publish" value="publish" class="custom-control-input"
-                                           id="customControlValidation1"
-                                           required>
+                                    @if($bus->active == 1)
+                                        <input type="checkbox" name="publish" value="publish"
+                                               class="custom-control-input"
+                                               id="customControlValidation1"
+                                               required checked>
+                                    @else
+                                        <input type="checkbox" name="publish" value="publish"
+                                               class="custom-control-input"
+                                               id="customControlValidation1"
+                                               required>
+                                    @endif
 
                                     <label class="custom-control-label" for="customControlValidation1">Check to
-                                        publish</label>
+                                        activate</label>
                                     <div class="invalid-feedback">Example invalid feedback text</div>
                                 </div>
                             </div>
                             <div class="card-footer bg-transparent">
                                 <input type="hidden" name="id" value="{{$bus->id}}">
-                                <button class="btn btn-primary" type="submit"><i class="icon-save mr-2"></i>Save data</button>
+                                <button class="btn btn-primary" type="submit"><i class="icon-save mr-2"></i>Save data
+                                </button>
                             </div>
                         </div>
                     </div>

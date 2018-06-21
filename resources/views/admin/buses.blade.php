@@ -29,12 +29,12 @@
     </header>
     <div class="container-fluid animatedParent animateOnce my-3">
         <div class="animated fadeInUpShort">
+            @include('flash::message')
             <div class="row">
                 <div class="col-md-12">
                     <div class="card no-b shadow">
                         <div class="card-body p-0">
                             <div class="table-responsive">
-                                @include('flash::message')
                                 <table class="table table-hover ">
                                     <tbody>
                                     <tr class="no-b" style="font-size:14px;">
@@ -81,14 +81,11 @@
 
                                             </td>
                                             <td>
-                                                <a class="btn-fab btn-fab-sm btn-success shadow text-white"
-                                                   href="/admin/buses/{{$bus->id}}/edit"><i
-                                                            class="icon-eye"></i></a>
-                                                <a class="btn-fab btn-fab-sm btn-primary shadow text-white"
+                                                <a class="btn-fab btn-fab-sm btn-primary shadow text-white mr-3"
                                                    href="/admin/buses/{{$bus->id}}/edit"><i
                                                             class="icon-pencil"></i></a>
                                                 <a class="btn-fab btn-fab-sm btn-danger shadow text-white"
-                                                   href="/admin/buses/{{$bus->id}}/edit"><i
+                                                   href="/admin/buses/{{$bus->id}}/delete"><i
                                                             class="icon-delete"></i></a>
                                             </td>
                                         </tr>

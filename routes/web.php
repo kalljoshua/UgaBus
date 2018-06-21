@@ -89,14 +89,18 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('/admin/buses/save', 'Admin\BusesController@save')->name('admin.buses.save');
     Route::get('/admin/buses', 'Admin\BusesController@getAllBuses')->name('admin.buses');
     Route::get('/admin/buses/{id}/edit', 'Admin\BusesController@edit')->name('admin.edit_bus_details');
-    Route::get('/admin/buses/{id}/edit', 'Admin\BusesController@edit')->name('admin.edit_bus_details');
+    Route::post('/admin/buses/update', 'Admin\BusesController@update')->name('admin.bus.update');
     Route::post('/admin/buses/upload-image', 'Admin\BusesController@uploadImage')->name('admin.upload.image');
     Route::get('/admin/buses/{id}/route', 'Admin\BusesController@create_route')->name('admin.bus.route');
+    Route::get('/admin/buses/{id}/delete', 'Admin\BusesController@delete')->name('admin.bus.delete');
 
     //Agents
     Route::get('/admin/agents/create', 'Admin\AgentsController@createAgent')->name('admin.create_new_agent');
     Route::post('/admin/agents/save', 'Admin\AgentsController@save')->name('admin.agents.save');
     Route::get('/admin/agents', 'Admin\AgentsController@getAllAgents')->name('admin.agents');
+    Route::get('/admin/agents/{id}/edit', 'Admin\AgentsController@edit')->name('admin.agent.edit');
+    Route::post('/admin/agents/update', 'Admin\AgentsController@update')->name('admin.agent.update');
+    Route::get('/admin/agents/{id}/delete', 'Admin\AgentsController@delete')->name('admin.agent.delete');
 
     //Bookings
     Route::get('/admin/bookings', 'Admin\BookingsController@getAllBookings')->name('admin.bookings');

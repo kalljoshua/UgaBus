@@ -69,7 +69,13 @@
 
                                                     <td>
                                                         <div class="avatar avatar-md mr-3 mt-1 float-left">
-                                                            <span class="avatar-letter avatar-letter-a  avatar-md circle"></span>
+                                                            @if($user->avatar !='')
+                                                                <img src="/user_avatars/{{$user->avatar}}" avatar-md circle
+                                                                     alt="your image"/>
+                                                            @else
+                                                                {!! $char = substr($user->first_name, 0, 1); !!}
+                                                                <span class="avatar-letter avatar-letter-{{strtolower($char)}}  avatar-md circle"></span>
+                                                            @endif
                                                         </div>
                                                         <div>
                                                             <div>
@@ -84,8 +90,12 @@
                                                     <td><span class="r-3 badge badge-success ">Verified</span></td>
                                                     <td><span class="r-3 badge badge-success ">Super Admin</span></td>
                                                     <td>
-                                                        <a href="panel-page-profile.html"><i class="icon-eye mr-3"></i></a>
-                                                        <a href="/admin/staff/{{$user->id}}/edit"><i class="icon-pencil"></i></a>
+                                                        <a class="btn-fab btn-fab-sm btn-primary shadow text-white mr-3"
+                                                           href="/admin/staff/{{$user->id}}/edit"><i
+                                                                    class="icon-pencil"></i></a>
+                                                        <a class="btn-fab btn-fab-sm btn-danger shadow text-white"
+                                                           href="/admin/staff/{{$user->id}}/delete"><i
+                                                                    class="icon-delete"></i></a>
                                                     </td>
                                                 </tr>
                                             @endforeach
