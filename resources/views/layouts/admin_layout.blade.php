@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="/admin_inc/assets/img/basic/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="" type="image/x-icon">
     <title>UgaBus:Admin</title>
     <!-- CSS -->
     <link rel="stylesheet" href="/admin_inc/assets/css/app.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.1.1/min/dropzone.min.css"
+          rel="stylesheet" type="text/css">
     <style>
         .loader {
             position: fixed;
@@ -114,17 +116,28 @@
 
             <ul class="sidebar-menu">
                 <li class="header"><strong>MAIN NAVIGATION</strong></li>
-                <li class="treeview"><a href="/admin">
+                {{--<li class="treeview"><a href="/admin">
                         <i class="icon icon-sailing-boat-water purple-text s-18"></i> <span>Dashboard</span> <i
                                 class="icon icon-angle-left s-18 pull-right"></i>
                     </a>
-                </li>
+                </li>--}}
                 <li class="treeview"><a href="#"><i class="icon icon-account_box light-green-text s-18"></i>Agents<i
                                 class="icon icon-angle-left s-18 pull-right"></i></a>
                     <ul class="treeview-menu">
                         <li><a href="/admin/agents"><i class="icon icon-circle-o"></i>All Agents</a>
                         </li>
                         <li><a href="/admin/agents/create"><i class="icon icon-add"></i>Add Agent</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="treeview"><a href="#"><i class="icon icon-business_center text-blue s-18"></i>Bus Companies<i
+                                class="icon icon-angle-left s-18 pull-right"></i></a>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="/admin/companies"><i class="icon icon-circle-o"></i>All Bus Companies</a>
+                        </li>
+                        <li><a href="/admin/companies/create"><i class="icon icon-add"></i>Add
+                                New Bus Company</a>
                         </li>
                     </ul>
                 </li>
@@ -139,6 +152,16 @@
                         </li>
                     </ul>
                 </li>
+                <li class="treeview"><a href="#"><i class="icon icon-road text-red s-18"></i>Routes<i
+                                class="icon icon-angle-left s-18 pull-right"></i></a>
+                    <ul class="treeview-menu">
+                        <li><a href="/admin/routes"><i class="icon icon-circle-o"></i>All Routes</a>
+                        </li>
+                        <li><a href="/admin/routes/create"><i class="icon icon-add"></i>Add
+                                New Route</a>
+                        </li>
+                    </ul>
+                </li>
                 <li class="treeview"><a href="#"><i class="icon icon-book-bookmark light-green-text s-18"></i>Bookings<i
                                 class="icon icon-angle-left s-18 pull-right"></i></a>
                     <ul class="treeview-menu">
@@ -146,20 +169,13 @@
                         </li>
                     </ul>
                 </li>
-                <li class="treeview"><a href="#"><i class="icon icon-road text-red s-18"></i>Routes<i
-                                class="icon icon-angle-left s-18 pull-right"></i></a>
-                    <ul class="treeview-menu">
-                        <li><a href="/admin/routes"><i class="icon icon-circle-o"></i>All Routes</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="treeview"><a href="#"><i class="icon icon-local_parking text-black s-18"></i>Parks<i
+                {{--<li class="treeview"><a href="#"><i class="icon icon-local_parking text-black s-18"></i>Parks<i
                                 class="icon icon-angle-left s-18 pull-right"></i></a>
                     <ul class="treeview-menu">
                         <li><a href="/admin/parks"><i class="icon icon-circle-o"></i>All Parks</a>
                         </li>
                     </ul>
-                </li>
+                </li>--}}
                 <li class="treeview"><a href="#"><i class="icon icon-user light-green-text s-18"></i>Users<i
                                 class="icon icon-angle-left s-18 pull-right"></i></a>
                     <ul class="treeview-menu">
@@ -255,111 +271,7 @@
             <div class="navbar-custom-menu p-t-10">
                 <ul class="nav navbar-nav">
                     <!-- Messages-->
-                    <li class="dropdown custom-dropdown messages-menu">
-                        <a href="#" class="nav-link" data-toggle="dropdown">
-                            <i class="icon-message "></i>
-                            <span class="badge badge-success badge-mini rounded-circle">4</span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <!-- inner menu: contains the actual data -->
-                                <ul class="menu pl-2 pr-2">
-                                    <!-- start message -->
-                                    <li>
-                                        <a href="#">
-                                            <div class="avatar float-left">
-                                                <img src="/admin_inc/assets/img/dummy/u4.png" alt="">
-                                                <span class="avatar-badge busy"></span>
-                                            </div>
-                                            <h4>
-                                                Support Team
-                                                <small><i class="icon icon-clock-o"></i> 5 mins</small>
-                                            </h4>
-                                            <p>Why not buy a new awesome theme?</p>
-                                        </a>
-                                    </li>
-                                    <!-- end message -->
-                                    <!-- start message -->
-                                    <li>
-                                        <a href="#">
-                                            <div class="avatar float-left">
-                                                <img src="/admin_inc/assets/img/dummy/u1.png" alt="">
-                                                <span class="avatar-badge online"></span>
-                                            </div>
-                                            <h4>
-                                                Support Team
-                                                <small><i class="icon icon-clock-o"></i> 5 mins</small>
-                                            </h4>
-                                            <p>Why not buy a new awesome theme?</p>
-                                        </a>
-                                    </li>
-                                    <!-- end message -->
-                                    <!-- start message -->
-                                    <li>
-                                        <a href="#">
-                                            <div class="avatar float-left">
-                                                <img src="/admin_inc/assets/img/dummy/u2.png" alt="">
-                                                <span class="avatar-badge idle"></span>
-                                            </div>
-                                            <h4>
-                                                Support Team
-                                                <small><i class="icon icon-clock-o"></i> 5 mins</small>
-                                            </h4>
-                                            <p>Why not buy a new awesome theme?</p>
-                                        </a>
-                                    </li>
-                                    <!-- end message -->
-                                    <!-- start message -->
-                                    <li>
-                                        <a href="#">
-                                            <div class="avatar float-left">
-                                                <img src="/admin_inc/assets/img/dummy/u3.png" alt="">
-                                                <span class="avatar-badge busy"></span>
-                                            </div>
-                                            <h4>
-                                                Support Team
-                                                <small><i class="icon icon-clock-o"></i> 5 mins</small>
-                                            </h4>
-                                            <p>Why not buy a new awesome theme?</p>
-                                        </a>
-                                    </li>
-                                    <!-- end message -->
-                                </ul>
-                            </li>
-                            <li class="footer s-12 p-2 text-center"><a href="#">See All Messages</a></li>
-                        </ul>
-                    </li>
                     <!-- Notifications -->
-                    <li class="dropdown custom-dropdown notifications-menu">
-                        <a href="#" class=" nav-link" data-toggle="dropdown" aria-expanded="false">
-                            <i class="icon-notifications "></i>
-                            <span class="badge badge-danger badge-mini rounded-circle">4</span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li class="header">You have 10 notifications</li>
-                            <li>
-                                <!-- inner menu: contains the actual data -->
-                                <ul class="menu">
-                                    <li>
-                                        <a href="#">
-                                            <i class="icon icon-data_usage text-success"></i> 5 new members joined today
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="icon icon-data_usage text-danger"></i> 5 new members joined today
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="icon icon-data_usage text-yellow"></i> 5 new members joined today
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="footer p-2 text-center"><a href="#">View all</a></li>
-                        </ul>
-                    </li>
                     <li>
                         <a class="nav-link " data-toggle="collapse" data-target="#navbarToggleExternalContent"
                            aria-controls="navbarToggleExternalContent"
@@ -382,8 +294,27 @@
              immediately after the control sidebar -->
     <div class="control-sidebar-bg shadow white fixed"></div>
 </div>
-<!--/#app -->
-<script src="/admin_inc/assets/js/app.js"></script>
+<script src="/admin_inc/assets/js/app.unminified.js"></script>
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah')
+                    .attr('src', e.target.result)
+                    .width(150)
+                    .height(200);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+<script>
+    $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
+</script>
+
 </body>
 </html>
 

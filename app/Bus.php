@@ -18,6 +18,11 @@ class Bus extends Model
     	return $this->belongsTo('App\Agent');
     }
 
+    public function company()
+    {
+        return $this->belongsTo('App\Company');
+    }
+
     public function park()
     {
         return $this->belongsTo('App\Park');
