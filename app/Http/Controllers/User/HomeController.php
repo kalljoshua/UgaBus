@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Bus;
 use App\Route;
 use App\Booking;
+use App\Faq;
 use App\UserTravelStory;
 
 
@@ -22,5 +23,24 @@ class HomeController extends Controller
     	return view('user.index')
     	->with('stories',$stories)
     	->with('routes',$routes);
+    }
+
+    function faq(){
+
+        $faqs = Faq::all();
+        return view('user.faqs')
+        ->with('faqs',$faqs);
+    }
+
+    function about(){
+        return view('user.about-us');
+    }
+
+    function privacy(){
+        return view('user.privacy-policy');
+    }
+
+    function terms(){
+        return view('user.terms-of-use');
     }
 }
