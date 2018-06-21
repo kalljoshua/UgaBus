@@ -11,6 +11,9 @@
 	@yield('title')
 	
     <!-- STYLES -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" media="screen">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/client_inc/plugins/bootstrap-fileinput/bootstrap-fileinput.css"/>
 	<link href="/client_inc/assets/css/animate.min.css" rel="stylesheet">
 	<link href="/client_inc/assets/css/bootstrap-select.min.css" rel="stylesheet">
 	<link href="/client_inc/assets/css/owl.carousel.css" rel="stylesheet">
@@ -25,7 +28,7 @@
 	rel="stylesheet">
 	
 	<link href="/client_inc/assets/css/light.css" rel="stylesheet" media="screen">
-	
+	<link rel="stylesheet" href="/html5-editor/bootstrap-wysihtml5.css" />
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,800,700,600' 
 	rel='stylesheet' type='text/css'>
 
@@ -60,6 +63,15 @@
 
 <script src="/client_inc/assets/js/respond.js"></script>
 <script src="/client_inc/assets/js/jquery.js"></script>
+<script language="javascript" type="text/javascript" src="/js/starrr.js"></script>
+<script>
+   	$(function(){
+       $('.textarea_editor').wysihtml5();
+    });
+</script>
+<!-- wysuhtml5 Plugin JavaScript -->
+    <script src="/html5-editor/wysihtml5-0.3.0.js"></script>
+    <script src="/html5-editor/bootstrap-wysihtml5.js"></script>
 <script>
     $('div.alerts').not('.alert-important').delay(5000).fadeOut(1500);
 </script>
@@ -72,6 +84,7 @@
 src="/client_inc/assets/plugins/supersized.3.1.3.min.js"></script>
 <script src="/client_inc/assets/plugins/jquery.magnific-popup.min.js"></script>
 <script src="/client_inc/assets/js/js.js"></script>
+<script type="text/javascript" src="/client_inc/plugins/bootstrap-fileinput/bootstrap-fileinput.js"></script>
 <script type="text/javascript">  
 			
 			jQuery(function($){

@@ -26,7 +26,10 @@
 						<span>Profile</span></a></li>
 						<li><a data-toggle="tab" href="#cards" 
 						class="text-center"><i class="fa fa-credit-card"></i> 
-						<span>My Wallet</span></a></li>						
+						<span>My Wallet</span></a></li>	
+						<li><a data-toggle="tab" href="#wishlist" 
+						class="text-center"><i class="fa fa-book"></i> 
+						<span>Travel Stories</span></a></li>						
 					</ul>
 				</div>
 			</div>
@@ -152,7 +155,19 @@
 											<img src="assets/images/offer1.jpg" alt="cruise">
 										</div>
 										<div class="col-md-4 col-sm-4">
-											<h4>{{$booking->route->bus->agent['company']}} <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></h4>
+											<h4>{{$booking->route->bus->agent['company']}} 
+											<i class="tour-price-single animated growIn slower"
+	                                              style="color: #FDC600; font-size: 15px">
+	                                                @for ($k=1; $k <= 5 ; $k++)
+	                                                <i data-title="Average Rate: 5 / 5"
+	                                                      class="bottom-ratings tip">
+	                                                        <i class="glyphicon glyphicon-star{{ ($k <= $booking->route->rating) ? '' : '-empty'}}"
+	                                                              style="font-size: 15px"></i>
+	                                                    </i>
+	                                            @endfor
+	                                            ({{$booking->route->rating}})
+	                                        </i>
+											</h4>
 											<p>Leaving from: {{$booking->route->travel_from}} </p>
 											<p>Going to: {{$booking->route->travel_to}}</p>
 										</div>
@@ -176,10 +191,41 @@
 							    <div class="modal-content">
 							      <div class="modal-header">
 							        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-							        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+							        <h4 class="modal-title" id="myModalLabel">Review Your Journey</h4>
 							      </div>
 							      <div class="modal-body">
-							     Ved prakash 9752224368
+							     	<form method="post" action="{{route('review.submit')}}">
+                                            {{ csrf_field() }}
+                                            <input type="hidden" name="booking_id" value="{{ $booking->id }}">
+
+                                            <div class="row" style="padding-left:15px;">
+                                                <div class="col-sm-8 col-xs-10">
+                                                    <div class="range-advanced-main">
+                                                        <div class="range-text">
+                                                            <label><span class="range-title">Rate:</span></label>
+                                                            {{Form::hidden('rating', null, array('id'=>'ratings-hidden'))}}
+                                                            <div class="text-left">
+                                                                <div class="stars starrr"></div>
+                                                                <a href="#" class="btn btn-danger btn-sm" id="close-review-box"
+                                                                   style="display:none; margin-right:10px;">
+                                                                    <span class="glyphicon glyphicon-remove"></span>Cancel</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-8 col-xs-10">
+                                                    <div class="form-group">
+                                                        <label><span class="range-title">Review:</span></label>
+                                                        <textarea class="form-control" name="review" rows="5"
+                                                                  placeholder="Your review"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                &nbsp;&nbsp;&nbsp;
+                                                <button type="submit" class="btn-round">submit review</button>
+                                            </div>
+                                        </form>
 							      </div>
 							      <div class="modal-footer">
 							        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -344,114 +390,104 @@
 					</div>
 					<div id="wishlist" class="tab-pane fade in">
 						<div class="col-md-12">
-							<div class="item-entry">
-								<span><i class="fa fa-hotel"></i> Hotel</span>
-								<div class="item-content">
-									<div class="item-body">
-										<div class="col-md-2 col-sm-2 clear-padding text-center">
-											<img src="assets/images/offer1.jpg" alt="cruise">
+						@if(sizeOf($stories)>0)
+							@foreach($stories as $story)
+								<div class="item-entry">
+									<span><i class="fa fa-clock-o"></i> {{$story->created_at->diffForHumans()}}</span>
+									<div class="item-content">
+										<div class="item-body">
+											<div class="col-md-2 col-sm-2 clear-padding text-center">
+												<img src="/images/story/admin_listing_150x150/{{$story->image}}" alt="cruise">
+											</div>
+											<div class="col-md-7 col-sm-7">
+												<h4>{{$story->title}} <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></h4>
+												<p>{!! str_limit($story->body, $limit = 120, $end = '[...]') !!}</p>
+											</div>
+											<div class="col-md-3 col-sm-3">
+												<p><a href="#">Remove</a></p>
+											</div>
 										</div>
-										<div class="col-md-7 col-sm-7">
-											<h4>Grand Lilly <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></h4>
-											<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
+										<div class="item-footer">
+											<div>
+												<pclass="pull-left"><strong>Views: </strong> {{$story->views}}</p>
+												<p class="pull-right"><strong>Share:</strong>
+												<a href="#"><i class="fa fa-facebook"></i></a>
+												<a href="#"><i class="fa fa-twitter"></i></a>
+												<a href="#"><i class="fa fa-instagram"></i></a>
+												<a href="#"><i class="fa fa-google-plus"></i></a>
+												<a href="#"><i class="fa fa-youtube"></i></a></p>
+											</div>
 										</div>
-										<div class="col-md-3 col-sm-3">
-											<p><a href="#">Remove</a></p>
-										</div>
+										<div class="clearfix"></div>
 									</div>
-									<div class="item-footer">
-										<p><strong>Order Total:</strong> $566 <a href="#">Book Now</a></p>
-									</div>
-									<div class="clearfix"></div>
 								</div>
+							@endforeach
+							<div class="bottom-pagination">
+								<nav class="pull-right">
+									<ul class="pagination pagination-lg">
+										<?php echo $stories->render(); ?>
+									</ul>
+								</nav>
 							</div>
-							<div class="item-entry">
-								<span><i class="fa fa-hotel"></i> Hotel</span>
-								<div class="item-content">
-									<div class="item-body">
-										<div class="col-md-2 col-sm-2 clear-padding text-center">
-											<img src="assets/images/offer2.jpg" alt="cruise">
-										</div>
-										<div class="col-md-7 col-sm-7">
-											<h4>Grand Lilly <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></h4>
-											<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
-										</div>
-										<div class="col-md-3 col-sm-3">
-											<p><a href="#">Remove</a></p>
-										</div>
-									</div>
-									<div class="item-footer">
-										<p><strong>Order Total:</strong> $566 <a href="#">Book Now</a></p>
-									</div>
-									<div class="clearfix"></div>
-								</div>
+						@else
+							<div class="item-content text-center">
+								<p><strong>Sorry no stories in your account yet!</strong></p>
+								<a href="#" data-toggle="modal" data-target="#storyModal">
+								<span ><i class="fa fa-plus"></i> Add Your Travel Story</span></a>
 							</div>
-							<div class="item-entry">
-								<span><i class="fa fa-hotel"></i> Hotel</span>
-								<div class="item-content">
-									<div class="item-body">
-										<div class="col-md-2 col-sm-2 clear-padding text-center">
-											<img src="assets/images/offer3.jpg" alt="cruise">
-										</div>
-										<div class="col-md-7 col-sm-7">
-											<h4>Grand Lilly <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></h4>
-											<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
-										</div>
-										<div class="col-md-3 col-sm-3">
-											<p><a href="#">Remove</a></p>
-										</div>
-									</div>
-									<div class="item-footer">
-										<p><strong>Order Total:</strong> $566 <a href="#">Book Now</a></p>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-							<div class="item-entry">
-								<span><i class="fa fa-plane"></i> Flight</span>
-								<div class="item-content">
-									<div class="item-body">
-										<div class="col-md-2 col-sm-2 clear-padding text-center">
-											<img src="assets/images/offer2.jpg" alt="cruise">
-										</div>
-										<div class="col-md-7 col-sm-7">
-											<h4>New York <i class="fa fa-long-arrow"></i> New Delhi</h4>
-											<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
-										</div>
-										<div class="col-md-3 col-sm-3">
-											<p><a href="#">Remove</a></p>
-										</div>
-									</div>
-									<div class="item-footer">
-										<p><strong>Order Total:</strong> $566 <a href="#">Book Now</a></p>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-							<div class="item-entry">
-								<span><i class="fa fa-suitcase"></i> Tour</span>
-								<div class="item-content">
-									<div class="item-body">
-										<div class="col-md-2 col-sm-2 clear-padding text-center">
-											<img src="assets/images/offer1.jpg" alt="cruise">
-										</div>
-										<div class="col-md-7 col-sm-7">
-											<h4>Wonderful Europe</h4>
-											<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
-										</div>
-										<div class="col-md-3 col-sm-3">
-											<p><a href="#">Remove</a></p>
-										</div>
-									</div>
-									<div class="item-footer">
-										<p><strong>Order Total:</strong> $566 <a href="#">Book Now</a></p>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-							<div class="load-more text-center">
-								<a href="#">Load More</a>
-							</div>
+							<!-- Modal -->
+							<div class="modal fade" id="storyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+							  <div class="modal-dialog modal-lg" role="document">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+							        <h4 class="modal-title" id="myModalLabel">Review Your Journey</h4>
+							      </div>
+							      <div class="modal-body">
+							     	<form class="form form-horizontal" role="form" action="{{route('create.story.submit')}}" method="post" enctype="multipart/form-data">
+                                            {{csrf_field()}}
+                                            <div class="row" style="padding:15px;">
+                                                <h4 class="form-section"><i class="fa fa-rss-square"></i> Blog Post Info</h4>
+                                                <div class="form-group row">
+                                                    <label class="col-md-2 label-control" for="projectinput1">Title</label>
+                                                    <div class="col-md-10">
+                                                        <input type="text" id="projectinput1" class="form-control"
+                                                               placeholder="Blog Title" name="title">
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <div class="form-group row">
+                                                    <label class="col-md-2 label-control">Select File</label>
+                                                    <div class="col-md-10">
+                                                        <label id="projectinput8" class="file center-block">
+                                                            <input type="file" id="file" name="photo">
+                                                            <span class="file-custom"></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <div class="form-group row">
+                                                    <label class="col-md-2 label-control" for="projectinput4">Story</label>
+                                                    <div class="col-md-10">
+                                                        <textarea class="textarea_editor form-control" rows="15" name="blog-editor"
+                                                                  placeholder="Enter text ..."></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                            <div class="form-group row text-center">
+                                                &nbsp;&nbsp;&nbsp;
+                                                <button type="submit" class="btn btn-primary">submit Story</button>
+                                            </div>
+                                        </form>
+							      </div>
+							      <div class="modal-footer">
+							        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+							      </div>
+							    </div>
+							  </div>
+							</div>	
+						@endif					
 						</div>
 					</div>
 					<div id="cards" class="tab-pane fade in">
