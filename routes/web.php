@@ -116,6 +116,10 @@ Route::group(['middleware' => 'admin'], function () {
     //Payments
     Route::get('/admin/payments', 'Admin\PaymentsController@runDepositFunds')->name('admin.payments');
 
+    //SMS
+    Route::get('/admin/sms', 'Admin\SMSController@sendSMS')->name('admin.sms');
+
+
 
 });
 
