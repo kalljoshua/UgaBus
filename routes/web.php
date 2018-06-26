@@ -113,6 +113,13 @@ Route::group(['middleware' => 'admin'], function () {
     //Parks
     Route::get('/admin/parks', 'Admin\ParksController@getAllParks')->name('admin.parks');
 
+    //Payments
+    Route::get('/admin/payments', 'Admin\PaymentsController@runDepositFunds')->name('admin.payments');
+
+    //SMS
+    Route::get('/admin/sms', 'Admin\SMSController@sendSMS')->name('admin.sms');
+
+
 
 });
 
@@ -123,98 +130,4 @@ Route::get('/admin/login', function () {
 
 Route::post('/admin/login', 'Admin\AdminLoginController@login');
 Route::get('/admin/logout', 'Admin\AdminLoginController@logout');
-
-Route::get('/curl-request', function (Request $request) {
-    return "Howdy";
-});
-
-
-Route::get('/payments', function () {
-    //Store your XML Request in a variable
-    $input_xml = '<AvailRequest>
-            <Trip>ONE</Trip>
-            <Origin>BOM</Origin>
-            <Destination>JFK</Destination>
-            <DepartDate>2013-09-15</DepartDate>
-            <ReturnDate>2013-09-16</ReturnDate>
-            <AdultPax>1</AdultPax>
-            <ChildPax>0</ChildPax>
-            <InfantPax>0</InfantPax>
-            <Currency>INR</Currency>
-            <PreferredClass>E</PreferredClass>
-            <Eticket>true</Eticket>
-            <Clientid>777ClientID</Clientid>
-            <Clientpassword>*Your API Password</Clientpassword>
-            <Clienttype>ArzooINTLWS1.0</Clienttype>
-            <PreferredAirline></PreferredAirline>
-    </AvailRequest>';
-
-    $url = "http://localhost:3000/payment.php";
-
-    //setting the curl parameters.
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-// Following line is compulsary to add as it is:
-    curl_setopt($ch, CURLOPT_POSTFIELDS,
-        "xmlRequest=" . $input_xml);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 300);
-    $data = curl_exec($ch);
-    curl_close($ch);
-
-    //convert the XML result into array
-    $array_data = json_decode(json_encode(simplexml_load_string($data)), true);
-
-    print_r('<pre>');
-    print_r($array_data);
-    print_r('</pre>');
-
-});
-
-Route::get('/payment-remote', function () {
-    //Store your XML Request in a variable
-    $input_xml = '<?xml version="1.0" encoding="UTF-8"?>
-                    <AutoCreate>
-                    <Request>
-                    <APIUsername>9848899</APIUsername>
-                    <APIPassword>134b-WiCT-HRvs-l5ZN-1BpX-9DPt-ClBR-jSfG</APIPassword>
-                    <Method>acdepositfunds</Method>
-                    <NonBlocking></NonBlocking>
-                    <Amount>2000</Amount>
-                    <Account>256785570221</Account>
-                    <AccountProviderCode>MTN_UGANDA</AccountProviderCode>
-                    <Narrative></Narrative>
-                    <NarrativeFileName></NarrativeFileName>
-                    <NarrativeFileBase64></NarrativeFileBase64>
-                    <InternalReference></InternalReference>
-                    <ExternalReference></ExternalReference>
-                    <ProviderReferenceText></ProviderReferenceText>
-                    </Request>
-                    </AutoCreate>';
-
-    $url = "https://paymentsapi2.yo.co.ug/ybs/task.php";
-
-    //setting the curl parameters.
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt( $ch, CURLOPT_POST, true );
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-        'Content-Type: text/xml',
-        'Content-transfer-encoding: text'
-    ));
-// Following line is compulsary to add as it is:
-    curl_setopt($ch, CURLOPT_POSTFIELDS,
-        "xmlRequest=" . $input_xml);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 300);
-    $data = curl_exec($ch);
-    curl_close($ch);
-
-    //convert the XML result into array
-//    $array_data = json_decode(json_encode(simplexml_load_string($data)), true);
-
-    print_r('<pre>');
-    print_r($data);
-    print_r('</pre>');
-});
 

@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 
 class AdminsController extends Controller
 {
+    var $hello;
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
