@@ -31,4 +31,9 @@ class Bus extends Model
     {
         return $this->belongsTo('App\Park');
     }
+
+    public function company()
+    {
+        return $this->belongsTo('App\Company');
+    }
 }

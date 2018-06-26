@@ -29,16 +29,16 @@
 				</div>
 			</div>
 		</div>
-		<div class="main-footer row">
+		<div class="main-footer row" style="background-color: #000000;>
 			<div class="container clear-padding">
 				<div class="col-md-3 col-sm-6 links">
 					<h4>Usefull Links</h4>
 					<ul>
-						<li><a href="/">Home</a></li>
-						<li><a href="{{route('about.us')}}">About Us</a></li>
-						<li><a href="{{route('faq')}}">FAQ</a></li>
-						<li><a href="{{route('privacy.policy')}}">Privacy Policy</a></li>
-						<li><a href="{{route('use.terms')}}">Terms of Use</a></li>
+						<li><a href="/"><b style="color: white;">Home</b></a></li>
+						<li><a href="{{route('about.us')}}"><b style="color: white;">About Us</b></a></li>
+						<li><a href="{{route('faq')}}"><b style="color: white;">FAQ</b></a></li>
+						<li><a href="{{route('privacy.policy')}}"><b style="color: white;">Privacy Policy</b></a></li>
+						<li><a href="{{route('use.terms')}}"><b style="color: white;">Terms of Use</b></a></li>
 					</ul>
 				</div>
 				<div class="col-md-3 col-sm-6 links">
@@ -47,7 +47,7 @@
 						@foreach($route_id as $routes)
 							<?php 
 							$route = App\Route::find($routes)->first();
-							?><li><a href="#">{{$route['travel_from']}} <i class="fa fa-arrow-right"></i> {{$route['travel_to']}}</a></li> 
+							?><li><a href="#"><b style="color: white;">{{$route['travel_from']}} <i class="fa fa-arrow-right"></i> {{$route['travel_to']}}</b></a></li> 
 						@endforeach
 					</ul>
 				</div>
@@ -56,15 +56,15 @@
 					<h4>Featured Buses</h4>
 					<ul>
 						@foreach($buses as $bus)
-							<li><a href="{{route('bus.details',['id'=>$bus->id])}}">{{$bus->agent->company}}</a></li>
+							<li><a href="{{route('bus.details',['id'=>$bus->id])}}"><b style="color: white;">{{$bus->agent->company}}</b></a></li>
 						@endforeach
 					</ul>
 				</div>
 				<div class="col-md-3 col-sm-6 contact-box">
 					<h4>Contact Us</h4>
-					<p><i class="fa fa-home"></i> Plot 29, Nkinzi Rd Wandegeya Kampala-Uganda East Africa</p>
-					<p><i class="fa fa-phone"></i> +256 704741443</p>
-					<p><i class="fa fa-envelope-o"></i> support@ugabus.com</p>
+					<p><b style="color: white;"><i class="fa fa-home"></i> Plot 29, Nkinzi Rd Wandegeya Kampala-Uganda East Africa</b></p>
+					<p><b style="color: white;"><i class="fa fa-phone"></i> +256 704741443</b></p>
+					<p><b style="color: white;"><i class="fa fa-envelope-o"></i> support@ugabus.com</b></p>
 				</div>
 				<div class="clearfix"></div>
 				<div class="col-md-12 text-center we-accept">

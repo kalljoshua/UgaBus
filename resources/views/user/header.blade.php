@@ -6,7 +6,7 @@
 					<a href="#" class="transition-effect">
 						<i class="fa fa-phone"></i> (+256) 704741443</a>
 					<a href="#" class="transition-effect">
-						<i class="fa fa-envelope-o"></i> support@email.com</a>
+						<i class="fa fa-envelope-o"></i> support@ugabus.com</a>
 				</div>
 				<div class="col-md-8 col-sm-7 clear-padding search-box">
 					<div class="col-md-12 col-xs-12 clear-padding user-logged">

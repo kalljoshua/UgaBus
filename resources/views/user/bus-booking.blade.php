@@ -32,34 +32,43 @@
 				<div id="review-booking" class="tab-pane fade in active">
 					<div class="col-md-8 col-sm-8">
 						<div class="booking-summary-v2">
-							<div class="col-md-4 col-sm-6 clear-padding">
-								<img src="/client_inc/assets/images/tour2.jpg" alt="cruise">
-							</div>
-							<div class="col-md-6 col-sm-6">
-								<h4>{{$route->bus->agent['company']}}</h4>
-								<div class="col-md-6 col-sm-6 col-xs-6 clear-padding">
-									<p>DEPARTURE</p>
-									<p><i class="fa fa-map-marker"></i> {{$route->travel_from}}</p>
-								</div>
-								<div class="col-md-6 col-sm-6 col-xs-6 clear-padding">
-									<p>DESTINATION</p>
-									<p><i class="fa fa-map-marker"></i> {{$route->travel_to}}</p>
+							<div class="flight-list-v2">
+								<div class="flight-list-main">	
+									<div class="col-md-2 col-sm-2 text-center airline">
+										<img src="/client_inc/assets/images/airline/vistara-2x.png" alt="cruise">
+										<h6>{{$route->bus->company->company_name}}</h6>
+									</div>
+									<div class="col-md-3 col-sm-3 departure">
+										<h3><i class="fa fa-map-marker"></i> {{$route->travel_from}} {{$route->time_of_departure}}</h3>
+										<h5 class="bold">SAT, 21 SEP</h5>
+										<h5>{{$route->bus->company->hq_address}}, {{$route->travel_from}}</h5>
+									</div>
+									<div class="col-md-4 col-sm-4 stop-duration">
+										<div class="flight-direction">
+										</div>
+										<div class="duration text-center">
+											<span><i class="fa fa-user"></i> {{$seats}} Seat(s)</span>
+										</div>
+									</div>
+									<div class="col-md-3 col-sm-3 destination">
+										<h3><i class="fa fa-map-marker"></i> {{$route->travel_to}} {{$route-> 	estimated_time_of_arrival}}</h3>
+										<h5 class="bold">SAT, 21 SEP</h5>
+										<h5>{{$route->travel_to}}</h5>
+									</div>
 								</div>
 								<div class="clearfix"></div>
-								<p><span>Traveller</span> - {{$seats}}</p>
-								<p><span>Depature Time</span> - {{$route->time_of_departure}}</p>
-								<p><span>Terminal</span> - {{$route->bus->park->park_name}}</p>
-							</div>
-							<div class="clearfix visible-sm-block"></div>
-							<div class="col-md-2 text-center">
-								<a href="{{ URL::previous() }}">CHANGE</a>
 							</div>
 						</div>
-						
-							<div class="col-md-12 col-sm-12 text-right">
-									<div class="social-media-login">
-										<a href="{{route('make.payment',['id'=>$route->id])}}"><i class="fa fa-chevron-right"></i>PROCEED TO PAYMENT</a>
-									</div>
+						<div class="col-md-6 col-sm-12 text-right">
+							
+						</div>
+							<div class="col-md-12 col-sm-12">
+								<div class="social-media-login pull-left">
+									<a href="{{ URL::previous() }}"><i class="fa fa-undo"></i> CHANGE</a>
+								</div>
+								<div class="social-media-login pull-right">
+									<a href="{{route('make.payment',['id'=>$route->id])}}"><i class="fa fa-chevron-right"></i>PROCEED TO PAYMENT</a>
+								</div>
 							</div>
 					</div>
 					<div class="col-md-4 col-sm-4 booking-sidebar">
@@ -75,26 +84,19 @@
 										<td>Seats Booked</td>
 										<td>{{$seats}}</td>
 									</tr>
-									<tr>
-										<td>Service Tax</td>
-										<td>$50</td>
-									</tr>
-									<tr>
-										<td>Other Taxes</td>
-										<td>$20</td>
-									</tr>
 									<?php 
 										$total = $route->unit_seat_price * $seats;
 										Session::put('total_price', $total);
 										Session::put('seats', $seats);
 									?>
 									<tr>
-										<td>You Pay</td>
+										<td class="total">Total Pay</td>
 										<td class="total">UGx {{number_format("$total")}}</td>
 									</tr>
 								</table>
 							</div>
 						</div>
+						
 						<div class="sidebar-item contact-box">
 							<h4><i class="fa fa-phone"></i>Need Help?</h4>
 							<div class="sidebar-body text-center">

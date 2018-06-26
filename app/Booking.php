@@ -15,4 +15,9 @@ class Booking extends Model
     {
         return $this->belongsTo('App\Route');
     }
+
+    public function rewiews()
+    {
+    		return $this->hasMany('App\Review');
+    }
 }

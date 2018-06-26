@@ -360,7 +360,7 @@
 											<div class="col-md-7 col-xs-6">
 												<h5><i class="fa fa-bus"></i> {{$bus->agent['company']}}</h5>
 												<p class="location">
-													<i class="fa fa-map-marker"></i> {{$bus->park->park_name}}</p>
+													<i class="fa fa-map-marker"></i> {{$bus->company->hq_address}}</p>
 												<p class="text-sm">
 
 											<div class="car-detail">

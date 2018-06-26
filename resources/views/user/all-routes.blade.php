@@ -82,7 +82,7 @@
 								</div>
 								<div class="car-detail">
 									<div class="col-md-6 col-sm-6 col-xs-6 clear-padding">
-										<p><i class="fa fa-map-marker"></i>{{$route->bus->park['park_name']}}</p>
+										<p><i class="fa fa-map-marker"></i>{{$route->bus->company->hq_address}}</p>
 									</div>
 									<div class="col-md-6 col-sm-6 col-xs-6 clear-padding">
 										<p><i class="fa fa-info"></i>{{$route->bus->license_plate_number}}</p>

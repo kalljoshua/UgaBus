@@ -6,12 +6,18 @@
 
 	@include('user.menu')
 	<?php 
-		if (Session::has('seats')) {
+		if (Session::has('seats') && Session::has('total_price')) {
             $seats = Session::get('seats');
+            $total = Session::get('total_price');
             Session::forget('seats');
+            Session::forget('total_price');
         }else{
-            $seats = 0; 
+            $seats = 0;
+            $total = 0; 
         }
+
+        $cookie_url = Request::url();
+		session::put('oldUrl',$cookie_url);
 	?>
 
 	<!-- START: PAGE TITLE -->
@@ -41,7 +47,8 @@
 					<div class="col-md-8 col-sm-8">
 						<div class="passenger-detail">
 							<h3>Payment Info</h3>
-							<div class="passenger-detail-body">
+							<div class="passenger-detail-body">								
+								
 								@if(Auth::guard('user')->user())
 								<form method="post" action="{{route('process.payment')}}">
 									{{ csrf_field() }}
@@ -63,7 +70,7 @@
 										value="{{Auth::guard('user')->user()->email}}" required class="form-control">
 									</div>
 									<div class="col-md-6 ol-sm-6">
-										<label>Phone Number</label>
+										<label>Mobile Money Number</label>
 										<input type="text" name="phonenumber" 
 										value="{{Auth::guard('user')->user()->phone}}" class="form-control" required>
 										<div class="clearfix"></div>
@@ -78,7 +85,7 @@
 									<div class="col-md-12">
 										@foreach($payment_methods as $payment_method)
 										<label data-toggle="collapse" data-target="#saved-card-1">
-											<input type="radio" name="getway" value="{{$payment_method->id}}"> <span>{{$payment_method->payment_type}}</span></label>
+											<input type="radio" name="getway" value="{{$payment_method->id}}"> <span><img src="/client_inc/assets/images/card/{{$payment_method->image}}" style="width: 54px; height: 30px" alt="cruise"> {{$payment_method->payment_type}}</span></label>
 										<div class="clearfix"></div>
 										@endforeach
 										<div>
@@ -88,6 +95,11 @@
 									</div>
 								</form>
 								@else
+								<a href="" class="transition-effect">
+								<a href="{{route('user.login.register')}}" 
+								class="transition-effect">
+									<i class="fa fa-sign-out"></i>Login to make your booking faster
+								</a>
 								<form method="post" action="{{route('process.payment')}}">
 									{{ csrf_field() }}
 									<div class="col-md-6 ol-sm-6">

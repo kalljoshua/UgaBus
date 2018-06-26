@@ -40,22 +40,22 @@
 					</div>
 					<div class="col-md-10 col-sm-10 vertical-tab-pannel">
 						<!-- BEGIN: TAB PANELS -->
-						<div class="tab-content">							
+						<div class="tab-content" style="background-color: black; opacity: 0.7;">							
 								
 								<!-- START: CAR SEARCH -->
 								<div role="tabpanel" class="tab-pane active" id="taxi">
-									<div class="col-md-12">
+									<div class="col-md-8 clear-padding">
 										<form method="get" action="{{route('search')}}">
-											<div class="col-md-12 product-search-title">Search for your Bus</div>
+											<div class="col-md-12 text-center product-search-title" style="color:white;">Book Bus Tickets For Your Next Trip</div>
 											<div class="col-md-6 col-sm-6 search-col-padding">
-												<label>Pick Up Location</label>
+												<label style="color:white;">Leaving From</label>
 												<div class="input-group">
 													<input type="text" name="departure" class="form-control" required placeholder="E.g. Kampala">
 													<span class="input-group-addon"><i class="fa fa-map-marker fa-fw"></i></span>
 												</div>
 											</div>
 											<div class="col-md-6 col-sm-6 search-col-padding">
-												<label>Drop Off Location</label>
+												<label style="color:white;">Going To</label>
 												<div class="input-group">
 													<input type="text" name="destination" class="form-control" required placeholder="E.g. Gulu">
 													<span class="input-group-addon"><i class="fa fa-map-marker fa-fw"></i></span>
@@ -63,14 +63,14 @@
 											</div>
 											<div class="clearfix"></div>
 											<div class="col-md-6 col-sm-6 search-col-padding">
-												<label>Travel Date</label>
+												<label style="color:white;">Travel Date</label>
 												<div class="input-group">
 													<input type="text" id="car_start" name="date" class="form-control" placeholder="MM/DD/YYYY">
 													<span class="input-group-addon"><i class="fa fa-calendar fa-fw"></i></span>
 												</div>
 											</div>
 											<div class="col-md-6 col-sm-6 search-col-padding">
-												<label>No of Seats</label><br>
+												<label style="color:white;">No of Seats</label><br>
 												<select class="selectpicker" name="seats">
 													<option value="1">1</option>
 													<option value="2">2</option>
@@ -81,10 +81,29 @@
 											</div>
 											<div class="clearfix"></div>
 											<div class="col-md-12 search-col-padding">
-												<button type="submit" class="search-button btn transition-effect">Search Buses</button>
+												<button type="submit" class="col-md-12 search-button btn transition-effect">Search Buses</button>
 											</div>
 											<div class="clearfix"></div>
 										</form>
+									</div>
+									<div class="offer-bo col-md-4">
+										<div style="padding-top: 1%;" class="col-md-12 text-center we-accept">
+											<ul style="opacity: 7.7;">
+												<li style="--webkit-box-shadow: 0 0 5px #fff; box-shadow: 0 0 5px #fff;"><img src="/client_inc/assets/images/Uganda.png" style="width: 30px; height: 25px" alt="cruise"></li>
+												<li style="--webkit-box-shadow: 0 0 5px #fff; box-shadow: 0 0 5px #fff;"><img src="/client_inc/assets/images/Kenya.png" style="width: 30px; height: 25px" alt="cruise"></li>
+												<li style="--webkit-box-shadow: 0 0 5px #fff; box-shadow: 0 0 5px #fff;"><img src="/client_inc/assets/images/Tanzania.png" style="width: 30px; height: 25px" alt="cruise"></li>
+												<li style="--webkit-box-shadow: 0 0 5px #fff; box-shadow: 0 0 5px #fff;"><img src="/client_inc/assets/images/South-Sudan.png" style="width: 30px; height: 25px" alt="cruise"></li>
+												<li style="--webkit-box-shadow: 0 0 5px #fff; box-shadow: 0 0 5px #fff;"><img src="/client_inc/assets/images/rwanda.png" style="width: 30px; height: 25px" alt="cruise"></li>
+												<li style="--webkit-box-shadow: 0 0 5px #fff; box-shadow: 0 0 5px #fff;"><img src="/client_inc/assets/images/Burundi.png" style="width: 30px; height: 25px" alt="cruise"></li>
+											</ul>
+										</div>
+										<div style="padding-left: 15%;" class="text-center product-search-title">
+											<div style="padding-top: 25%;">
+												<h4 style="color:white;">BOOK USING THE APP</h4>
+												<h5 style="color:white;" >CLICK HERE</h5>
+												<a href="https://play.google.com/store/apps/details?id=com.ugabus"><img src="/client_inc/assets/images/google-play-badge.png" style="width: 75%; height: 25%"></a>
+											</div>
+										</div>
 									</div>
 									
 									<div class="clearfix"></div>
@@ -135,6 +154,21 @@
 </section>
 <!--END: HOW IT WORK -->
 
+<!-- START: WHY CHOOSE US SECTION -->
+<section id="why-choose-us">
+	<section class="app-section section-separator animatedParent">
+		<a target="_blank" href="https://play.google.com/store/apps/details?id=com.ugabus">
+            <img src="/client_inc/assets/images/app-img.png" alt="Image"></a>
+            <a href="#" class="iphone_app">
+            	<img src="/client_inc/assets/images/apple.png" alt="Image"></a>
+            <a target="_blank" 
+            href="https://play.google.com/store/apps/details?id=com.ugabus" 
+            class="android_app"><img src="/client_inc/assets/images/google.png" 
+            	alt="Image"></a>
+        </section>
+</section>
+<!-- END: WHY CHOOSE US SECTION -->
+
 <!-- START: HOT  DEALS -->
 <section>
 	<div class="row hot-deals">
@@ -149,9 +183,9 @@
 				<!-- BEGIN: TAB PANELS -->
 				<div class="tab-content">
 					<!-- BEGIN: FLIGHT SEARCH -->
-					<div role="tabpanel" class="tab-pane active fade in" id="tab1">
-						<div class="col-md-6 hot-deal-list wow slideInLeft">
-							@foreach($routes as $route)
+					<div role="tabpanel" class="tab-pane active fade in" id="tab1">	
+						@foreach($routes as $route)
+						<div class="col-md-6 hot-deal-list wow">
 							<div class="item">
 								<div class="col-xs-3">
 									<img src="/client_inc/assets/images/offer1.jpg" alt="Cruise">
@@ -201,47 +235,9 @@
                                     </form>
 								</div>
 							</div>
-							<div class="clearfix"></div>
-							@endforeach
+							<div class="clearfix"></div>							
 						</div>
-						<div class="col-md-6 hot-deal-grid wow slideInRight">
-							<div class="col-sm-4 item">
-								<div class="wrapper">
-									<img src="/client_inc/assets/images/Uganda.png" alt="Cruise">
-									<h5>Uganda</h5>
-								</div>
-							</div>
-							<div class="col-sm-4 item">
-								<div class="wrapper">
-									<img src="/client_inc/assets/images/Kenya.png" alt="Cruise">
-									<h5>Kenya</h5>
-								</div>
-							</div>
-							<div class="col-sm-4 item">
-								<div class="wrapper">
-									<img src="/client_inc/assets/images/Tanzania.png" alt="Cruise">
-									<h5>Tanzania</h5>
-								</div>
-							</div>
-							<div class="col-sm-4 item">
-								<div class="wrapper">
-									<img src="/client_inc/assets/images/Burundi.png" alt="Cruise">
-									<h5>Burundi</h5>
-								</div>
-							</div>
-							<div class="col-sm-4 item">
-								<div class="wrapper">
-									<img src="/client_inc/assets/images/rwanda.png" alt="Cruise">
-									<h5>Rwanda</h5>
-								</div>
-							</div>
-							<div class="col-sm-4 item">
-								<div class="wrapper">
-									<img src="/client_inc/assets/images/South-Sudan.png" alt="Cruise">
-									<h5>South-Sudan</h5>
-								</div>
-							</div>
-						</div>
+					@endforeach	
 					</div>
 					
 				</div>
@@ -253,7 +249,7 @@
 
 
 
-<!-- BEGIN: RECENT BLOG POST -->
+<!-- BEGIN: RECENT BLOG POST 
 <section id="recent-blog">
 	<div class="row top-offer">
 		@if(sizeOf($stories)>0)
@@ -291,22 +287,7 @@
 		@endif
 	</div>
 </section>
-<!-- END: RECENT BLOG POST -->
-
-<!-- START: WHY CHOOSE US SECTION -->
-<section id="why-choose-us">
-	<section class="app-section section-separator animatedParent">
-		<a target="_blank" href="https://play.google.com/store/apps/details?id=com.ugabus">
-            <img src="/client_inc/assets/images/app-img.png" alt="Image"></a>
-            <a href="#" class="iphone_app">
-            	<img src="/client_inc/assets/images/apple.png" alt="Image"></a>
-            <a target="_blank" 
-            href="https://play.google.com/store/apps/details?id=com.ugabus" 
-            class="android_app"><img src="/client_inc/assets/images/google.png" 
-            	alt="Image"></a>
-        </section>
-</section>
-<!-- END: WHY CHOOSE US SECTION -->
+ END: RECENT BLOG POST -->
 
 
 
