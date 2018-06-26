@@ -2,3 +2,6 @@
 .idea/*
 /vendor/
 composer.lock
+app/YoPayment/*
+app/Http/Controllers/Admin/PaymentsController.php
+app/Http/Controllers/Admin/SMSController.php
