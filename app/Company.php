@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Company extends Model
 {
-    public function buses()
-    {
+
+    function buses(){
         return $this->hasMany('App\Bus');
     }
 }

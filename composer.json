@@ -12,7 +12,8 @@
         "laracasts/flash": "^3.0",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
-        "laravelcollective/html": "^5.4.0"
+        "laravelcollective/html": "^5.4.0",
+        "twilio/sdk": "^5.19"
     },
     "require-dev": {
         "filp/whoops": "~2.0",

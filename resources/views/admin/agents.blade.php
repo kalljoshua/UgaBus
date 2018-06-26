@@ -31,6 +31,7 @@
         <div class="tab-content my-3" id="v-pills-tabContent">
             <div class="tab-pane animated fadeInUpShort show active" id="v-pills-all" role="tabpanel"
                  aria-labelledby="v-pills-all-tab">
+                @include('flash::message')
                 <div class="row my-3">
                     <div class="col-md-12">
                         <div class="card r-0 shadow">
@@ -50,8 +51,8 @@
                                             <th>COMPANY</th>
                                             <th>MOBILE</th>
                                             <th>PHONE</th>
-                                            <th>STATUS</th>
-                                            <th>ROLE</th>
+                                            <th>ADDRESS</th>
+                                            <th>CITY</th>
                                             <th></th>
                                         </tr>
                                         </thead>
@@ -64,13 +65,21 @@
                                                     <div class="custom-control custom-checkbox">
                                                         <input type="checkbox" class="custom-control-input checkSingle"
                                                                id="user_id_{{$agent->id}}" required><label
-                                                                class="custom-control-label" for="user_id_{{$agent->id}}"></label>
+                                                                class="custom-control-label"
+                                                                for="user_id_{{$agent->id}}"></label>
                                                     </div>
                                                 </td>
 
                                                 <td>
                                                     <div class="avatar avatar-md mr-3 mt-1 float-left">
-                                                        <span class="avatar-letter avatar-letter-a  avatar-md circle"></span>
+                                                        @if($agent->avatar !='')
+                                                            <img src="/user_avatars/{{$agent->avatar}}" avatar-md circle
+                                                                 alt="your image"/>
+                                                        @else
+                                                            {!! $char = substr($agent->first_name, 0, 1); !!}
+                                                            <span class="avatar-letter avatar-letter-{{strtolower($char)}}  avatar-md circle"></span>
+                                                        @endif
+
                                                     </div>
                                                     <div>
                                                         <div>
@@ -84,13 +93,15 @@
                                                 <td>{{$agent->mobile}}</td>
 
                                                 <td>{{$agent->phone}}</td>
-                                                <td><span class="icon icon-circle s-12  mr-2 text-warning"></span>
-                                                    Inactive
-                                                </td>
-                                                <td><span class="r-3 badge badge-success ">Agent</span></td>
+                                                <td>{{$agent->agent_address}}</td>
+                                                <td>{{$agent->agent_city}}</td>
                                                 <td>
-                                                    <a href="panel-page-profile.html"><i class="icon-eye mr-3"></i></a>
-                                                    <a href="panel-page-profile.html"><i class="icon-pencil"></i></a>
+                                                    <a class="btn-fab btn-fab-sm btn-primary shadow text-white mr-3"
+                                                            href="/admin/agents/{{$agent->id}}/edit"><i
+                                                                class="icon-pencil"></i></a>
+                                                    <a class="btn-fab btn-fab-sm btn-danger shadow text-white"
+                                                            href="/admin/agents/{{$agent->id}}/delete"><i
+                                                                class="icon-delete"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -102,7 +113,7 @@
                     </div>
                 </div>
 
-                <nav class="my-3" aria-label="Page navigation">
+               {{-- <nav class="my-3" aria-label="Page navigation">
                     <ul class="pagination">
                         <li class="page-item"><a class="page-link" href="#">Previous</a>
                         </li>
@@ -115,7 +126,7 @@
                         <li class="page-item"><a class="page-link" href="#">Next</a>
                         </li>
                     </ul>
-                </nav>
+                </nav>--}}
             </div>
             <div class="tab-pane animated fadeInUpShort" id="v-pills-buyers" role="tabpanel"
                  aria-labelledby="v-pills-buyers-tab">

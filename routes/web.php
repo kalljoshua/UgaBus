@@ -11,6 +11,8 @@
 |
 */
 
+use Illuminate\Http\Request;
+
 Route::get('/', 'User\HomeController@index')->name('home');
 
 
@@ -58,49 +60,71 @@ Route::group(['middleware' => 'user'], function () {
 
 //Agents routes
 Route::group(['middleware' => 'agent'], function () {
-	Route::get('/agent/{name}', 'Agent\AgentProfileController@agentAccount')->name('agent.account');
+    Route::get('/agent/{name}', 'Agent\AgentProfileController@agentAccount')->name('agent.account');
     Route::post('/password-reset', 'Agent\AgentProfileController@updatePassword')->name('password.reset');
 });
 
 //Admin routes
 Route::group(['middleware' => 'admin'], function () {
     //Dashboard
-    Route::get('/admin','Admin\DashboardController@index')->name('admin.dashboard');
+    Route::get('/admin', 'Admin\DashboardController@index')->name('admin.dashboard');
 
     //Staff
-    Route::get('/admin/staff','Admin\AdminsController@getAllAdmins')->name('admin.staff');
-    Route::post('/admin/staff/save','Admin\AdminsController@save')->name('admin.staff.save');
-    Route::get('/admin/staff/create','Admin\AdminsController@create')->name('admin.create_new_staff');
+    Route::get('/admin/staff', 'Admin\AdminsController@getAllAdmins')->name('admin.staff');
+    Route::post('/admin/staff/save', 'Admin\AdminsController@save')->name('admin.staff.save');
+    Route::get('/admin/staff/create', 'Admin\AdminsController@create')->name('admin.create_new_staff');
     Route::get('/admin/staff/{id}/edit', 'Admin\AdminsController@edit')->name('admin.edit_staff_details');
-    Route::post('/admin/staff/update','Admin\AdminsController@update')->name('admin.staff.update');
+    Route::post('/admin/staff/update', 'Admin\AdminsController@update')->name('admin.staff.update');
 
     //Users
-    Route::get('/admin/users','Admin\UsersController@getAllUsers')->name('admin.users');
+    Route::get('/admin/users', 'Admin\UsersController@getAllUsers')->name('admin.users');
+
+    //Companies
+    Route::get('/admin/companies/create', 'Admin\CompaniesController@create')->name('admin.companies.create');
+    Route::post('/admin/companies/save', 'Admin\CompaniesController@save')->name('admin.companies.save');
+    Route::get('/admin/companies', 'Admin\CompaniesController@getAllCompanies')->name('admin.companies');
 
     //Buses
-    Route::get('/admin/buses/create','Admin\BusesController@createBus')->name('admin.create_new_bus');
-    Route::post('/admin/buses/save','Admin\BusesController@save')->name('admin.buses.save');
-    Route::get('/admin/buses','Admin\BusesController@getAllBuses')->name('admin.buses');
+    Route::get('/admin/buses/create', 'Admin\BusesController@createBus')->name('admin.create_new_bus');
+    Route::post('/admin/buses/save', 'Admin\BusesController@save')->name('admin.buses.save');
+    Route::get('/admin/buses', 'Admin\BusesController@getAllBuses')->name('admin.buses');
+    Route::get('/admin/buses/{id}/edit', 'Admin\BusesController@edit')->name('admin.edit_bus_details');
+    Route::post('/admin/buses/update', 'Admin\BusesController@update')->name('admin.bus.update');
+    Route::post('/admin/buses/upload-image', 'Admin\BusesController@uploadImage')->name('admin.upload.image');
+    Route::get('/admin/buses/{id}/route', 'Admin\BusesController@create_route')->name('admin.bus.route');
+    Route::get('/admin/buses/{id}/delete', 'Admin\BusesController@delete')->name('admin.bus.delete');
 
     //Agents
-    Route::get('/admin/agents/create','Admin\AgentsController@createAgent')->name('admin.create_new_agent');
-    Route::post('/admin/agents/save','Admin\AgentsController@save')->name('admin.agents.save');
-    Route::get('/admin/agents','Admin\AgentsController@getAllAgents')->name('admin.agents');
+    Route::get('/admin/agents/create', 'Admin\AgentsController@createAgent')->name('admin.create_new_agent');
+    Route::post('/admin/agents/save', 'Admin\AgentsController@save')->name('admin.agents.save');
+    Route::get('/admin/agents', 'Admin\AgentsController@getAllAgents')->name('admin.agents');
+    Route::get('/admin/agents/{id}/edit', 'Admin\AgentsController@edit')->name('admin.agent.edit');
+    Route::post('/admin/agents/update', 'Admin\AgentsController@update')->name('admin.agent.update');
+    Route::get('/admin/agents/{id}/delete', 'Admin\AgentsController@delete')->name('admin.agent.delete');
 
     //Bookings
-    Route::get('/admin/bookings','Admin\BookingsController@getAllBookings')->name('admin.bookings');
+    Route::get('/admin/bookings', 'Admin\BookingsController@getAllBookings')->name('admin.bookings');
 
     //Routes
-    Route::get('/admin/routes','Admin\RoutesController@getAllRoutes')->name('admin.routes');
+    Route::get('/admin/routes', 'Admin\RoutesController@getAllRoutes')->name('admin.routes');
+    Route::get('/admin/routes/create', 'Admin\RoutesController@create')->name('admin.routes.create');
+    Route::post('/admin/routes/save', 'Admin\RoutesController@save')->name('admin.routes.save');
 
     //Parks
-    Route::get('/admin/parks','Admin\ParksController@getAllParks')->name('admin.parks');
+    Route::get('/admin/parks', 'Admin\ParksController@getAllParks')->name('admin.parks');
+
+    //Payments
+    Route::get('/admin/payments', 'Admin\PaymentsController@runDepositFunds')->name('admin.payments');
+
+    //SMS
+    Route::get('/admin/sms', 'Admin\SMSController@sendSMS')->name('admin.sms');
+
 
 
 });
 
 //Admin authentication
-Route::get('/admin/login', function(){
+Route::get('/admin/login', function () {
     return view('admin.login');
 })->name('admin.login');
 
