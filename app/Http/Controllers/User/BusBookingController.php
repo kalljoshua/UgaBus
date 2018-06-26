@@ -58,15 +58,13 @@ class BusBookingController extends Controller
         if($request->input('email')) $email = $request->input('email');
         $pay_method = $request->input('getway');
 
-        if($booking->save() && $user->save()){            
-            if($pay_method == "mobile_money"){
-                return "processing for mobile money";
-            }else if($pay_method == "visa"){
-                return "processing for visa";
-
-            }else if($pay_method == "terminal"){
-                return "processing for terminal";
+        if($booking->save() && $user->save()){ 
+            if($pay_method){
+                //process_payment();
+                return view('user.payment-directions');
             }
+        }else{
+
         }
     }
 
