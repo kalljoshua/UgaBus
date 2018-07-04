@@ -225,6 +225,9 @@ $(function() {
 		$('.selectpicker').selectpicker({
 			style: 'custom-select-button'
 		});
+		$('.selectpickermini').selectpicker({
+			style: 'custom-select-button-mini'
+		});
 });
 
 /**********************************************************************

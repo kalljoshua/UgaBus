@@ -1,4 +1,11 @@
 	<!-- START: MODIFY SEARCH -->
+	<style type="text/css">
+		.btn.focus, .btn:focus, .btn:hover {
+			color: black;
+			text-decoration: none;
+		}
+	</style>
+
 	<div class="row modify-search modify-car">
 		<div class="container clear-padding">
 			<form method="get" action="{{route('search')}}" >
@@ -32,8 +39,8 @@
 				</div>
 				<div class="col-md-1 col-sm-6 col-xs-6">
 					<div class="form-gp">
-						<label>Seats</label>
-						<select class="selectpicker" name="seats">
+						<label for="mini-seat-select">Seats</label>
+						<select id="mini-seat-select" class="selectpickermini" name="seats">
 							<option value="1">1</option>
 							<option value="2">2</option>
 							<option value="3">3</option>

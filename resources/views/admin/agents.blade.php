@@ -35,98 +35,109 @@
                 <div class="row my-3">
                     <div class="col-md-12">
                         <div class="card r-0 shadow">
-                            <div class="table-responsive">
-                                <form>
-                                    <table class="table table-striped table-hover r-0">
-                                        <thead>
-                                        <tr class="no-b">
-                                            <th style="width: 30px">
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" id="checkedAll"
-                                                           class="custom-control-input"><label
-                                                            class="custom-control-label" for="checkedAll"></label>
-                                                </div>
-                                            </th>
-                                            <th>FULL NAME</th>
-                                            <th>COMPANY</th>
-                                            <th>MOBILE</th>
-                                            <th>PHONE</th>
-                                            <th>ADDRESS</th>
-                                            <th>CITY</th>
-                                            <th></th>
-                                        </tr>
-                                        </thead>
-
-                                        <tbody>
-
-                                        @foreach($agents as $agent)
-                                            <tr>
-                                                <td>
+                            @if($agents->count() < 1)
+                                <h3 style="padding: 10px;padding-top: 20px;">No Agents in the system</h3>
+                            @else
+                                <div class="table-responsive">
+                                    <form>
+                                        <table class="table table-striped table-hover r-0">
+                                            <thead>
+                                            <tr class="no-b">
+                                                {{--<th style="width: 30px">
                                                     <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input checkSingle"
-                                                               id="user_id_{{$agent->id}}" required><label
-                                                                class="custom-control-label"
-                                                                for="user_id_{{$agent->id}}"></label>
+                                                        <input type="checkbox" id="checkedAll"
+                                                               class="custom-control-input"><label
+                                                                class="custom-control-label" for="checkedAll"></label>
                                                     </div>
-                                                </td>
-
-                                                <td>
-                                                    <div class="avatar avatar-md mr-3 mt-1 float-left">
-                                                        @if($agent->avatar !='')
-                                                            <img src="/user_avatars/{{$agent->avatar}}" avatar-md circle
-                                                                 alt="your image"/>
-                                                        @else
-                                                            {!! $char = substr($agent->first_name, 0, 1); !!}
-                                                            <span class="avatar-letter avatar-letter-{{strtolower($char)}}  avatar-md circle"></span>
-                                                        @endif
-
-                                                    </div>
-                                                    <div>
-                                                        <div>
-                                                            <strong>{{$agent->first_name}} {{$agent->last_name}}</strong>
-                                                        </div>
-                                                        <small> {{$agent->email}}</small>
-                                                    </div>
-                                                </td>
-
-                                                <td>{{$agent->company}}</td>
-                                                <td>{{$agent->mobile}}</td>
-
-                                                <td>{{$agent->phone}}</td>
-                                                <td>{{$agent->agent_address}}</td>
-                                                <td>{{$agent->agent_city}}</td>
-                                                <td>
-                                                    <a class="btn-fab btn-fab-sm btn-primary shadow text-white mr-3"
-                                                            href="/admin/agents/{{$agent->id}}/edit"><i
-                                                                class="icon-pencil"></i></a>
-                                                    <a class="btn-fab btn-fab-sm btn-danger shadow text-white"
-                                                            href="/admin/agents/{{$agent->id}}/delete"><i
-                                                                class="icon-delete"></i></a>
-                                                </td>
+                                                </th>--}}
+                                                <th>FULL NAME</th>
+                                                <th>COMPANY</th>
+                                                <th>MOBILE</th>
+                                                <th>PHONE</th>
+                                                <th>ADDRESS</th>
+                                                <th>CITY</th>
+                                                <th>ACTIONS</th>
                                             </tr>
-                                        @endforeach
-                                        </tbody>
-                                    </table>
-                                </form>
-                            </div>
+                                            </thead>
+
+                                            <tbody>
+
+                                            @foreach($agents as $agent)
+                                                <tr>
+                                                    {{--<td>
+                                                        <div class="custom-control custom-checkbox">
+                                                            <input type="checkbox" class="custom-control-input checkSingle"
+                                                                   id="user_id_{{$agent->id}}" required><label
+                                                                    class="custom-control-label"
+                                                                    for="user_id_{{$agent->id}}"></label>
+                                                        </div>
+                                                    </td>--}}
+
+                                                    <td>
+                                                        <div class="avatar avatar-md mr-3 mt-1 float-left">
+                                                            @if($agent->avatar !='')
+                                                                <img src="/user_avatars/{{$agent->avatar}}" avatar-md
+                                                                     circle
+                                                                     alt="your image"/>
+                                                            @else
+                                                                {!! $char = substr($agent->first_name, 0, 1); !!}
+                                                                <span class="avatar-letter avatar-letter-{{strtolower($char)}}  avatar-md circle"></span>
+                                                            @endif
+
+                                                        </div>
+                                                        <div>
+                                                            <div>
+                                                                <strong>{{$agent->first_name}} {{$agent->last_name}}</strong>
+                                                            </div>
+                                                            <small> {{$agent->email}}</small>
+                                                        </div>
+                                                    </td>
+
+                                                    <td>@if($agent->buses->count() == 1)
+                                                            {{$agent->buses[0]->company->company_name}}
+                                                        @else
+                                                            <a href="#">More</a>
+                                                        @endif
+                                                    </td>
+                                                    <td>{{$agent->mobile}}</td>
+
+                                                    <td>{{$agent->phone}}</td>
+                                                    <td>{{$agent->agent_address}}</td>
+                                                    <td>{{$agent->agent_city}}</td>
+                                                    <td>
+                                                        <a class="btn-fab btn-fab-sm btn-primary shadow text-white mr-3"
+                                                           href="/admin/agents/{{$agent->id}}/edit"><i
+                                                                    class="icon-pencil"></i></a>
+                                                        <a class="btn-fab btn-fab-sm btn-danger shadow text-white"
+                                                           href="/admin/agents/{{$agent->id}}/delete"><i
+                                                                    class="icon-delete"></i></a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
+                                    </form>
+                                </div>
+                            @endif
+
                         </div>
                     </div>
                 </div>
 
-               {{-- <nav class="my-3" aria-label="Page navigation">
-                    <ul class="pagination">
-                        <li class="page-item"><a class="page-link" href="#">Previous</a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">2</a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">3</a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">Next</a>
-                        </li>
-                    </ul>
-                </nav>--}}
+                {{-- <nav class="my-3" aria-label="Page navigation">
+                     <ul class="pagination">
+                         <li class="page-item"><a class="page-link" href="#">Previous</a>
+                         </li>
+                         <li class="page-item"><a class="page-link" href="#">1</a>
+                         </li>
+                         <li class="page-item"><a class="page-link" href="#">2</a>
+                         </li>
+                         <li class="page-item"><a class="page-link" href="#">3</a>
+                         </li>
+                         <li class="page-item"><a class="page-link" href="#">Next</a>
+                         </li>
+                     </ul>
+                 </nav>--}}
             </div>
             <div class="tab-pane animated fadeInUpShort" id="v-pills-buyers" role="tabpanel"
                  aria-labelledby="v-pills-buyers-tab">

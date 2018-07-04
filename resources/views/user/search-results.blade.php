@@ -55,7 +55,7 @@
 				@foreach($routes as $route)
 				<div class="flight-list-view">
 					<div class="airline-logo col-md-2 text-center clear-padding">
-						<img src="assets/images/airline/vistara-2x.png" alt="cruise">
+						<img src="/company_logos/{{$route->bus->company->logo}}" alt="cruise">
 						<h6>{{$route->bus->company->company_name}}</h6>
 					</div>
 					<div class="col-md-6 col-sm-6 col-xs-8 text-center clear-padding flight-desc">

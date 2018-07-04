@@ -27,6 +27,7 @@
         <div class="tab-content my-3" id="v-pills-tabContent">
             <div class="tab-pane animated fadeInUpShort show active" id="v-pills-all" role="tabpanel"
                  aria-labelledby="v-pills-all-tab">
+                @include('flash::message')
                 <div class="row my-3">
                     <div class="col-md-12">
                         <div class="card r-0 shadow">
@@ -35,61 +36,79 @@
                                     <table class="table table-striped table-hover r-0">
                                         <thead>
                                         <tr class="no-b">
-                                            <th style="width: 30px">
+                                            {{--<th style="width: 30px">
                                                 <div class="custom-control custom-checkbox">
                                                     <input type="checkbox" id="checkedAll"
                                                            class="custom-control-input"><label
                                                             class="custom-control-label" for="checkedAll"></label>
                                                 </div>
-                                            </th>
+                                            </th>--}}
                                             <th>FULL NAME</th>
                                             <th>GENDER</th>
                                             <th>PHONE</th>
                                             <th>STATUS</th>
-                                            <th></th>
+                                            <th>ACOUNT</th>
+                                            <th>ACTIONS</th>
                                         </tr>
                                         </thead>
 
                                         <tbody>
-                                            @foreach($users as $user)
+                                        @foreach($users as $user)
 
-                                                <tr>
-                                                    <td>
-                                                        <div class="custom-control custom-checkbox">
-                                                            <input type="checkbox" class="custom-control-input checkSingle"
-                                                                   id="user_id_1" required><label
-                                                                    class="custom-control-label" for="user_id_1"></label>
-                                                        </div>
-                                                    </td>
+                                            <tr>
+                                                {{--<td>
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input checkSingle"
+                                                               id="user_id_1" required><label
+                                                                class="custom-control-label" for="user_id_1"></label>
+                                                    </div>
+                                                </td>--}}
 
-                                                    <td>
-                                                        <div class="avatar avatar-md mr-3 mt-1 float-left">
-                                                            @if($user->logo !='')
-                                                                <img src="/user_avatars/{{$user->avatar}}" avatar-md circle
-                                                                     alt="{{$user->first_name}}"/>
-                                                            @else
-                                                                {!! $char = substr($user->first_name, 0, 1); !!}
-                                                                <span class="avatar-letter avatar-letter-{{strtolower($char)}}  avatar-md circle"></span>
-                                                            @endif
-                                                        </div>
+                                                <td>
+                                                    <div class="avatar avatar-md mr-3 mt-1 float-left">
+                                                        @if($user->logo !='')
+                                                            <img src="/user_avatars/{{$user->avatar}}" avatar-md circle
+                                                                 alt="{{$user->first_name}}"/>
+                                                        @else
+                                                            {!! $char = substr($user->first_name, 0, 1); !!}
+                                                            <span class="avatar-letter avatar-letter-{{strtolower($char)}}  avatar-md circle"></span>
+                                                        @endif
+                                                    </div>
+                                                    <div>
                                                         <div>
-                                                            <div>
-                                                                <strong>{{$user->first_name}} {{$user->last_name}}</strong>
-                                                            </div>
-                                                            <small> {{$user->email}}</small>
+                                                            <strong>{{$user->first_name}} {{$user->last_name}}</strong>
                                                         </div>
-                                                    </td>
+                                                        <small> {{$user->email}}</small>
+                                                    </div>
+                                                </td>
 
-                                                    <td>{{$user->gender}}</td>
-                                                    <td>{{$user->phone}}</td>
-                                                    <td><span class="r-3 badge badge-success ">Verified</span></td>
-                                                    <td>
-                                                        <a class="btn-fab btn-fab-sm btn-danger shadow text-white"
-                                                           href="/admin/users/{{$user->id}}/delete"><i
-                                                                    class="icon-delete"></i></a>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
+                                                <td>{{$user->gender}}</td>
+                                                <td>{{$user->phone}}</td>
+                                                <td><span class="r-3 badge badge-success ">Verified</span></td>
+
+                                                @if($user->is_suspended == 1)
+                                                    <td><span class="r-3 badge badge-danger ">Suspended</span></td>
+                                                @else
+                                                    <td><span class="r-3 badge badge-warning ">Active</span></td>
+                                                @endif
+                                                <td>
+                                                    @if($user->is_suspended == 1)
+                                                        <a class="btn-fab btn-fab-sm btn-success shadow text-white mr-3"
+                                                           href="/admin/users/{{$user->id}}/suspend"><i
+                                                                    class="icon-play"></i></a>
+                                                    @else
+                                                        <a class="btn-fab btn-fab-sm btn-warning shadow text-white mr-3"
+                                                           href="/admin/users/{{$user->id}}/suspend"><i
+                                                                    class="icon-pause"></i></a>
+                                                    @endif
+
+
+                                                    <a class="btn-fab btn-fab-sm btn-danger shadow text-white"
+                                                       href="/admin/users/{{$user->id}}/delete"><i
+                                                                class="icon-delete"></i></a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                         </tbody>
                                     </table>
                                 </form>

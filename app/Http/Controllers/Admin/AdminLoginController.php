@@ -16,7 +16,7 @@ class AdminLoginController extends Controller
 {
     use AuthenticatesUsers;
 
-    protected $redirectTo = '/admin';
+    protected $redirectTo = '/admin/agents';
 
     protected function guard()
     {

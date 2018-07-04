@@ -9,7 +9,7 @@
                 <div class="col">
                     <div class="pb-3">
                         <div class="image mr-3  float-left">
-                            <img class="user_avatar no-b no-p" src="/user_avatars/avatar.jpg" alt="User Image">
+                            <img class="user_avatar no-b no-p" src="/user_avatars/{{$user->avatar}}" height="55px" alt="User Image">
                         </div>
                         <div>
                             <h6 class="p-t-10">{{$user->first_name}} {{$user->last_name}}</h6>
@@ -21,10 +21,10 @@
             <div class="row justify-content-between">
                 <ul class="nav nav-material nav-material-white responsive-tab" id="v-pills-tab" role="tablist">
                     <li>
-                        <a class="nav-link active"  href="/admin/staff"><i class="icon icon-home2"></i>All Staff Users</a>
+                        <a class="nav-link active"  href="/admin/staff"><i class="icon icon-home2"></i>All Admin Users</a>
                     </li>
                     <li>
-                        <a class="nav-link"  href="/admin/staff/create" ><i class="icon icon-plus-circle"></i> Add New Staff User</a>
+                        <a class="nav-link"  href="/admin/staff/create" ><i class="icon icon-plus-circle"></i> Add New Admin User</a>
                     </li>
                 </ul>
             </div>
@@ -32,13 +32,14 @@
     </header>
     <div class="container-fluid animatedParent animateOnce">
         <div class="animated fadeInUpShort">
+            @include('flash::message')
             <div class="row my-3">
                 <div class="col-md-7  offset-md-2">
-                    <form method="post" action="/admin/staff/update">
+                    <form method="post" action="/admin/staff/update" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <div class="card no-b  no-r">
                             <div class="card-body">
-                                <h5 class="card-title">Staff details</h5>
+                                <h5 class="card-title">Admin details</h5>
                                 <div class="form-row">
                                     <div class="col-md-8">
                                         <div class="form-group m-0">
@@ -121,13 +122,21 @@
                                         </div>
                                     </div>
                                     <div class="col-md-3 offset-md-1">
-                                        <input hidden id="file" name="file"/>
-                                        <div class="dropzone dropzone-file-area pt-4 pb-4" id="fileUpload">
-                                            <div class="dz-default dz-message">
-                                                <span>Drop A passport size image of user</span>
-                                                <div>You can also click to open file browser</div>
+                                        <label for="file" class="col-form-label s-12">PROFILE PICTURE</label>
+                                        <div class="dz-default dz-message">
+                                            <div>
+                                                @if($user->avatar != '')
+                                                    <img id="blah" src="/user_avatars/{{$user->avatar}}" alt="your image"
+                                                         class="img-thumbnail rounded float-left"/>
+                                                @else
+                                                    <img id="blah" src="/user_avatars/placeholder.svg" alt="your image"
+                                                         class="img-thumbnail rounded float-left"/>
+                                                @endif
                                             </div>
                                         </div>
+                                        <input hidden id="files" type='file' onchange="readURL(this);" name="file"/>
+                                        <label for="files" class="btn btn-primary">Select picture</label>
+
                                     </div>
 
                                 </div>

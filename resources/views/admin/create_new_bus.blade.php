@@ -29,7 +29,7 @@
     </header>
     <div class="container-fluid animatedParent animateOnce my-3">
         <div class="animated fadeInUpShort">
-            <form method="post" action="/admin/buses/save" enctype="multipart/form-data" id="needs-validation" novalidate>
+            <form method="post" action="/admin/buses/save" id="needs-validation" novalidate>
                 {{csrf_field()}}
                 <div class="row">
                     <div class="col-md-8 ">
@@ -108,22 +108,6 @@
                                         <div class="invalid-feedback">
                                             Please provide a valid sku.
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card mt-4">
-                            <h6 class="card-header white">Vehicle Image</h6>
-                            <div class="card-body">
-                                <label for="file" class="col-form-label s-12">PROFILE PICTURE</label>
-                                <div class="row">
-                                    <div class="col-md-8 mb-4">
-                                        <img id="blah" src="/user_avatars/placeholder.svg" alt="your image"
-                                             class="img-thumbnail rounded float-left"/>
-                                    </div>
-                                    <div class="col-md-8 mb-4">
-                                        <input hidden id="files" type='file' onchange="readURL(this);" name="file"/>
-                                        <label for="files" class="btn btn-primary">Select picture</label>
                                     </div>
                                 </div>
                             </div>

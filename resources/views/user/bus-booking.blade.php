@@ -35,7 +35,7 @@
 							<div class="flight-list-v2">
 								<div class="flight-list-main">	
 									<div class="col-md-2 col-sm-2 text-center airline">
-										<img src="/client_inc/assets/images/airline/vistara-2x.png" alt="cruise">
+										<img src="/company_logos/{{$route->bus->company->logo}}" alt="cruise">
 										<h6>{{$route->bus->company->company_name}}</h6>
 									</div>
 									<div class="col-md-3 col-sm-3 departure">
@@ -67,7 +67,7 @@
 									<a href="{{ URL::previous() }}"><i class="fa fa-undo"></i> CHANGE</a>
 								</div>
 								<div class="social-media-login pull-right">
-									<a href="{{route('make.payment',['id'=>$route->id])}}"><i class="fa fa-chevron-right"></i>PROCEED TO PAYMENT</a>
+									<a href="{{route('make.payment')}}"><i class="fa fa-chevron-right"></i>PROCEED TO PAYMENT</a>
 								</div>
 							</div>
 					</div>
@@ -88,6 +88,7 @@
 										$total = $route->unit_seat_price * $seats;
 										Session::put('total_price', $total);
 										Session::put('seats', $seats);
+										Session::put('route', $route->id);
 									?>
 									<tr>
 										<td class="total">Total Pay</td>

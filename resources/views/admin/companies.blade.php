@@ -29,6 +29,7 @@
         <div class="tab-content my-3" id="v-pills-tabContent">
             <div class="tab-pane animated fadeInUpShort show active" id="v-pills-all" role="tabpanel"
                  aria-labelledby="v-pills-all-tab">
+                @include('flash::message')
                 <div class="row my-3">
                     <div class="col-md-12">
                         <div class="card r-0 shadow">
@@ -37,13 +38,13 @@
                                     <table class="table table-striped table-hover r-0">
                                         <thead>
                                         <tr class="no-b">
-                                            <th style="width: 30px">
+                                            {{--<th style="width: 30px">
                                                 <div class="custom-control custom-checkbox">
                                                     <input type="checkbox" id="checkedAll"
                                                            class="custom-control-input"><label
                                                             class="custom-control-label" for="checkedAll"></label>
                                                 </div>
-                                            </th>
+                                            </th>--}}
                                             <th>COMPANY NAME</th>
                                             <th>ADDRESS</th>
                                             <th>CITY</th>
@@ -52,7 +53,7 @@
                                             <th>WEBSITE</th>
                                             <th>BUS (ES)</th>
                                             <th>STATUS</th>
-                                            <th></th>
+                                            <th>ACTIONS</th>
                                         </tr>
                                         </thead>
 
@@ -60,18 +61,18 @@
 
                                         @foreach($companies as $company)
                                             <tr>
-                                                <td>
+                                                {{--<td>
                                                     <div class="custom-control custom-checkbox">
                                                         <input type="checkbox" class="custom-control-input checkSingle"
                                                                id="user_id_{{$company->id}}" required><label
                                                                 class="custom-control-label" for="user_id_{{$company->id}}"></label>
                                                     </div>
-                                                </td>
+                                                </td>--}}
 
                                                 <td>
                                                     <div class="avatar avatar-md mr-3 mt-1 float-left">
                                                         @if($company->logo !='')
-                                                            <img src="/user_avatars/{{$company->logo}}" avatar-md circle
+                                                            <img src="/company_logos/{{$company->logo}}" avatar-md circle
                                                                  alt="your image"/>
                                                         @else
                                                             {!! $char = substr($company->company_name, 0, 1); !!}

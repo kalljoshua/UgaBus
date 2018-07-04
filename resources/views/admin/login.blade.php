@@ -82,7 +82,7 @@
             <div class="row">
                 <div class="col-lg-4 mx-md-auto">
                     <div class="text-center">
-                        {{--<img src="/admin_inc/assets/img/dummy/u5.png" alt="">--}}
+                        <img src="/images/logo_cropped.png" alt="Logo">
                         <h3 class="mt-2">Admin login</h3>
                         {{--<p class="p-t-b-20">Hey Soldier welcome back signin now there is lot of new stuff waiting
                             for you</p>--}}

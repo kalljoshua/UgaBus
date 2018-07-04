@@ -24694,8 +24694,12 @@ ul.list-group.list-group-hover li:hover {
     background-color: #448aff!important
 }
 
-.blue.accent-3 {
+/*.blue.accent-3 {
     background-color: #2979ff!important
+}*/
+
+.blue.accent-3 {
+    background-color: #1f4294!important
 }
 
 .blue.accent-4 {

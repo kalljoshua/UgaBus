@@ -9,7 +9,7 @@
                 <div class="col">
                     <h4>
                         <i class="icon-database"></i>
-                        Staff Users
+                        Admin Users
                     </h4>
                 </div>
             </div>
@@ -17,11 +17,11 @@
                 <ul class="nav nav-material nav-material-white responsive-tab" id="v-pills-tab" role="tablist">
                     <li>
                         <a class="nav-link active" id="v-pills-all-tab" data-toggle="pill" href="/admin/staff"
-                           role="tab" aria-controls="v-pills-all"><i class="icon icon-home2"></i>All Staff</a>
+                           role="tab" aria-controls="v-pills-all"><i class="icon icon-home2"></i>All Admin</a>
                     </li>
                     <li class="float-right">
                         <a class="nav-link" href="/admin/staff/create"><i
-                                    class="icon icon-plus-circle"></i> Add New Staff User</a>
+                                    class="icon icon-plus-circle"></i> Add New Admin User</a>
                     </li>
                 </ul>
             </div>
@@ -31,6 +31,7 @@
         <div class="tab-content my-3" id="v-pills-tabContent">
             <div class="tab-pane animated fadeInUpShort show active" id="v-pills-all" role="tabpanel"
                  aria-labelledby="v-pills-all-tab">
+                @include('flash::message')
                 <div class="row my-3">
                     <div class="col-md-12">
                         <div class="card r-0 shadow">
@@ -39,19 +40,19 @@
                                     <table class="table table-striped table-hover r-0">
                                         <thead>
                                         <tr class="no-b">
-                                            <th style="width: 30px">
+                                            {{--<th style="width: 30px">
                                                 <div class="custom-control custom-checkbox">
                                                     <input type="checkbox" id="checkedAll"
                                                            class="custom-control-input"><label
                                                             class="custom-control-label" for="checkedAll"></label>
                                                 </div>
-                                            </th>
+                                            </th>--}}
                                             <th>FULL NAME</th>
                                             <th>GENDER</th>
                                             <th>PHONE</th>
                                             <th>STATUS</th>
                                             <th>ROLE</th>
-                                            <th></th>
+                                            <th>ACTIONS</th>
                                         </tr>
                                         </thead>
 
@@ -59,13 +60,13 @@
                                             @foreach($staff as $user)
 
                                                 <tr>
-                                                    <td>
+                                                    {{--<td>
                                                         <div class="custom-control custom-checkbox">
                                                             <input type="checkbox" class="custom-control-input checkSingle"
                                                                    id="user_id_1" required><label
                                                                     class="custom-control-label" for="user_id_1"></label>
                                                         </div>
-                                                    </td>
+                                                    </td>--}}
 
                                                     <td>
                                                         <div class="avatar avatar-md mr-3 mt-1 float-left">
@@ -107,7 +108,7 @@
                     </div>
                 </div>
 
-                <nav class="my-3" aria-label="Page navigation">
+                {{--<nav class="my-3" aria-label="Page navigation">
                     <ul class="pagination">
                         <li class="page-item"><a class="page-link" href="#">Previous</a>
                         </li>
@@ -120,7 +121,7 @@
                         <li class="page-item"><a class="page-link" href="#">Next</a>
                         </li>
                     </ul>
-                </nav>
+                </nav>--}}
             </div>
             <div class="tab-pane animated fadeInUpShort" id="v-pills-buyers" role="tabpanel"
                  aria-labelledby="v-pills-buyers-tab">

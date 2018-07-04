@@ -42,8 +42,6 @@ class BusesController extends Controller
         $company_id = $request->input('company_id');
         $publish = $request->input('publish');
 
-        $file = $request->file("file");
-
         $agent = Agent::find($agent_id);
         if ($agent) {
             $is_agent = true;
@@ -68,14 +66,6 @@ class BusesController extends Controller
             $bus->secondary_color = $secondary_color;
             $bus->model = $model;
             $bus->make = $make;
-
-            $image_name = time() . $file->getClientOriginalName();
-            if ($file->move($destinationPath, $image_name)) {
-                $bus->image = $image_name;
-            } else {
-                $is_uploaded = false;
-            }
-
 
             if ($publish) {
                 $bus->active = 1;
@@ -120,7 +110,7 @@ class BusesController extends Controller
         $company_id = $request->input('company_id');
         $publish = $request->input('publish');
 
-        $file = $request->file("file");
+        //$file = $request->file("file");
 
         $bus = Bus::find($id);
 
@@ -151,20 +141,21 @@ class BusesController extends Controller
             $bus->active = 0;
         }
 
-        if ($file != null) {
+        /*if ($file != null) {
             $image_name = time() . $file->getClientOriginalName();
             if ($file->move($destinationPath, $image_name)) {
                 $bus->image = $image_name;
             } else {
                 $is_uploaded = false;
             }
-        }
+        }*/
 
         if ($bus->save()) {
             flash('Changes saved!');
             return redirect('/admin/buses/' . $bus->id . '/edit');
         } else {
-            return "Error updating bus details";
+            flash('Error saving changes!')->error();
+            return redirect('/admin/buses/' . $bus->id . '/edit');
         }
 
     }
@@ -189,7 +180,8 @@ class BusesController extends Controller
         fclose($myfile);
     }
 
-    function delete($id){
+    function delete($id)
+    {
         $bus = Bus::find($id);
         $bus->delete();
 
