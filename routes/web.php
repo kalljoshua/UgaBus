@@ -41,6 +41,9 @@ Route::post('/bus-booking', 'User\BusBookingController@busBooking')->name('bus.b
 Route::get('/make-payment', 'User\BusBookingController@makePayment')->name('make.payment');
 Route::post('/process-payment', 'User\BusBookingController@processPayment')->name('process.payment');
 Route::get('/payment-reciepts', 'User\BusBookingController@paymentReciept')->name('payment.reciept');
+Route::get('/payment', 'User\BusBookingController@process_payment')->name('payment');
+Route::get('/payment/followup/{transactionReference}', 'User\BusBookingController@follow_up_payment')->name('payment.followup');
+Route::get('/payment/test_follow_up', 'User\BusBookingController@test_follow_up')->name('payment.followup.test');
 
 //newsletter routes
 Route::post('/newsletter', 'User\NewsletterController@subscribe')->name('newsletter.subscribe');
@@ -123,6 +126,7 @@ Route::group(['middleware' => 'admin'], function () {
 
     //Payments
     Route::get('/admin/payments', 'Admin\PaymentsController@runDepositFunds')->name('admin.payments');
+    Route::get('/admin/payments/followup/{transactionReference}', 'Admin\PaymentsController@runFollowUpTransaction')->name('admin.payments.followup');
 
     //SMS
     Route::get('/admin/sms', 'Admin\SMSController@sendSMS')->name('admin.sms');
