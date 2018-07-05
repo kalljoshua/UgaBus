@@ -135,7 +135,7 @@ class BusBookingController extends Controller
             }
         }
 
-        return $res;
+        return "Complete payment from your mobile phone. Thanks";
     }
 
     /*Following up payment*/
