@@ -13,8 +13,15 @@ use Twilio\Rest\Client;
 
 class SMS
 {
-    var $sid = "ACa1a7da436eac2f78bf625b2d72346e3f"; // Your Account SID from www.twilio.com/console
-    var $token = "c4d6b95277defcb1e10702c365f9e2e4"; // Your Auth Token from www.twilio.com/console
+    var $sid = '';
+    var $token = '';
+
+    function __construct()
+    {
+        $this->sid = config('twilio.sid'); // Your Account SID from www.twilio.com/console
+        $this->token = config('twilio.token'); // Your Auth Token from www.twilio.com/console
+    }
+
 
     function sendSMS($user_phone_number, $message)
     {

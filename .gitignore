@@ -5,3 +5,6 @@ composer.lock
 app/YoPayment/*
 app/Http/Controllers/Admin/PaymentsController.php
 app/Http/Controllers/Admin/SMSController.php
+config/twilio.php
+config/twilio.php
+config/yo_payment.php
