@@ -34,31 +34,33 @@
             <div class="tab-content" id="v-pills-tabContent">
                 <div class="tab-pane fade show active" id="v-pills-payments" role="tabpanel"
                      aria-labelledby="v-pills-payments-tab">
+                    @include('flash::message')
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card no-b">
-                                <div class="card-header white b-0 p-3">
-                                    <h4 class="card-title">All Routes</h4>
-                                </div>
                                 <div class="collapse show" id="invoiceCard">
                                     <div class="card-body p-0">
-                                        <div class="table-responsive">
-                                            <table id="recent-orders"
-                                                   class="table table-hover mb-0 ps-container ps-theme-default">
-                                                <thead class="bg-light">
-                                                <tr>
-                                                    <th>RID</th>
-                                                    <th>Start Point</th>
-                                                    <th>Stop point</th>
-                                                    <th>Travel Period (DAYS)</th>
-                                                    <th>Departure Time</th>
-                                                    <th>Arrival Time</th>
-                                                    <th>Seat Price</th>
-                                                    <th>Bus Company</th>
-                                                    <th>Vehicle</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
+                                        @if($routes->count() < 1)
+                                            <h3 style="padding: 10px;padding-top: 20px;">No Routes in the system</h3>
+                                        @else
+                                            <div class="table-responsive">
+                                                <table id="recent-orders"
+                                                       class="table table-hover mb-0 ps-container ps-theme-default">
+                                                    <thead class="bg-light">
+                                                    <tr>
+                                                        <th>RID</th>
+                                                        <th>Start Point</th>
+                                                        <th>Stop point</th>
+                                                        <th>Travel Period (DAYS)</th>
+                                                        <th>Departure Time</th>
+                                                        <th>Arrival Time</th>
+                                                        <th>Seat Price</th>
+                                                        <th>Bus Company</th>
+                                                        <th>Vehicle</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
                                                     @foreach($routes as $route)
                                                         <tr>
                                                             <td>ROUTE-100{{$route->id}}</td>
@@ -70,11 +72,20 @@
                                                             <td>{{$route->unit_seat_price}}</td>
                                                             <td>{{$route->bus->company->company_name}}</td>
                                                             <td>{{$route->bus->make}} {{$route->bus->model}}</td>
+                                                            <td>
+                                                                <a class="btn-fab btn-fab-sm btn-primary shadow text-white mr-3"
+                                                                   href="/admin/routes/{{$route->id}}/edit"><i
+                                                                            class="icon-pencil"></i></a>
+                                                                <a class="btn-fab btn-fab-sm btn-danger shadow text-white"
+                                                                   href="/admin/routes/{{$route->id}}/delete"><i
+                                                                            class="icon-delete"></i></a></td>
                                                         </tr>
                                                     @endforeach
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        @endif
+
                                     </div>
                                 </div>
                             </div>

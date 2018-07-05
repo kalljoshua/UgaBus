@@ -126,5 +126,19 @@ src="/client_inc/assets/plugins/supersized.3.1.3.min.js"></script>
 		    });
 		    
 </script>
+<script>
+    /*$(document).ready(function() {
+        let el = $('#select-seats');
+        el.css('color','gray');
+        el.change(function() {
+            let current = el.val();
+            if (current !== 'null') {
+                el.css('color','black');
+            } else {
+                el.css('color','gray');
+            }
+        });
+    });*/
+</script>
 </body>
 </html>

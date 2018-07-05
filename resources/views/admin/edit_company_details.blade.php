@@ -28,9 +28,10 @@
     </header>
     <div class="container-fluid animatedParent animateOnce">
         <div class="animated fadeInUpShort">
+            @include('flash::message')
             <div class="row my-3">
                 <div class="col-md-7  offset-md-2">
-                    <form method="post" action="/admin/companies/save" enctype="multipart/form-data">
+                    <form method="post" action="/admin/companies/update" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <div class="card no-b  no-r">
                             <div class="card-body">
@@ -42,7 +43,8 @@
                                             <input id="company_name" name="company_name"
                                                    placeholder="Enter Company Name"
                                                    class="form-control r-0 light s-12 "
-                                                   type="text">
+                                                   type="text"
+                                                    value="{{$company->company_name}}">
                                         </div>
                                         <div class="form-row mt-1">
                                             <div class="form-group col-4 m-0">
@@ -51,7 +53,8 @@
                                                 <input id="email" name="email"
                                                        placeholder="support@email.com"
                                                        class="form-control r-0 light s-12 "
-                                                       type="text">
+                                                       type="text"
+                                                        value="{{$company->email}}">
                                             </div>
 
                                             <div class="form-group col-4 m-0">
@@ -59,7 +62,8 @@
                                                             class="icon-phone mr-2"></i>Phone</label>
                                                 <input id="phone" name="phone" placeholder="05112345678"
                                                        class="form-control r-0 light s-12 "
-                                                       type="text">
+                                                       type="text"
+                                                        value="{{$company->phone}}">
                                             </div>
                                             <div class="form-group col-4 m-0">
                                                 <label for="mobile" class="col-form-label s-12"><i
@@ -67,7 +71,8 @@
                                                 <input id="mobile" name="mobile"
                                                        placeholder="eg: 0084709643"
                                                        class="form-control r-0 light s-12 "
-                                                       type="text">
+                                                       type="text"
+                                                        value="{{$company->mobile}}">
                                             </div>
 
                                         </div>
@@ -78,7 +83,8 @@
                                                     <input id="website" name="website"
                                                            placeholder="http://"
                                                            class="form-control r-0 light s-12 "
-                                                           type="text">
+                                                           type="text"
+                                                            value="{{$company->website}}">
                                                 </div>
                                             </div>
                                         </div>
@@ -89,7 +95,8 @@
                                                     <input id="website" name="facebook"
                                                            placeholder="http://"
                                                            class="form-control r-0 light s-12 "
-                                                           type="text">
+                                                           type="text"
+                                                            value="{{$company->facebook}}">
                                                 </div>
                                             </div>
                                         </div>
@@ -100,7 +107,8 @@
                                                     <input id="website" name="twitter"
                                                            placeholder="http://"
                                                            class="form-control r-0 light s-12 "
-                                                           type="text">
+                                                           type="text"
+                                                            value="{{$company->twitter}}">
                                                 </div>
                                             </div>
                                         </div>
@@ -109,8 +117,13 @@
                                         <label for="file" class="col-form-label s-12">LOGO</label>
                                         <div class="dz-default dz-message">
                                             <div>
-                                                <img id="blah" src="/user_avatars/placeholder.svg" alt="your image"
-                                                     class="img-thumbnail rounded float-left"/>
+                                                @if($company->logo != '')
+                                                    <img id="blah" src="/company_logos/{{$company->logo}}" alt="your image"
+                                                         class="img-thumbnail rounded float-left"/>
+                                                @else
+                                                    <img id="blah" src="/user_avatars/placeholder.svg" alt="your image"
+                                                         class="img-thumbnail rounded float-left"/>
+                                                @endif
                                             </div>
                                         </div>
                                         <input hidden id="files" type='file' onchange="readURL(this);" name="file"/>
@@ -123,18 +136,21 @@
                                         <label for="address" class="col-form-label s-12">Address</label>
                                         <input type="text" name="address" class="form-control r-0 light s-12"
                                                id="address"
-                                               placeholder="Enter Address">
+                                               placeholder="Enter Address"
+                                                value="{{$company->hq_address}}">
                                     </div>
 
                                     <div class="form-group col-3 m-0">
                                         <label for="inputCity" class="col-form-label s-12">City</label>
                                         <input type="text" name="city" class="form-control r-0 light s-12"
-                                               id="inputCity">
+                                               id="inputCity"
+                                                value="{{$company->hq_city}}">
                                     </div>
                                 </div>
                             </div>
                             <hr>
                             <div class="card-body">
+                                <input type="hidden" name="id" value="{{$company->id}}">
                                 <button type="submit" class="btn btn-primary btn-lg"><i
                                             class="icon-save mr-2"></i>Save
                                     Data

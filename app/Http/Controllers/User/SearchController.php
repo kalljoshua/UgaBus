@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 use Input, Redirect;
 use App\Route;
 
@@ -65,6 +66,7 @@ class SearchController extends Controller
                 ->paginate(5);
                 //return $routes;
             if ($routes->count() > 0) {
+                Session::put('departure_date', $date);
                 return view('user.search-results', ['routes' => $routes, 'seats' => $seats]);
             } else {
                 flash('No results found for this search')->error();

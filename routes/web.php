@@ -38,7 +38,7 @@ Route::get('/story/{id}', 'User\StoriesController@displayStory')->name('story.di
 //Booking routes
 Route::get('/bus-details/{id}', 'User\BusController@busDetails')->name('bus.details');
 Route::post('/bus-booking', 'User\BusBookingController@busBooking')->name('bus.booking');
-Route::get('/make-payment/{id}', 'User\BusBookingController@makePayment')->name('make.payment');
+Route::get('/make-payment', 'User\BusBookingController@makePayment')->name('make.payment');
 Route::post('/process-payment', 'User\BusBookingController@processPayment')->name('process.payment');
 Route::get('/payment-reciepts', 'User\BusBookingController@paymentReciept')->name('payment.reciept');
 
@@ -75,14 +75,19 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('/admin/staff/create', 'Admin\AdminsController@create')->name('admin.create_new_staff');
     Route::get('/admin/staff/{id}/edit', 'Admin\AdminsController@edit')->name('admin.edit_staff_details');
     Route::post('/admin/staff/update', 'Admin\AdminsController@update')->name('admin.staff.update');
+    Route::get('/admin/staff/{id}/delete', 'Admin\AdminsController@delete')->name('admin.staff.delete');
 
     //Users
     Route::get('/admin/users', 'Admin\UsersController@getAllUsers')->name('admin.users');
+    Route::get('/admin/users/{id}/suspend', 'Admin\UsersController@suspendUser')->name('admin.users.suspend');
 
     //Companies
     Route::get('/admin/companies/create', 'Admin\CompaniesController@create')->name('admin.companies.create');
     Route::post('/admin/companies/save', 'Admin\CompaniesController@save')->name('admin.companies.save');
     Route::get('/admin/companies', 'Admin\CompaniesController@getAllCompanies')->name('admin.companies');
+    Route::get('/admin/companies/{id}/edit', 'Admin\CompaniesController@edit')->name('admin.companies.edit');
+    Route::post('/admin/companies/update', 'Admin\CompaniesController@update')->name('admin.companies.update');
+    Route::get('/admin/companies/{id}/delete', 'Admin\CompaniesController@delete')->name('admin.companies.delete');
 
     //Buses
     Route::get('/admin/buses/create', 'Admin\BusesController@createBus')->name('admin.create_new_bus');
@@ -109,6 +114,9 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('/admin/routes', 'Admin\RoutesController@getAllRoutes')->name('admin.routes');
     Route::get('/admin/routes/create', 'Admin\RoutesController@create')->name('admin.routes.create');
     Route::post('/admin/routes/save', 'Admin\RoutesController@save')->name('admin.routes.save');
+    Route::get('/admin/routes/{id}/delete', 'Admin\RoutesController@delete')->name('admin.routes.delete');
+    Route::get('/admin/routes/{id}/edit', 'Admin\RoutesController@edit')->name('admin.routes.edit');
+    Route::post('/admin/routes/update', 'Admin\RoutesController@update')->name('admin.routes.update');
 
     //Parks
     Route::get('/admin/parks', 'Admin\ParksController@getAllParks')->name('admin.parks');

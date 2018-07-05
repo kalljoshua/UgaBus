@@ -34,65 +34,63 @@
                 <div class="col-md-12">
                     <div class="card no-b shadow">
                         <div class="card-body p-0">
-                            <div class="table-responsive">
-                                <table class="table table-hover ">
-                                    <tbody>
-                                    <tr class="no-b" style="font-size:14px;">
-                                        <td class="w-10">
-                                            <strong>Bus Image</strong>
-                                        </td>
-                                        <td>
-                                            <strong>Vehicle Description</strong>
-                                        </td>
-                                        <td><strong>License Plate Number</strong></td>
-                                        <td><strong></strong>Primary Color</td>
-                                        <td><strong>Secondary Color</strong></td>
-                                        <td><strong>Status</strong></td>
-                                        <td><strong>Routes</strong></td>
-                                        <td><strong>Actions</strong></td>
-                                    </tr>
-                                    @foreach($buses as $bus)
-                                        <tr class="no-b">
-                                            <td class="w-10">
-                                                <img src="/bus_images/{{$bus->image}}" alt="">
-                                            </td>
+                            @if($buses->count() < 1)
+                                <h3 style="padding: 10px;padding-top: 20px;">No Buses in the system</h3>
+                            @else
+                                <div class="table-responsive">
+                                    <table class="table table-hover ">
+                                        <tbody>
+                                        <tr class="no-b" style="font-size:14px;">
                                             <td>
-                                                <h6>{{$bus->make}} <i>{{$bus->model}}</i></h6>
-                                                <small class="text-muted">{{$bus->company->company_name}}</small>
+                                                <strong>Vehicle Description</strong>
                                             </td>
-                                            <td>{{$bus->license_plate_number}}</td>
-                                            <td>{{$bus->primary_color}}</td>
-                                            <td>{{$bus->secondary_color}}</td>
-                                            <td>@if($bus->active == 1)
-                                                    <span class="badge badge-success">Active</span>
-                                                @else
-                                                    <span class="badge badge-danger">Not active</span>
-                                                @endif</td>
-                                            <td>
-                                                @if($bus->routes->count() < 1)
-                                                    <a href="/admin/buses/{{$bus->id}}/route"><span
-                                                                class="badge badge-warning">Add route</span></a>
-                                                @else
-                                                    @foreach($bus->routes as $route)
-                                                        <span>{{$route->travel_from}} To {{$route->travel_to}}</span>
-                                                        <br>
-                                                    @endforeach
-                                                @endif
-
-                                            </td>
-                                            <td>
-                                                <a class="btn-fab btn-fab-sm btn-primary shadow text-white mr-3"
-                                                   href="/admin/buses/{{$bus->id}}/edit"><i
-                                                            class="icon-pencil"></i></a>
-                                                <a class="btn-fab btn-fab-sm btn-danger shadow text-white"
-                                                   href="/admin/buses/{{$bus->id}}/delete"><i
-                                                            class="icon-delete"></i></a>
-                                            </td>
+                                                <td><strong>LICENSE PLATE NUMBER</strong></td>
+                                            <td><strong>PRIMANY COLOR</strong></td>
+                                            <td><strong>SECONDARY COLOR</strong></td>
+                                            <td><strong>STATUS</strong></td>
+                                            <td><strong>ROUTES</strong></td>
+                                            <td><strong>ACTIONS</strong></td>
                                         </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
+                                        @foreach($buses as $bus)
+                                            <tr class="no-b">
+                                                <td>
+                                                    <h6>{{$bus->make}} <i>{{$bus->model}}</i></h6>
+                                                    <small class="text-muted text-blue">{{$bus->company->company_name}}</small>
+                                                </td>
+                                                <td>{{$bus->license_plate_number}}</td>
+                                                <td>{{$bus->primary_color}}</td>
+                                                <td>{{$bus->secondary_color}}</td>
+                                                <td>@if($bus->active == 1)
+                                                        <span class="badge badge-success">Active</span>
+                                                    @else
+                                                        <span class="badge badge-danger">Not active</span>
+                                                    @endif</td>
+                                                <td>
+                                                    @if($bus->routes->count() < 1)
+                                                        <a href="/admin/buses/{{$bus->id}}/route"><span
+                                                                    class="badge badge-warning">Add route</span></a>
+                                                    @else
+                                                        @foreach($bus->routes as $route)
+                                                            <span>{{$route->travel_from}} To {{$route->travel_to}}</span>
+                                                            <br>
+                                                        @endforeach
+                                                    @endif
+
+                                                </td>
+                                                <td>
+                                                    <a class="btn-fab btn-fab-sm btn-primary shadow text-white mr-3"
+                                                       href="/admin/buses/{{$bus->id}}/edit"><i
+                                                                class="icon-pencil"></i></a>
+                                                    <a class="btn-fab btn-fab-sm btn-danger shadow text-white"
+                                                       href="/admin/buses/{{$bus->id}}/delete"><i
+                                                                class="icon-delete"></i></a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Agent;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Exception;
+use Symfony\Component\Debug\Exception\FatalThrowableError;
 
 class AgentsController extends Controller
 {
@@ -50,14 +52,17 @@ class AgentsController extends Controller
         $agent->email = $email;
 
         if ($agent->save()) {
-            $image_name = time() . $file->getClientOriginalName();
-            if ($file->move($destinationPath, $image_name)) {
-                $agent->avatar = $image_name;
-            } else {
-                $is_uploaded = false;
+            if ($file != null) {
+                $image_name = time() . $file->getClientOriginalName();
+                if ($file->move($destinationPath, $image_name)) {
+                    $agent->avatar = $image_name;
+                    $agent->save();
+                } else {
+                    $is_uploaded = false;
+                }
+                flash('Agent added successfully!');
             }
 
-            flash('Agent add!');
             return redirect('/admin/agents');
 
         } else {
@@ -137,15 +142,28 @@ class AgentsController extends Controller
             flash('Agent changes saved!');
             return redirect('/admin/agents/' . $agent->id . '/edit');
         } else {
-            $is_save_failed = true;
+            flash('Failed saving changes!')->error();
+            return redirect('/admin/agents/' . $agent->id . '/edit');
         }
 
     }
 
-    function delete($id){
+    function delete($id)
+    {
         $agent = Agent::find($id);
-        $agent->delete();
 
+        $file = public_path().'/user_avatars/'.$agent->avatar;
+
+        try {
+            if (!unlink($file)) {
+                flash("Error deleting $file")->error();
+            }
+        } catch (Exception $e) {
+            // No image
+        }
+
+
+        $agent->delete();
         flash('Agent deleted!');
         return redirect('/admin/agents');
     }

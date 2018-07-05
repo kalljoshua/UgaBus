@@ -123,6 +123,7 @@
                                 </div>
                             </div>
                         </div>
+{{--
                         <div class="card mt-4">
                             <h6 class="card-header white">Vehicle Image</h6>
                             <div class="card-body">
@@ -145,6 +146,7 @@
                                 </div>
                             </div>
                         </div>
+--}}
                     </div>
                     <div class="col-md-3">
                         <div class="card mt-4">

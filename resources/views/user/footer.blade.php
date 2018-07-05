@@ -56,7 +56,7 @@
 					<h4>Featured Buses</h4>
 					<ul>
 						@foreach($buses as $bus)
-							<li><a href="{{route('bus.details',['id'=>$bus->id])}}"><b style="color: white;">{{$bus->agent->company}}</b></a></li>
+							<li><a href="{{route('bus.details',['id'=>$bus->id])}}"><b style="color: white;">{{$bus->company->company_name}}</b></a></li>
 						@endforeach
 					</ul>
 				</div>

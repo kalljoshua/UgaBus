@@ -16,8 +16,7 @@
 							</button>
 							
 							<!-- BEGIN: LOGO -->
-							<a class="navbar-brand logo" href="/">
-								UgaBus
+							<a class="navbar-brand logo app-logo" href="/">
 							</a>
 						</div>
 						

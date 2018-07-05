@@ -38,9 +38,11 @@
             <div class="spinner-layer spinner-blue">
                 <div class="circle-clipper left">
                     <div class="circle"></div>
-                </div><div class="gap-patch">
+                </div>
+                <div class="gap-patch">
                     <div class="circle"></div>
-                </div><div class="circle-clipper right">
+                </div>
+                <div class="circle-clipper right">
                     <div class="circle"></div>
                 </div>
             </div>
@@ -48,9 +50,11 @@
             <div class="spinner-layer spinner-red">
                 <div class="circle-clipper left">
                     <div class="circle"></div>
-                </div><div class="gap-patch">
+                </div>
+                <div class="gap-patch">
                     <div class="circle"></div>
-                </div><div class="circle-clipper right">
+                </div>
+                <div class="circle-clipper right">
                     <div class="circle"></div>
                 </div>
             </div>
@@ -58,9 +62,11 @@
             <div class="spinner-layer spinner-yellow">
                 <div class="circle-clipper left">
                     <div class="circle"></div>
-                </div><div class="gap-patch">
+                </div>
+                <div class="gap-patch">
                     <div class="circle"></div>
-                </div><div class="circle-clipper right">
+                </div>
+                <div class="circle-clipper right">
                     <div class="circle"></div>
                 </div>
             </div>
@@ -68,9 +74,11 @@
             <div class="spinner-layer spinner-green">
                 <div class="circle-clipper left">
                     <div class="circle"></div>
-                </div><div class="gap-patch">
+                </div>
+                <div class="gap-patch">
                     <div class="circle"></div>
-                </div><div class="circle-clipper right">
+                </div>
+                <div class="circle-clipper right">
                     <div class="circle"></div>
                 </div>
             </div>
@@ -82,23 +90,29 @@
     <aside class="main-sidebar fixed offcanvas shadow">
         <section class="sidebar">
             <div class="w-80px mt-3 mb-3 ml-3">
-                {{--<img src="/admin_inc/assets/img/basic/logo.png" alt="">--}}
-                <h4>Uga Bus</h4>
+                <img src="/images/logo_admin.png" alt="Logo">
+                {{--<h4>Uga Bus</h4>--}}
             </div>
             <div class="relative">
                 <a data-toggle="collapse" href="#userSettingsCollapse" role="button" aria-expanded="false"
-                   aria-controls="userSettingsCollapse" class="btn-fab btn-fab-sm fab-right fab-top btn-primary shadow1 ">
+                   aria-controls="userSettingsCollapse"
+                   class="btn-fab btn-fab-sm fab-right fab-top btn-primary shadow1 ">
                     <i class="icon icon-cogs"></i>
                 </a>
                 <div class="user-panel p-3 light mb-2">
                     <div>
                         <div class="float-left image">
-                            <img class="user_avatar" src="/user_avatars/avatar.jpg" alt="User Image">
+                            <img class="user_avatar" src="/user_avatars/{{Auth::guard('admin')->user()->avatar}}"
+                                 height="60px" alt="User Image">
                         </div>
                         <div class="float-left info">
                             <h6 class="font-weight-light mt-2 mb-1">{{Auth::guard('admin')->user()->last_name}}
                                 {{Auth::guard('admin')->user()->first_name}}</h6>
-                            <a href="#">Admin</a>
+                            @if(Auth::guard('admin')->user()->user_level == 1)
+                                <a href="#">Super Admin</a>
+                            @else
+                                <a href="#">Admin</a>
+                            @endif
                         </div>
                     </div>
                     <div class="clearfix"></div>
@@ -107,7 +121,8 @@
                             <a href="index.html" class="list-group-item list-group-item-action ">
                                 <i class="mr-2 icon-umbrella text-blue"></i>Profile
                             </a>
-                            <a href="/admin/logout" class="list-group-item list-group-item-action"><i class="mr-2 icon-security text-purple"></i>Logout</a>
+                            <a href="/admin/logout" class="list-group-item list-group-item-action"><i
+                                        class="mr-2 icon-security text-purple"></i>Logout</a>
 
                         </div>
                     </div>
@@ -183,12 +198,12 @@
                         </li>
                     </ul>
                 </li>
-                <li class="treeview"><a href="#"><i class="icon icon-accessibility text-danger s-18"></i>Staff Users<i
+                <li class="treeview"><a href="#"><i class="icon icon-accessibility text-danger s-18"></i>Admin Users<i
                                 class="icon icon-angle-left s-18 pull-right"></i></a>
                     <ul class="treeview-menu">
-                        <li><a href="/admin/staff"><i class="icon icon-circle-o"></i>All Staffs</a>
+                        <li><a href="/admin/staff"><i class="icon icon-circle-o"></i>All Admins</a>
                         </li>
-                        <li><a href="/admin/staff/create"><i class="icon icon-add"></i>Add Staff</a>
+                        <li><a href="/admin/staff/create"><i class="icon icon-add"></i>Add Admin</a>
                         </li>
                     </ul>
                 </li>
@@ -255,7 +270,7 @@
             </div>
         </div>
         <div class="navbar navbar-expand d-flex navbar-dark justify-content-between bd-navbar blue accent-3 shadow">
-            <div class="relative">
+            {{--<div class="relative">
                 <div class="d-flex">
                     <div>
                         <a href="#" data-toggle="offcanvas" class="paper-nav-toggle pp-nav-toggle">
@@ -266,9 +281,9 @@
                         <h1 class="nav-title text-white">Dashboard</h1>
                     </div>
                 </div>
-            </div>
+            </div>--}}
             <!--Top Menu Start -->
-            <div class="navbar-custom-menu p-t-10">
+            {{--<div class="navbar-custom-menu p-t-10">
                 <ul class="nav navbar-nav">
                     <!-- Messages-->
                     <!-- Notifications -->
@@ -281,7 +296,7 @@
                     </li>
                     <!-- Right Sidebar Toggle Button -->
                 </ul>
-            </div>
+            </div>--}}
         </div>
 
         {{--Content area--}}
@@ -310,6 +325,61 @@
             reader.readAsDataURL(input.files[0]);
         }
     }
+
+    // A $( document ).ready() block.
+    $(document).ready(function () {
+        let el = $('#travel_days');
+        if (el != null) {
+            let days = el.val();
+            if (typeof days !== 'undefined') {
+                let day = days.split(":");
+
+                mon = day[0];
+                tue = day[1];
+                wed = day[2];
+                thu = day[3];
+                fri = day[4];
+                sat = day[5];
+                sun = day[6];
+
+                if (mon === '1' && tue === '1' && wed === '1' && thu === '1' && fri === '1'
+                    && sat === '1' && sun === '1') {
+                    document.getElementById("checkedAll").checked = true;
+                }
+
+                if (mon === '1') {
+                    document.getElementById("user_id_1").checked = true;
+                }
+
+                if (tue === '1') {
+                    document.getElementById("user_id_2").checked = true;
+                }
+
+                if (wed === '1') {
+                    document.getElementById("user_id_3").checked = true;
+                }
+
+                if (thu === '1') {
+                    document.getElementById("user_id_4").checked = true;
+                }
+
+                if (fri === '1') {
+                    document.getElementById("user_id_5").checked = true;
+                }
+
+                if (sat === '1') {
+                    document.getElementById("user_id_6").checked = true;
+                }
+
+                if (sun === '1') {
+                    document.getElementById("user_id_7").checked = true;
+                }
+            }
+
+
+        }
+
+    });
 </script>
 <script>
     $('div.alert').not('.alert-important').delay(3000).fadeOut(350);

@@ -888,12 +888,24 @@ h5 {
 .ui-datepicker-next {
 	float: right;
 }
+
+/* Did some sharby work here */
 .custom-select-button {
 	background: transparent none repeat scroll 0 0;
     border: 1px solid #BEC4C8;
     border-radius: 0;
     height: 40px;
+	color:#ffffff;
 }
+
+.custom-select-button-mini {
+	background: #ffffff;
+	border: 1px solid #BEC4C8;
+	border-radius: 0;
+	height: 40px;
+	color:black;
+}
+
 .bootstrap-select.btn-group .dropdown-menu {
 	background: #07253F;
 	border-radius: 0;
@@ -903,14 +915,25 @@ h5 {
 	background: #07253F !important;
 }
 .bootstrap-select.btn-group .dropdown-menu li a:hover {
-	color: #1f4294;
+	/*color: #1f4294;*/
+	color: #f9676b;
 }
 .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
 	width: 100%;
+	color: #ffffff;
 }
 .btn:hover {
-	color: #1f4294;
+	/*color: #1f4294;*/
+	color: #ffffff;
 }
+select option { color: white; }
+
+.btn.focus, .btn:focus, .btn:hover {
+	color: #ffffff;
+	text-decoration: none;
+}
+/*End of custom sharby work*/
+
 .search-button {
 	background: #f9676b;
     border-radius: 0;
@@ -7364,4 +7387,10 @@ h5 {
 	.product-grid-view  {
 		width: 100%;
 	}
+}
+
+.app-logo{
+	background-image: url("/images/logo.png");
+	background-repeat: no-repeat;
+	width:200px;
 }

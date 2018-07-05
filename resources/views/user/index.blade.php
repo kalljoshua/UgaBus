@@ -50,14 +50,14 @@
 											<div class="col-md-6 col-sm-6 search-col-padding">
 												<label style="color:white;">Leaving From</label>
 												<div class="input-group">
-													<input type="text" name="departure" class="form-control" required placeholder="E.g. Kampala">
+													<input type="text" name="departure" class="form-control" required placeholder="E.g. Kampala" style="color:#ffffff">
 													<span class="input-group-addon"><i class="fa fa-map-marker fa-fw"></i></span>
 												</div>
 											</div>
 											<div class="col-md-6 col-sm-6 search-col-padding">
 												<label style="color:white;">Going To</label>
 												<div class="input-group">
-													<input type="text" name="destination" class="form-control" required placeholder="E.g. Gulu">
+													<input type="text" name="destination" class="form-control" required placeholder="E.g. Gulu" style="color:#ffffff">
 													<span class="input-group-addon"><i class="fa fa-map-marker fa-fw"></i></span>
 												</div>
 											</div>
@@ -65,13 +65,13 @@
 											<div class="col-md-6 col-sm-6 search-col-padding">
 												<label style="color:white;">Travel Date</label>
 												<div class="input-group">
-													<input type="text" id="car_start" name="date" class="form-control" placeholder="MM/DD/YYYY">
+													<input type="text" id="car_start" name="date" class="form-control" placeholder="MM/DD/YYYY" style="color:#ffffff">
 													<span class="input-group-addon"><i class="fa fa-calendar fa-fw"></i></span>
 												</div>
 											</div>
 											<div class="col-md-6 col-sm-6 search-col-padding">
-												<label style="color:white;">No of Seats</label><br>
-												<select class="selectpicker" name="seats">
+												<label for="select-seats" style="color:white;">No of Seats</label><br>
+												<select id="select-seats" class="selectpicker" name="seats">
 													<option value="1">1</option>
 													<option value="2">2</option>
 													<option value="3">3</option>
@@ -191,7 +191,7 @@
 									<img src="/client_inc/assets/images/offer1.jpg" alt="Cruise">
 								</div>
 								<div class="col-md-7 col-xs-6">
-									<h5>{{$route->bus->agent['company']}}
+									<h5>{{$route->bus->company->company_name}}
 										<i class="tour-price-single animated growIn slower"
 	                                              style="color: #FDC600; font-size: 15px">
 	                                                @for ($k=1; $k <= 5 ; $k++)

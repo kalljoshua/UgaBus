@@ -28,9 +28,10 @@
     </header>
     <div class="container-fluid animatedParent animateOnce">
         <div class="animated fadeInUpShort">
+            @include('flash::message')
             <div class="row my-3">
                 <div class="col-md-7  offset-md-2">
-                    <form method="post" action="/admin/staff/save">
+                    <form method="post" action="/admin/staff/save" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <div class="card no-b  no-r">
                             <div class="card-body">

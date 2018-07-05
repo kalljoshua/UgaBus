@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Exception;
 
 class AdminsController extends Controller
 {
@@ -29,6 +30,10 @@ class AdminsController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|string
      */
     function save(Request $request){
+
+        //Move Uploaded File
+        $destinationPath = public_path() . '/user_avatars';
+
         $is_password_match = false;
 
         $first_name = $request->input('first_name');
@@ -44,6 +49,8 @@ class AdminsController extends Controller
         $password = $request->input('password');
         $repeat_password = $request->input('repeat_password');
         $role = $request->input('role');
+
+        $file = $request->file("file");
 
 
         if($password == $repeat_password){
@@ -69,17 +76,27 @@ class AdminsController extends Controller
             $staff->user_level = $role;
 
             if($staff->save()){
-                //Staff saved successfully
+                if ($file != null) {
+                    $image_name = time() . $file->getClientOriginalName();
+                    if ($file->move($destinationPath, $image_name)) {
+                        $staff->avatar = $image_name;
+                        $staff->save();
+                    } else {
+                        $is_uploaded = false;
+                    }
+                    flash('Admin added successfully!');
+                }
+
+                return redirect('/admin/staff');
             }else{
-                return "Failed to save the data";
+                flash('Failed to add admin!')->error();
+                return redirect('/admin/staff/create');
             }
 
         }else{
-            return "Password miss match";
+            flash('Password mismatch!')->error();
+            return redirect('/admin/staff/create');
         }
-
-        $staff = Admin::all();
-        return view('admin.staff')->with('staff',$staff);
 
     }
 
@@ -90,6 +107,10 @@ class AdminsController extends Controller
     }
 
     function update(Request $request){
+
+        //Move Uploaded File
+        $destinationPath = public_path() . '/user_avatars';
+
         $is_password_match = false;
         $is_password_change = false;
 
@@ -107,6 +128,8 @@ class AdminsController extends Controller
         $repeat_password = $request->input('repeat_password');
         $role = $request->input('role');
         $id = $request->input('user_id');
+
+        $file = $request->file("file");
 
         $staff = Admin::find($id);
 
@@ -134,10 +157,41 @@ class AdminsController extends Controller
             }
         }
 
-        if($staff->save()){
-            return view('admin.edit_staff_details')->with('user', $staff);
-        }else{
-            //Save failed
+        if ($file != null) {
+            $image_name = time() . $file->getClientOriginalName();
+            if ($file->move($destinationPath, $image_name)) {
+                $staff->avatar = $image_name;
+            } else {
+                $is_uploaded = false;
+            }
         }
+
+        if($staff->save()){
+            flash('Admin changes saved successfully!');
+            return redirect('/admin/staff/' . $staff->id . '/edit');
+        }else{
+            flash('Failed saving changes!')->error();
+            return redirect('/admin/staff/' . $staff->id . '/edit');
+        }
+    }
+
+    function delete($id)
+    {
+        $staff = Admin::find($id);
+
+        $file = public_path().'/user_avatars/'.$staff->avatar;
+
+        try {
+            if (!unlink($file)) {
+                flash("Error deleting $file")->error();
+            }
+        } catch (Exception $e) {
+            // No image
+        }
+
+
+        $staff->delete();
+        flash('Admin deleted!');
+        return redirect('/admin/staff');
     }
 }

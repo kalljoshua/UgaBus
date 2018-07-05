@@ -14,14 +14,16 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    public $buses = '';
+
     public function __construct() {
        	
-    	$buses = Bus::orderBy('id','DESC')->take(7)->get();
+    	$this->buses = Bus::orderBy('id','DESC')->take(7)->get();
     	$route_id = Booking::select('route_id')->groupBy('route_id')
     	->orderByRaw('COUNT(*) DESC')->take(7)->get();
 
 
-       View::share ( 'buses',$buses );
+       View::share ( 'buses',$this->buses );
        View::share ( 'route_id',$route_id );
     }  
 }

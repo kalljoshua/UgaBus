@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\GuestBooking;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
@@ -24,7 +25,10 @@ class BusBookingController extends Controller
         ->with('seats', $seats);
     }
 
-    function makePayment($id){
+    function makePayment(){
+        if (Session::has('route')) {
+            $id = Session::get('route');
+        }
         $route = Route::find($id);
         $payment_methods = PaymentMethod::all();
         return view('user.make-payment')
@@ -33,20 +37,29 @@ class BusBookingController extends Controller
     }
 
     function processPayment(Request $request){
-        $booking =  new Booking();
-        $user =  User::find(2);
-        $booking->number_of_seats = $request->input('seats');
-        $booking->payment_method_id = $request->input('getway');
-        $booking->route_id = $request->input('route_id');
+        if (Session::has('departure_date')) {
+            $date = Session::get('departure_date');
+            $departure_date = date("Y-m-d", strtotime($date));
+        }
+
         if(Auth::guard('user')->user()){
+            $booking =  new Booking();
             $booking->user_id = Auth::guard('user')->user()->id;
+            $user =  User::find(2);
+            $booking->number_of_seats = $request->input('seats');
+            $booking->payment_method_id = $request->input('getway');
+            $booking->route_id = $request->input('route_id');
+            $booking->departure_date = $departure_date;
         }
         else{
-            $booking->user_id = 2;
-            $booking->guest_number = $request->input('phonenumber');
-            $user->first_name = $request->input('firstname');
-            $user->last_name = $request->input('lastname');
-            $user->phone = $request->input('phonenumber');
+            $booking = new GuestBooking();
+            $booking->route_id = $request->input('route_id');
+            $booking->payment_method_id = $request->input('getway');
+            $booking->number_of_seats = $request->input('seats');
+            $booking->first_name = $request->input('firstname');
+            $booking->last_name = $request->input('lastname');
+            $booking->phone = $request->input('phonenumber');
+            $booking->departure_date = $departure_date;
         }
         if (Session::has('total_price')) {
             $total = Session::get('total_price');
@@ -58,7 +71,7 @@ class BusBookingController extends Controller
         if($request->input('email')) $email = $request->input('email');
         $pay_method = $request->input('getway');
 
-        if($booking->save() && $user->save()){ 
+        if($booking->save()){
             if($pay_method){
                 //process_payment();
                 return view('user.payment-directions');
