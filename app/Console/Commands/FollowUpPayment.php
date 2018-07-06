@@ -4,9 +4,13 @@ namespace App\Console\Commands;
 
 use App\GuestPayment;
 use App\GuestSms;
+use App\Helpers\Logger;
+use App\Payment;
 use App\TwilioSMS\SMS;
+use App\UserSms;
 use App\YoPayment\PaymentModule;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 
 class FollowUpPayment extends Command
 {
@@ -41,25 +45,36 @@ class FollowUpPayment extends Command
      */
     public function handle()
     {
-        /*$path = storage_path('app/log.txt');
-        $myfile = fopen($path, "a") or die("Unable to open file!");
-        $txt = date('Y-d-m H:m:s') . " - Follow up triggered\n";
-        fwrite($myfile, $txt);
-        fclose($myfile);*/
-
         $this->followUpPayments();
         $this->info('Followup done successfully!');
     }
 
     function followUpPayments()
     {
-        $resp = array();
 
-        $g_payments = GuestPayment::where('follow_up_status', 0)
+        $first = DB::table('guest_payments')
+            ->select('id', 'guest_booking_id', 'transaction_reference', 'external_reference', 'transaction_status',
+                'amount', 'follow_up_status', 'claimed_booking_type')
+            ->where('follow_up_status', 0);
+
+        $all_payments = DB::table('payments')
+            ->select('id', 'booking_id as b_id', 'transaction_reference', 'external_reference', 'transaction_status',
+                'amount', 'follow_up_status', 'claimed_booking_type')
+            ->where('follow_up_status', 0)
+            ->unionAll($first)
             ->get();
 
-        if ($g_payments->count > 0) {
-            foreach ($g_payments as $payment) {
+        if ($all_payments->count() > 0) {
+            foreach ($all_payments as $payment) {
+                if ($payment->claimed_booking_type == 9998) {
+
+                    $payment = GuestPayment::find($payment->id);
+
+                } elseif ($payment->claimed_booking_type == 9999) {
+
+                    $payment = Payment::find($payment->id);
+
+                }
                 $transactionReference = $payment->transaction_reference;
                 $res = $this->follow_up_payment($transactionReference);
 
@@ -67,23 +82,39 @@ class FollowUpPayment extends Command
 
                     $this->sendSuccessSMS($payment);
                     $payment->transaction_status = "SUCCEEDED";
+                    $payment->follow_up_status = 1;
+                    $payment->save();
+                    Logger::followUpLog('Transaction TID = ' . $res["TransactionReference"] . ' SUCCEEDED ');
+
+                } elseif ($res["Status"][0] == "OK" && $res["TransactionStatus"][0] == "PENDING") {
+
+                    //todo Do something awesome to handle pending transactions
+                    $payment->transaction_status = "PENDING";
+                    //$payment->follow_up_status = 2; //Handle pending flag from here
+                    $payment->save();
+                    Logger::followUpLog(json_encode($res));
 
                 } elseif ($res["Status"][0] == "ERROR" && $res["TransactionStatus"][0] == "FAILED") {
 
                     $this->sendFailSMS($payment);
                     $payment->transaction_status = "FAILED";
+                    $payment->follow_up_status = 1;
+                    $payment->save();
+                    Logger::followUpErrorLog(json_encode($res));
 
+                } else {
+                    //Fatal transaction error
+                    Logger::followUpErrorLog(json_encode($res));
                 }
 
-                $payment->follow_up_status = 1;
-                $payment->save();
-
-                array_push($resp, $res);
             }
 
             return "done";
+
         } else {
+
             return "No jobs";
+
         }
 
 
@@ -96,13 +127,19 @@ class FollowUpPayment extends Command
     function sendSuccessSMS($payment)
     {
 
-        $user_phone_number = '+' . $payment->guestBooking->phone;
-        $user_agent_number = '+' . $payment->guestBooking->route->bus->agent->phone;
+        if ($payment->claimed_booking_type == 9998) {
+            $user_phone_number = '+' . $payment->guestBooking->phone;
+            $user_agent_number = '+' . $payment->guestBooking->route->bus->agent->phone;
+        } elseif ($payment->claimed_booking_type == 9999) {
+            $user_phone_number = '+' . $payment->booking->user->phone;
+            $user_agent_number = '+' . $payment->booking->route->bus->agent->phone;
+        }
 
-        $agent_message = 'Customer with number ' . $user_phone_number . ' has booked via UGABUS with ticket ID ' .
+
+        $agent_message = 'Customer with number ' . $user_phone_number . ' has booked via UGA BUS with ticket ID ' .
             $payment->external_reference . '. Please confirm a seat number for them. For inquiries, call 0704741443.';
 
-        $user_message = date('Y-m-d H:i:s') . ' Thank you for using UGA BUS, Phone no :' .
+        $user_message = date('Y-m-d H:i:s') . ' Thank you for choosing UGA BUS, Phone no :' .
             $user_phone_number . ', Your Booking is successful, Your ticket Id = ' . $payment->external_reference .
             '. For inquiries, call 0704741443';
 
@@ -111,36 +148,57 @@ class FollowUpPayment extends Command
         $message_sids = $sms->sendFinalSMS($user_agent_number, $agent_message, $user_phone_number, $user_message);
 
         if ($message_sids != null || $message_sids != '') {
-            $guest_sms = new GuestSms();
-            $guest_sms->guest_user_phone = $user_phone_number;
-            $guest_sms->guest_user_message_text = $user_message;
-            $guest_sms->agent_phone = $user_agent_number;
-            $guest_sms->agent_message_text = $agent_message;
-            $guest_sms->twilio_guest_message_sid = $message_sids["user_msg_sid"];
-            $guest_sms->twilio_agent_message_sid = $message_sids["agent_msg_sid"];
+            if ($payment->claimed_booking_type == 9998) {
+                $sms = new GuestSms();
+            } elseif ($payment->claimed_booking_type == 9999) {
+                $sms = new UserSms();
+            }
+            $sms->user_phone = $user_phone_number;
+            $sms->user_message_text = $user_message;
+            $sms->agent_phone = $user_agent_number;
+            $sms->agent_message_text = $agent_message;
+            $sms->twilio_user_message_sid = $message_sids["user_msg_sid"];
+            $sms->twilio_agent_message_sid = $message_sids["agent_msg_sid"];
 
-            $guest_sms->save();
+            $sms->save();
+            Logger::followUpLog('SMS M_SID = ' . json_encode($message_sids) . ' CUSTOMER ' . $user_phone_number . ', AGENT ' . $user_agent_number . ' SENT OUT ');
+        } else {
+            Logger::followUpErrorLog('TROUBLE sending CUSTOMER ' . $user_agent_number . ', AGENT ' . $user_phone_number . ' SMS ');
         }
 
     }
 
     function sendFailSMS($payment)
     {
-        $user_phone_number = '+' . $payment->guestBooking->phone;
-        $first_name = $payment->guestBooking->first_name;
-        $message = "Dear " . $first_name . ", UGABUS failed to receive your payment. Please try again later. Thanks!";
+        if ($payment->claimed_booking_type == 9998) {
+            $user_phone_number = '+' . $payment->guestBooking->phone;
+            $first_name = $payment->guestBooking->first_name;
+        } elseif ($payment->claimed_booking_type == 9999) {
+            $user_phone_number = '+' . $payment->booking->user->phone;
+            $first_name = $payment->booking->user->first_name;
+        }
+
+        $message = "Dear " . $first_name . ", UGA BUS failed to receive your booking payment. Please try again later. Thanks!";
 
         $sms = new SMS();
         $message_sid = $sms->sendSMS($user_phone_number, $message);
 
         if ($message_sid != null || $message_sid != '') {
-            $guest_sms = new GuestSms();
-            $guest_sms->guest_user_phone = $user_phone_number;
-            $guest_sms->guest_user_message_text = $message;
-            $guest_sms->twilio_message_sid = $message_sid;
+            if ($payment->claimed_booking_type == 9998) {
+                $sms = new GuestSms();
+            } elseif ($payment->claimed_booking_type == 9999) {
+                $sms = new UserSms();
+            }
+            $sms->user_phone = $user_phone_number;
+            $sms->user_message_text = $message;
+            $sms->twilio_user_message_sid = $message_sid;
 
-            $guest_sms->save();
+            $sms->save();
+            Logger::followUpLog('SMS M_SID = ' . $message_sid . ' CUSTOMER ' . $user_phone_number . ' SENT OUT ');
+        } else {
+            Logger::followUpErrorLog('TROUBLE sending CUSTOMER ' . $user_phone_number . ' FAIL SMS');
         }
+
 
     }
 
